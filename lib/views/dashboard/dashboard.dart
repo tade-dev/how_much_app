@@ -49,6 +49,7 @@ class _DashboardViewState extends State<DashboardView> {
       body: Stack(
         children: [
           PageView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder:(context, index) => views[index],
             itemCount: views.length,
             controller: _pageController,
@@ -67,7 +68,7 @@ class _DashboardViewState extends State<DashboardView> {
   buildForDashboardV() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
       decoration: BoxDecoration(
         color: ColorsX.textColor,
         borderRadius: BorderRadius.circular(50)
@@ -79,7 +80,7 @@ class _DashboardViewState extends State<DashboardView> {
             duration: const Duration(milliseconds: 1000),
             child: GestureDetector(
               onTap: () {
-                _pageController.animateToPage(0, duration: const Duration(milliseconds: 1000), curve: Curves.easeInOut);
+                _pageController.jumpToPage(0);
               },
               child: Icon(
                 Iconsax.home,
@@ -93,7 +94,7 @@ class _DashboardViewState extends State<DashboardView> {
             duration: const Duration(milliseconds: 1000),
             child: GestureDetector(
               onTap: () {
-                _pageController.animateToPage(1, duration: const Duration(milliseconds: 1000), curve: Curves.easeInOut);
+                _pageController.jumpToPage(1);
               },
               child: Icon(
                 Iconsax.box,
@@ -107,7 +108,7 @@ class _DashboardViewState extends State<DashboardView> {
             duration: const Duration(milliseconds: 1000),
             child: GestureDetector(
               onTap: () {
-                _pageController.animateToPage(2, duration: const Duration(milliseconds: 1000), curve: Curves.easeInOut);
+                _pageController.jumpToPage(2);
               },
               child: Icon(
                 Iconsax.setting,

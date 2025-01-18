@@ -11,6 +11,8 @@ class ColorsX {
   static Color backgroundColor = const Color(0xffF5F5F5);
   
   static Color textColor = const Color(0xff333333);
+
+  static Color textGrey = const Color(0xff757575);
   
   static Color errorColor = const Color(0xffF44336);
 

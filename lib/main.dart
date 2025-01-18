@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:how_much_app/core/resources/colors_x.dart';
+import 'package:how_much_app/core/services/theme_services.dart';
 import 'package:how_much_app/views/splash/splash_screen.dart';
 
 void main() {
@@ -14,9 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'How Much App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: ColorsX.backgroundColor
-      ),
+      theme: lightTheme,
+      // darkTheme: darkTheme,
       home: const SplashScreen(),
     );
   }

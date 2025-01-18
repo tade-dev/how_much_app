@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:how_much_app/views/welcome/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -28,9 +31,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.forward();
 
-  //   Timer(const Duration(seconds: 3), () {
-  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomePage()));
-  //   });
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const WelcomeScreen()));
+    });
 
   }
 
@@ -68,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'How Much ?',
+                  'How Much?',
                   style: getBoldStyle(
                     fontSize: 28,
                     color: Colors.white,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
-import 'package:how_much_app/views/dashboard/dashboard.dart';
+import 'package:how_much_app/gen/assets.gen.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -125,15 +125,12 @@ class SettingsView extends StatelessWidget {
 buildForProfileWid() {
   return Column(
     children: AnimateList(
-      // effects: [
-      //   const ScaleEffect(
-      //     duration: Duration(milliseconds: 100),
-      //     curve: Curves.easeInOut,
-      //   )
-      // ],
       children: [
-        const CircleAvatar(
+         CircleAvatar(
           radius: 40,
+          backgroundImage: AssetImage(
+            Assets.images.rectangle.path
+          ),
         ),
         const SizedBox(height: 15,),
         Text(

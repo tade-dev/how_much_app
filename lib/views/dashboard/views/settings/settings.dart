@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
+import 'package:how_much_app/views/dashboard/views/settings/profile/edit_profile.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -20,7 +21,7 @@ class SettingsView extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 20,),
-              buildForProfileWid(),
+              buildForProfileWid(context),
                     const SizedBox(height: 30,),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,12 +123,12 @@ class SettingsView extends StatelessWidget {
   }
 }
 
-buildForProfileWid() {
+buildForProfileWid(context) {
   return Column(
     children: AnimateList(
       children: [
          CircleAvatar(
-          radius: 40,
+          radius: 50,
           backgroundImage: AssetImage(
             Assets.images.rectangle.path
           ),
@@ -149,17 +150,22 @@ buildForProfileWid() {
           )
         ),
         const SizedBox(height: 15,),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          decoration: BoxDecoration(
-            color: ColorsX.textColor,
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Text(
-            "Edit profile",
-            style: getMediumStyle(
-              color: Colors.white,
-              fontSize: 16,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const EditProfileScreen()));
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            decoration: BoxDecoration(
+              color: ColorsX.textColor,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Text(
+              "Edit profile",
+              style: getMediumStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
             ),
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
-import 'package:how_much_app/views/auth/create_account.dart';
-import 'package:how_much_app/views/dashboard/dashboard.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                       alignment: PlaceholderAlignment.middle,
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>  const CreateAccountScreen()));
+                          si<AppRouter>().push(const CreateAccountScreen());
                         },
                         child: Text(
                           " Sign Up",
@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                   
                 },
                 label: "Email",
-                hintText: "john@example.com",
+                hintText: "e.g john@example.com",
               ),
               const SizedBox(height: 20,),
               AuthTextField(
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                 label: "Login", 
                 hasIcon: false,
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>  DashboardView()));
+                  si<AppRouter>().push(DashboardView());
                 }
               )
             ],

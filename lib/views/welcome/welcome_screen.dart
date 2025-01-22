@@ -88,11 +88,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                       size: 60,
                       color: Colors.white,
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(height: 10,),
                     Text(
                       "Welcome To\nHow Much App",
                       textAlign: TextAlign.center,
-                      style: getRegularStyle(
+                      style: getSemiBoldStyle(
                         color: Colors.white,
                         fontSize: 30,
                       ),

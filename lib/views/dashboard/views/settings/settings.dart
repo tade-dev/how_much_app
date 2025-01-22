@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
-import 'package:how_much_app/views/dashboard/views/settings/profile/edit_profile.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -22,99 +23,101 @@ class SettingsView extends StatelessWidget {
             children: [
               const SizedBox(height: 20,),
               buildForProfileWid(context),
-                    const SizedBox(height: 30,),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Text(
-              "General",
-              style: getMediumStyle(
-                color: ColorsX.textGrey,
-                fontSize: 14,
+              const SizedBox(height: 30,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Text(
+                      "GENERAL",
+                      style: getMediumStyle(
+                        color: ColorsX.textGrey,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: ColorsX.backgroundColor,
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                        color: ColorsX.grey
+                      )
+                    ),
+                    child: Column(
+                      children: [
+                        buildForSettingsTile(
+                          onTap: (){}, 
+                          title: "My proposals",
+                          hasDivider: true,
+                          icon: Iconsax.box
+                        ),
+                        buildForSettingsTile(
+                          onTap: (){
+                            si<AppRouter>().push(const ChangePasswordScreen());
+                          }, 
+                          title: "Change password",
+                          icon: Iconsax.lock
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-            ),
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: ColorsX.backgroundColor,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(
-                color: ColorsX.grey
-              )
-            ),
-            child: Column(
-              children: [
-                buildForSettingsTile(
-                  onTap: (){}, 
-                  title: "My proposals",
-                  hasDivider: true,
-                  icon: Iconsax.box
-                ),
-                buildForSettingsTile(
-                  onTap: (){}, 
-                  title: "Change password",
-                  icon: Iconsax.lock
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-      const SizedBox(height: 15,),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Text(
-              "Preferences",
-              style: getMediumStyle(
-                color: ColorsX.textGrey,
-                fontSize: 14,
+              const SizedBox(height: 15,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Text(
+                      "PREFERENCES",
+                      style: getMediumStyle(
+                        color: ColorsX.textGrey,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: ColorsX.backgroundColor,
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                        color: ColorsX.grey
+                      )
+                    ),
+                    child: Column(
+                      children: [
+                        buildForSettingsTile(
+                          onTap: (){}, 
+                          title: "Push notifications",
+                          hasDivider: true,
+                          icon: Iconsax.notification,
+                          hasToggle: true
+                        ),
+                        buildForSettingsTile(
+                          onTap: (){}, 
+                          hasToggle: true,
+                          title: "Face ID",
+                          hasDivider: true,
+                          icon: HugeIcons.strokeRoundedBiometricAccess
+                        ),
+                        buildForSettingsTile(
+                          onTap: (){}, 
+                          title: "Logout",
+                          islogoout: true,
+                          icon: Iconsax.logout
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-            ),
-          ),
-          const SizedBox(height: 10,),
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: ColorsX.backgroundColor,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(
-                color: ColorsX.grey
-              )
-            ),
-            child: Column(
-              children: [
-                buildForSettingsTile(
-                  onTap: (){}, 
-                  title: "Push notifications",
-                  hasDivider: true,
-                  icon: Iconsax.notification,
-                  hasToggle: true
-                ),
-                buildForSettingsTile(
-                  onTap: (){}, 
-                  hasToggle: true,
-                  title: "Face ID",
-                  hasDivider: true,
-                  icon: HugeIcons.strokeRoundedBiometricAccess
-                ),
-                buildForSettingsTile(
-                  onTap: (){}, 
-                  title: "Logout",
-                  islogoout: true,
-                  icon: Iconsax.logout
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
             ],
           ),
         ),
@@ -152,7 +155,7 @@ buildForProfileWid(context) {
         const SizedBox(height: 15,),
         GestureDetector(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const EditProfileScreen()));
+            si<AppRouter>().push(const EditProfileScreen());
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

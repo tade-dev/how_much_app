@@ -22,7 +22,7 @@ class EditProfileScreen extends StatelessWidget {
       ),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -72,7 +72,7 @@ class EditProfileScreen extends StatelessWidget {
                     
                   },
                   label: "Fullname",
-                  hintText: "fullname",
+                  hintText: "e.g John Doe",
                 ),
                 const SizedBox(height: 10,),
                 AuthTextField(
@@ -80,7 +80,7 @@ class EditProfileScreen extends StatelessWidget {
                     
                   },
                   label: "Email",
-                  hintText: "email",
+                  hintText: "e.g john@example.com",
                 ),
               ],
             ),
@@ -104,15 +104,20 @@ class EditProfileScreen extends StatelessWidget {
                     
                   },
                   label: "Years. of Experience",
-                  hintText: "experience e.g 5 years",
-                ),
-                const SizedBox(height: 10,),
-                AuthTextField(
-                  onChanged: (value) {
-                    
-                  },
-                  label: "Work mode",
-                  hintText: "work mode e.g Remote",
+                  hintText: "e.g 5",
+                  suffixIcon: SizedBox(
+                    height: 20,
+                    width: 40,
+                    child: Center(
+                      child: Text(
+                        "years",
+                        style: getMediumStyle(
+                          color: ColorsX.textGrey,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 10,),
                 AuthTextField(
@@ -120,15 +125,39 @@ class EditProfileScreen extends StatelessWidget {
                     
                   },
                   label: "Title",
-                  hintText: "work title e.g Product designer",
+                  hintText: "e.g Product designer",
                 ),
                 const SizedBox(height: 10,),
                 AuthTextField(
                   onChanged: (value) {
                     
                   },
-                  label: "Skill Stack",
-                  hintText: "stacks e.g java, python",
+                  label: "Work mode",
+                  hintText: "e.g Remote",
+                ),
+                const SizedBox(height: 10,),
+                AuthTextField(
+                  onChanged: (value) {
+                    
+                  },
+                  label: "Skill stack",
+                  hintText: "e.g java, python",
+                ),
+                const SizedBox(height: 10,),
+                AuthTextField(
+                  onChanged: (value) {
+                    
+                  },
+                  label: "Portfolio link",
+                  hintText: "e.g https://user.dev",
+                ),
+                const SizedBox(height: 10,),
+                AuthTextField(
+                  onChanged: (value) {
+                    
+                  },
+                  label: "Resume/CV link",
+                  hintText: "e.g https://resume.io.com/",
                 ),
               ],
             ),

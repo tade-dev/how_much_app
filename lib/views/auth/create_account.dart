@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
-import 'package:how_much_app/views/auth/login.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
@@ -41,7 +42,7 @@ class CreateAccountScreen extends StatelessWidget {
                       alignment: PlaceholderAlignment.middle,
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>  const LoginScreen()));
+                          si<AppRouter>().push(const LoginScreen());
                         },
                         child: Text(
                           " Sign In",
@@ -60,8 +61,8 @@ class CreateAccountScreen extends StatelessWidget {
                 onChanged: (value) {
                   
                 },
-                label: "Username",
-                hintText: "username",
+                label: "Fullname",
+                hintText: "e.g John Doe",
               ),
               const SizedBox(height: 20,),
               AuthTextField(
@@ -69,7 +70,7 @@ class CreateAccountScreen extends StatelessWidget {
                   
                 },
                 label: "Email",
-                hintText: "john@example.com",
+                hintText: "e.g john@example.com",
               ),
               const SizedBox(height: 20,),
               AuthTextField(

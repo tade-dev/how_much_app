@@ -7,8 +7,8 @@ import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({super.key});
+class VerifyEmailScreen extends StatelessWidget {
+  const VerifyEmailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

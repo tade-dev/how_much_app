@@ -2,8 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:how_much_app/core/routes/route_string.dart';
 import 'package:how_much_app/views/auth/create_account.dart';
+import 'package:how_much_app/views/auth/forgot_password.dart';
 import 'package:how_much_app/views/auth/login.dart';
+import 'package:how_much_app/views/auth/reset_password.dart';
+import 'package:how_much_app/views/auth/verify_email.dart';
 import 'package:how_much_app/views/dashboard/dashboard.dart';
+import 'package:how_much_app/views/dashboard/views/settings/profile/change_password.dart';
 import 'package:how_much_app/views/dashboard/views/settings/profile/edit_profile.dart';
 import 'package:how_much_app/views/splash/splash_screen.dart';
 import 'package:how_much_app/views/welcome/welcome_screen.dart';
@@ -19,7 +23,6 @@ import 'package:injectable/injectable.dart';
       path: RouteString.splash,
       initial: true
     ),
-
     CustomRoute(
       page: WelcomeScreen,
       path: RouteString.welcome,
@@ -32,6 +35,22 @@ import 'package:injectable/injectable.dart';
     CustomRoute(
       page: CreateAccountScreen,
       path: RouteString.signup,
+    ),
+    CustomRoute(
+      page: ForgotPasswordScreen,
+      path: RouteString.forgotPassword,
+    ),
+    CustomRoute(
+      page: ResetPasswordScreen,
+      path: RouteString.resetPassword,
+    ),
+    CustomRoute(
+      page: VerifyEmailScreen,
+      path: RouteString.verifyEmail,
+    ),
+    CustomRoute(
+      page: ChangePasswordScreen,
+      path: RouteString.changePassword,
     ),
     CustomRoute(
       page: DashboardView,

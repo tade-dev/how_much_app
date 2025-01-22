@@ -187,60 +187,63 @@ buildForSettingsTile({
 }) {
   return Column(
     children: [
-      Row(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Container(
-                  height: 35,
-                  width: 35,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+      GestureDetector(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    height: 35,
+                    width: 35,
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      icon,
+                      color: islogoout ?
+                      ColorsX.errorColor:
+                      ColorsX.textGrey,
+                      size: 20,
+                    ),
                   ),
-                  child: Icon(
-                    icon,
-                    color: islogoout ?
-                    ColorsX.errorColor:
-                    ColorsX.textGrey,
-                    size: 20,
-                  ),
-                ),
-                const SizedBox(width: 15,),
-                Text(
-                  title,
-                  style: getMediumStyle(
-                    color: (islogoout)?
-                    ColorsX.errorColor:
-                    ColorsX.textColor,
-                    fontSize: 18
+                  const SizedBox(width: 15,),
+                  Text(
+                    title,
+                    style: getMediumStyle(
+                      color: (islogoout)?
+                      ColorsX.errorColor:
+                      ColorsX.textColor,
+                      fontSize: 18
+                    )
                   )
-                )
-              ],
-            ),
-          ),
-          (islogoout)?
-          const SizedBox():
-          Visibility(
-            visible: hasToggle,
-            replacement: Icon(
-              Icons.arrow_forward,
-              color: ColorsX.textGrey,
-            ),
-            child: SizedBox.fromSize(
-              size: const Size(50, 30),
-              child: Switch.adaptive(
-                value: true, 
-                activeColor: ColorsX.primaryColor,
-                onChanged: (v){
-              
-                }
+                ],
               ),
             ),
-          )
-        ],
+            (islogoout)?
+            const SizedBox():
+            Visibility(
+              visible: hasToggle,
+              replacement: Icon(
+                Icons.arrow_forward,
+                color: ColorsX.textGrey,
+              ),
+              child: SizedBox.fromSize(
+                size: const Size(50, 30),
+                child: Switch.adaptive(
+                  value: true, 
+                  activeColor: ColorsX.primaryColor,
+                  onChanged: (v){
+                
+                  }
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       Visibility(
         visible: hasDivider,

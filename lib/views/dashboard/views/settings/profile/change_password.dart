@@ -19,7 +19,7 @@ class ChangePasswordScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 50,),
+              const SizedBox(height: 20,),
               AuthTextField(
                 onChanged: (value) {
                   

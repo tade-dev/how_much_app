@@ -51,7 +51,7 @@ class HAppBars {
         ),
       ),
       actions: [
-        w
+        w ?? const SizedBox()
       ],
     );
   }

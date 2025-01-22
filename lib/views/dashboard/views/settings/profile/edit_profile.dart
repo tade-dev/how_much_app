@@ -79,6 +79,7 @@ class EditProfileScreen extends StatelessWidget {
                   onChanged: (value) {
                     
                   },
+                  readOnly: true,
                   label: "Email",
                   hintText: "e.g john@example.com",
                 ),
@@ -129,19 +130,25 @@ class EditProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10,),
                 AuthTextField(
+                  minLines: 2,
+                  maxLines: 5,
+                  inputType: TextInputType.multiline,
                   onChanged: (value) {
                     
                   },
-                  label: "Work mode",
-                  hintText: "e.g Remote",
+                  label: "Certifications",
+                  hintText: "e.g AWS Certified Developer, MongoDB Developer Certification",
                 ),
                 const SizedBox(height: 10,),
                 AuthTextField(
+                  minLines: 2,
+                  maxLines: 5,
+                  inputType: TextInputType.multiline,
                   onChanged: (value) {
                     
                   },
                   label: "Skill stack",
-                  hintText: "e.g java, python",
+                  hintText: "e.g Java, Python",
                 ),
                 const SizedBox(height: 10,),
                 AuthTextField(

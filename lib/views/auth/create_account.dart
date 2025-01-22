@@ -89,7 +89,7 @@ class CreateAccountScreen extends StatelessWidget {
                 label: "Register", 
                 hasIcon: false,
                 onTap: () {
-
+                  si<AppRouter>().push(const VerifyEmailScreen());
                 }
               )
             ],

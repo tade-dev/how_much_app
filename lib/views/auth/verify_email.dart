@@ -22,7 +22,7 @@ class VerifyEmailScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 30,),
               Text(
-                "Welcome back! 😘",
+                "Verify your\nemail 🚀",
                 textAlign: TextAlign.center,
                 style: getBoldStyle(
                   color: ColorsX.textColor,
@@ -30,33 +30,15 @@ class VerifyEmailScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20,),
-              RichText(
-                text: TextSpan(
-                  text: "Are you new here ?",
-                  style: getMediumStyle(
-                    color: ColorsX.textColor,
-                    fontSize: 14
-                  ),
-                  children: [
-                    WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: InkWell(
-                        onTap: () {
-                          si<AppRouter>().push(const CreateAccountScreen());
-                        },
-                        child: Text(
-                          " Sign Up",
-                          style: getMediumStyle(
-                            color: ColorsX.primaryColor,
-                            fontSize: 14
-                          )
-                        ),
-                      ),
-                    )
-                  ]
+              Text(
+                "We have sent a code to\nakintadeseun816@gmail.com",
+                textAlign: TextAlign.center,
+                style: getRegularStyle(
+                  color: ColorsX.textGrey,
+                  fontSize: 14
                 ),
               ),
-              const SizedBox(height: 50,),
+              const SizedBox(height: 30,),
               AuthTextField(
                 onChanged: (value) {
                   
@@ -64,24 +46,12 @@ class VerifyEmailScreen extends StatelessWidget {
                 label: "Email",
                 hintText: "e.g john@example.com",
               ),
-              const SizedBox(height: 20,),
-              AuthTextField(
-                onChanged: (value) {
-                  
-                },
-                label: "Password",
-                hintText: "xxxxxx",
-                obscureText: true,
-                suffixIcon: const Icon(
-                  Icons.visibility_off_outlined
-                ),
-              ),
               const SizedBox(height: 30,),
               Buttons.primaryButton(
-                label: "Login", 
+                label: "Verify", 
                 hasIcon: false,
                 onTap: () {
-                  si<AppRouter>().push(DashboardView());
+                  si<AppRouter>().push(const ResetPasswordScreen());
                 }
               )
             ],

@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 30,),
               Text(
-                "Welcome back! 😘",
+                "Welcome back! 👋",
                 textAlign: TextAlign.center,
                 style: getBoldStyle(
                   color: ColorsX.textColor,
@@ -75,6 +75,24 @@ class LoginScreen extends StatelessWidget {
                 suffixIcon: const Icon(
                   Icons.visibility_off_outlined
                 ),
+              ),
+              const SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      si<AppRouter>().push(const ForgotPasswordScreen());
+                    },
+                    child: Text(
+                      "Forgot Password?",
+                      style: getMediumStyle(
+                        color: ColorsX.primaryColor,
+                        fontSize: 14
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 30,),
               Buttons.primaryButton(

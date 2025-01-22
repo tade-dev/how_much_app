@@ -21,6 +21,10 @@ class AuthTextField extends StatelessWidget {
     this.onFieldSubmitted,
     this.prefixIcon,
     this.suffixIcon,
+    this.maxLength,
+    this.maxLines = 1,
+    this.minLines,
+    this.readOnly = false
   });
 
   final TextEditingController? controller;
@@ -38,6 +42,10 @@ class AuthTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final VoidCallback? onEditingComplete;
+  final int? minLines;
+  final int? maxLines;
+  final int? maxLength;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +58,7 @@ class AuthTextField extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 15),
               child: Text(
-                label ?? '',
+                "$label :",
                 style: getSemiBoldStyle(
                     color: ColorsX.textColor, fontSize: 16),
               ),
@@ -64,9 +72,12 @@ class AuthTextField extends StatelessWidget {
               obscureText: obscureText,
               onChanged: onChanged,
               onTap: onTap,
-              minLines: 1,
+              minLines: minLines,
+              maxLines: maxLines,
+              maxLength: maxLength,
               controller: controller,
               onSaved: onSaved,
+              readOnly: readOnly,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               onFieldSubmitted: onFieldSubmitted,
               onEditingComplete: onEditingComplete,

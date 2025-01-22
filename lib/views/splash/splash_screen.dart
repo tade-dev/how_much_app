@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
-import 'package:how_much_app/views/welcome/welcome_screen.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -33,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _controller.forward();
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const WelcomeScreen()));
+      si<AppRouter>().push(const WelcomeScreen());
     });
 
   }

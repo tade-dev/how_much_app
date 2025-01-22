@@ -6,6 +6,7 @@ import 'package:how_much_app/views/auth/login.dart';
 import 'package:how_much_app/views/dashboard/dashboard.dart';
 import 'package:how_much_app/views/dashboard/views/settings/profile/edit_profile.dart';
 import 'package:how_much_app/views/splash/splash_screen.dart';
+import 'package:how_much_app/views/welcome/welcome_screen.dart';
 import 'package:injectable/injectable.dart';
 
 @CustomAutoRouter(
@@ -16,6 +17,12 @@ import 'package:injectable/injectable.dart';
     CustomRoute(
       page: SplashScreen,
       path: RouteString.splash,
+      initial: true
+    ),
+
+    CustomRoute(
+      page: WelcomeScreen,
+      path: RouteString.welcome,
       initial: true
     ),
     CustomRoute(

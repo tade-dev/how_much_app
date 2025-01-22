@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
-import 'package:how_much_app/gen/fonts.gen.dart';
 import 'package:how_much_app/views/auth/create_account.dart';
 import 'package:how_much_app/views/auth/login.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
@@ -90,13 +89,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                       color: Colors.white,
                     ),
                     const SizedBox(height: 20,),
-                    const Text(
+                    Text(
                       "Welcome To\nHow Much App",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: getRegularStyle(
                         color: Colors.white,
                         fontSize: 30,
-                        fontFamily: FontFamily.roboto
                       ),
                     ),
                     const SizedBox(height: 10,),

@@ -37,9 +37,9 @@ class _DashboardViewState extends State<DashboardView> {
     });
 
     views = [
-      HomeView(),
-      ProposalsView(),
-      SettingsView(),
+      const HomeView(),
+      const ProposalsView(),
+      const SettingsView(),
     ];
   }
 

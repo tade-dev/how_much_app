@@ -10,9 +10,6 @@
 class FontFamily {
   FontFamily._();
 
-  /// Font family: OpenSans
-  static const String openSans = 'OpenSans';
-
-  /// Font family: Roboto
-  static const String roboto = 'Roboto';
+  /// Font family: Urbanist
+  static const String urbanist = 'Urbanist';
 }

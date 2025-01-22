@@ -4,8 +4,8 @@ import 'package:how_much_app/core/resources/styles_x.dart';
 
 
 class AuthTextField extends StatelessWidget {
-  AuthTextField({
-    Key? key,
+  const AuthTextField({
+    super.key,
     this.controller,
     this.hintText,
     this.obscureText = false,
@@ -21,7 +21,7 @@ class AuthTextField extends StatelessWidget {
     this.onFieldSubmitted,
     this.prefixIcon,
     this.suffixIcon,
-  }) : super(key: key);
+  });
 
   final TextEditingController? controller;
   final String? hintText;

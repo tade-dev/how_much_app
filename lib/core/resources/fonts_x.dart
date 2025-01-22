@@ -3,8 +3,7 @@ import 'package:how_much_app/gen/fonts.gen.dart';
 
 
 class FontConstants {
-  static const String fontFamily = FontFamily.openSans;
-  static const String fontFamily2 = FontFamily.roboto;
+  static const String fontFamily = FontFamily.urbanist;
 }
 
 

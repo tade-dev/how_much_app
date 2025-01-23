@@ -5,7 +5,7 @@ import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
-import 'package:how_much_app/features/auth/cubit/auth_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HAppBars().authBar(context),
-      body: BlocBuilder<AuthCubit, AuthState>(
+      body: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
           return Container(
             width: double.infinity,
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     AuthTextField(
                       onChanged: (value) {
-                        context.read<AuthCubit>().updateEmail(value);
+                        context.read<LoginCubit>().updateEmail(value);
                       },
                       validator: ValidationBuilder().email().build(),
                       inputType: TextInputType.emailAddress,
@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     AuthTextField(
                       onChanged: (value) {
-                        context.read<AuthCubit>().updatePassword(value);
+                        context.read<LoginCubit>().updatePassword(value);
                       },
                       inputType: TextInputType.visiblePassword,
                       label: "Password",
@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                       obscureText: !state.showPassword,
                       suffixIcon: InkWell(
                         onTap: () {
-                          context.read<AuthCubit>().toggleShowPassword();
+                          context.read<LoginCubit>().toggleShowPassword();
                         },
                         child: Icon(
                           state.showPassword ?

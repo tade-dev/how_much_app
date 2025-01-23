@@ -11,7 +11,14 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:how_much_app/core/api/api.dart' as _i4;
 import 'package:how_much_app/core/routes/routes.dart' as _i3;
-import 'package:how_much_app/features/auth/cubit/auth_cubit.dart' as _i10;
+import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_cubit.dart'
+    as _i10;
+import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart'
+    as _i11;
+import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart'
+    as _i12;
+import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart'
+    as _i13;
 import 'package:how_much_app/features/auth/data/datasource/auth_s.dart' as _i6;
 import 'package:how_much_app/features/auth/data/datasource/auth_services.dart'
     as _i5;
@@ -57,14 +64,17 @@ extension GetItInjectableX on _i1.GetIt {
         gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
     gh.factory<_i9.VerifyEmailUseCase>(() => _i9.VerifyEmailUseCase(
         gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.lazySingleton<_i10.AuthCubit>(() => _i10.AuthCubit(
+    gh.factory<_i10.ForgotPasswordCubit>(() => _i10.ForgotPasswordCubit(
           gh<_i9.ForgotPasswordUseCase>(),
-          gh<_i9.LoginUserUseCase>(),
-          gh<_i9.RegisterUserUseCase>(),
-          gh<_i9.VerifyEmailUseCase>(),
-          gh<_i9.UpdatePasswordUseCase>(),
           gh<_i9.ResetPasswordUseCase>(),
+          gh<_i9.UpdatePasswordUseCase>(),
         ));
+    gh.factory<_i11.LoginCubit>(
+        () => _i11.LoginCubit(gh<_i9.LoginUserUseCase>()));
+    gh.factory<_i12.RegisterCubit>(
+        () => _i12.RegisterCubit(gh<_i9.RegisterUserUseCase>()));
+    gh.factory<_i13.VerifcationCubit>(
+        () => _i13.VerifcationCubit(gh<_i9.VerifyEmailUseCase>()));
     return this;
   }
 }

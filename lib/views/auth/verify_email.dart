@@ -5,7 +5,7 @@ import 'package:how_much_app/core/enums/enums.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
-import 'package:how_much_app/features/auth/cubit/auth_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart';
 import 'package:how_much_app/gen/fonts.gen.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
@@ -16,7 +16,7 @@ class VerifyEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocBuilder<VerifcationCubit, VerifcationState>(
       builder: (context, state) {
         return Scaffold(
           appBar: HAppBars().authBar(context),
@@ -37,7 +37,7 @@ class VerifyEmailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20,),
                   Text(
-                    "We have sent a code to\n${state.email}",
+                    "We have sent a code to\n${""}",
                     textAlign: TextAlign.center,
                     style: getRegularStyle(
                       color: ColorsX.textGrey,
@@ -47,7 +47,7 @@ class VerifyEmailScreen extends StatelessWidget {
                   const SizedBox(height: 20,),
                   PinInputField(
                     onChanged: (v){
-                      context.read<AuthCubit>().updatePinCode(v);
+                      context.read<VerifcationCubit>().updatePinCode(v);
                     },
                     length: 4,
                   ),
@@ -68,7 +68,7 @@ class VerifyEmailScreen extends StatelessWidget {
                   Buttons.primaryButton(
                     label: "Verify", 
                     hasIcon: false,
-                    isDisabled: !state.isVerificationButtonEnabled,
+                    isDisabled: !state.isVerifyButtonEnabled,
                     onTap: () {
                       switch(state.verifyType){
                         case VerifyEmailType.email :

@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/core/services/theme_services.dart';
-import 'package:how_much_app/features/auth/cubit/auth_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart';
+import 'package:how_much_app/features/auth/login/login_cubit.dart';
+import 'package:how_much_app/features/auth/register/register_cubit.dart';
 import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
 
@@ -18,18 +21,27 @@ class HowMuchApp extends StatefulWidget {
 class _HowMuchAppState extends State<HowMuchApp> {
 
   late AppRouter appRouter;
-  late AuthCubit authCubit;
+  late LoginCubit loginCubit;
+  late ForgotPasswordCubit forgotPasswordCubit;
+  late RegisterCubit registerCubit;
+  late VerifcationCubit verifcationCubit;
 
   @override
   void initState() {
     appRouter = si<AppRouter>();
-    authCubit = si<AuthCubit>();
+    loginCubit = si<LoginCubit>();
+    forgotPasswordCubit = si<ForgotPasswordCubit>();
+    registerCubit = si<RegisterCubit>();
+    verifcationCubit = si<VerifcationCubit>();
     super.initState();
   }
 
   @override
   void dispose() {
-    authCubit.close();
+    loginCubit.close();
+    registerCubit.close();
+    forgotPasswordCubit.close();
+    verifcationCubit.close();
     super.dispose();
   }
 
@@ -49,7 +61,10 @@ class _HowMuchAppState extends State<HowMuchApp> {
 
   List<SingleChildWidget> get providers {
     return [
-      BlocProvider<AuthCubit>.value(value: authCubit)
+      BlocProvider<LoginCubit>.value(value: loginCubit),
+      BlocProvider<RegisterCubit>.value(value: registerCubit),
+      BlocProvider<ForgotPasswordCubit>.value(value: forgotPasswordCubit),
+      BlocProvider<VerifcationCubit>.value(value: verifcationCubit),
     ];
   }
 

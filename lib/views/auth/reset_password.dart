@@ -5,7 +5,7 @@ import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
-import 'package:how_much_app/features/auth/cubit/auth_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_cubit.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
@@ -15,7 +15,7 @@ class ResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
       builder: (context, state) {
         return Scaffold(
           appBar: HAppBars().authBar(context),
@@ -38,7 +38,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   ),
                   AuthTextField(
                     onChanged: (value) {
-                      context.read<AuthCubit>().updatePassword(value);
+                      context.read<ForgotPasswordCubit>().updatePassword(value);
                     },
                     inputType: TextInputType.visiblePassword,
                     label: "Password",
@@ -52,7 +52,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     obscureText: !state.showPassword,
                     suffixIcon: InkWell(
                         onTap: () {
-                          context.read<AuthCubit>().toggleShowPassword();
+                          context.read<ForgotPasswordCubit>().toggleShowPassword();
                         },
                         child: Icon(state.showPassword
                             ? Icons.visibility_off_outlined
@@ -63,7 +63,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   ),
                   AuthTextField(
                     onChanged: (value) {
-                      context.read<AuthCubit>().updatePassword(value);
+                      context.read<ForgotPasswordCubit>().updatePassword(value);
                     },
                     inputType: TextInputType.visiblePassword,
                     label: "Confirm password",
@@ -77,7 +77,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     obscureText: !state.showPassword,
                     suffixIcon: InkWell(
                         onTap: () {
-                          context.read<AuthCubit>().toggleShowPassword();
+                          context.read<ForgotPasswordCubit>().toggleShowPassword();
                         },
                         child: Icon(state.showPassword
                             ? Icons.visibility_off_outlined
@@ -89,7 +89,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   Buttons.primaryButton(
                       label: "Reset",
                       hasIcon: false,
-                      isDisabled: !state.isPasswordButtonEnabled,
+                      isDisabled: !state.isForgotPasswordButtonEnabled,
                       onTap: () {
                         si<AppRouter>().push(const LoginScreen());
                       })

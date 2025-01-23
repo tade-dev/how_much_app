@@ -5,7 +5,7 @@ import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
-import 'package:how_much_app/features/auth/cubit/auth_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_cubit.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
@@ -15,7 +15,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
       builder: (context, state) {
         return Scaffold(
           appBar: HAppBars().authBar(context),
@@ -47,7 +47,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   AuthTextField(
                     onChanged: (value) {
-                      context.read<AuthCubit>().updateEmail(value);
+                      context.read<ForgotPasswordCubit>().updateEmail(value);
                     },
                     validator: ValidationBuilder().email().build(),
                     inputType: TextInputType.emailAddress,
@@ -59,7 +59,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   Buttons.primaryButton(
                       label: "Send",
-                      isDisabled: !state.isForgotPasswordButtonEnabled,
+                      // isDisabled: !state.isForgotPasswordButtonEnabled,
                       hasIcon: false,
                       onTap: () {
                         si<AppRouter>().push(const VerifyEmailScreen());

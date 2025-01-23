@@ -5,7 +5,7 @@ import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
-import 'package:how_much_app/features/auth/cubit/auth_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
@@ -15,7 +15,7 @@ class CreateAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
         return Scaffold(
           appBar: HAppBars().authBar(context),
@@ -63,8 +63,8 @@ class CreateAccountScreen extends StatelessWidget {
                     ),
                     AuthTextField(
                       onChanged: (value) {
-                        context.read<AuthCubit>().updatePassword(value);
                       },
+
                       inputType: TextInputType.name,
                       label: "Fullname",
                       hintText: "e.g John Doe",
@@ -74,7 +74,7 @@ class CreateAccountScreen extends StatelessWidget {
                     ),
                     AuthTextField(
                       onChanged: (value) {
-                        context.read<AuthCubit>().updateEmail(value);
+                        context.read<RegisterCubit>().updateEmail(value);
                       },
                       validator: ValidationBuilder().email().build(),
                       inputType: TextInputType.emailAddress,
@@ -86,7 +86,7 @@ class CreateAccountScreen extends StatelessWidget {
                     ),
                     AuthTextField(
                       onChanged: (value) {
-                        context.read<AuthCubit>().updatePassword(value);
+                        context.read<RegisterCubit>().updatePassword(value);
                       },
                       inputType: TextInputType.visiblePassword,
                       label: "Password",
@@ -95,10 +95,10 @@ class CreateAccountScreen extends StatelessWidget {
                         RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$'),
                         'Password must include an uppercase letter, a lowercase letter, a number, and a special character, and be at least 8 characters long.'
                       ).build(),
-                      obscureText: !state.showPassword,
+                      // obscureText: !state.sh,
                       suffixIcon: InkWell(
                         onTap: () {
-                          context.read<AuthCubit>().toggleShowPassword();
+                          context.read<RegisterCubit>().toggleShowPassword();
                         },
                         child: Icon(
                           state.showPassword ?
@@ -113,7 +113,7 @@ class CreateAccountScreen extends StatelessWidget {
                     Buttons.primaryButton(
                       label: "Register",
                       hasIcon: false,
-                      isDisabled: !state.isSignUpButtonEnabled,
+                      // isDisabled: !state.is,
                       onTap: () {
                         si<AppRouter>().push(const VerifyEmailScreen());
                       }

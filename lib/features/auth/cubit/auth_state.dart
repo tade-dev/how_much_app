@@ -10,12 +10,12 @@ sealed class AuthState with _$AuthState{
     @Default("") String confirmPassword,
     @Default("") String pinCode,
     @Default("") String fullName,
-    @Default(false) bool loginStatus,
-    @Default(false) bool signUpStatus,
-    @Default(false) bool forgotPasswordStatus,
-    @Default(false) bool resetPasswordStatus,
-    @Default(false) bool verifyStatus,
-    @Default(false) bool showPassword,
+    @Default(FormzSubmissionStatus.initial) bool loginStatus,
+    @Default(FormzSubmissionStatus.initial) bool signUpStatus,
+    @Default(FormzSubmissionStatus.initial) bool forgotPasswordStatus,
+    @Default(FormzSubmissionStatus.initial) bool resetPasswordStatus,
+    @Default(FormzSubmissionStatus.initial) bool verifyStatus,
+    @Default(FormzSubmissionStatus.initial) bool showPassword,
     @Default(VerifyEmailType.email) VerifyEmailType verifyType,
   }) = AuthInitial;
 
@@ -24,5 +24,7 @@ sealed class AuthState with _$AuthState{
   bool get isForgotPasswordButtonEnabled => email.isNotEmpty;
   bool get isPasswordButtonEnabled => (password.isNotEmpty && confirmPassword.isNotEmpty) || (password != confirmPassword);
   bool get isVerificationButtonEnabled => pinCode.isNotEmpty;
+  String get firstname => fullName.split(" ").first;
+  String get lastname => fullName.split(" ").last;
 
 }

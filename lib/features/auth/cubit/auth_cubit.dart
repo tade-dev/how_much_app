@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:how_much_app/core/enums/enums.dart';
 import 'package:injectable/injectable.dart';
@@ -8,6 +9,7 @@ part 'auth_cubit.freezed.dart';
 
 @lazySingleton
 class AuthCubit extends Cubit<AuthState> {
+
   AuthCubit() : super(const AuthState.initial());
 
   toggleShowPassword() {
@@ -31,6 +33,12 @@ class AuthCubit extends Cubit<AuthState> {
   updateConfirmPassword(v) {
     emit(state.copyWith(
       confirmPassword: v
+    ));
+  }
+
+  updatePinCode(v) {
+    emit(state.copyWith(
+      pinCode: v
     ));
   }
 

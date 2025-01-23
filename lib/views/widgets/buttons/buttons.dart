@@ -15,7 +15,9 @@ class Buttons {
     return SizedBox(
       width: 250,
       child: ElevatedButton(
-        onPressed: onTap, 
+        onPressed: isDisabled ?
+        null:
+        onTap, 
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorsX.primaryColor,
           elevation: 0,

@@ -19,6 +19,8 @@ mixin _$AuthState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
+  String get pinCode => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
   bool get loginStatus => throw _privateConstructorUsedError;
   bool get signUpStatus => throw _privateConstructorUsedError;
   bool get forgotPasswordStatus => throw _privateConstructorUsedError;
@@ -32,6 +34,8 @@ mixin _$AuthState {
             String email,
             String password,
             String confirmPassword,
+            String pinCode,
+            String fullName,
             bool loginStatus,
             bool signUpStatus,
             bool forgotPasswordStatus,
@@ -48,6 +52,8 @@ mixin _$AuthState {
             String email,
             String password,
             String confirmPassword,
+            String pinCode,
+            String fullName,
             bool loginStatus,
             bool signUpStatus,
             bool forgotPasswordStatus,
@@ -64,6 +70,8 @@ mixin _$AuthState {
             String email,
             String password,
             String confirmPassword,
+            String pinCode,
+            String fullName,
             bool loginStatus,
             bool signUpStatus,
             bool forgotPasswordStatus,
@@ -106,6 +114,8 @@ abstract class $AuthStateCopyWith<$Res> {
       {String email,
       String password,
       String confirmPassword,
+      String pinCode,
+      String fullName,
       bool loginStatus,
       bool signUpStatus,
       bool forgotPasswordStatus,
@@ -131,6 +141,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? email = null,
     Object? password = null,
     Object? confirmPassword = null,
+    Object? pinCode = null,
+    Object? fullName = null,
     Object? loginStatus = null,
     Object? signUpStatus = null,
     Object? forgotPasswordStatus = null,
@@ -151,6 +163,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       confirmPassword: null == confirmPassword
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      pinCode: null == pinCode
+          ? _value.pinCode
+          : pinCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       loginStatus: null == loginStatus
           ? _value.loginStatus
@@ -196,6 +216,8 @@ abstract class _$$AuthInitialImplCopyWith<$Res>
       {String email,
       String password,
       String confirmPassword,
+      String pinCode,
+      String fullName,
       bool loginStatus,
       bool signUpStatus,
       bool forgotPasswordStatus,
@@ -219,6 +241,8 @@ class __$$AuthInitialImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? confirmPassword = null,
+    Object? pinCode = null,
+    Object? fullName = null,
     Object? loginStatus = null,
     Object? signUpStatus = null,
     Object? forgotPasswordStatus = null,
@@ -239,6 +263,14 @@ class __$$AuthInitialImplCopyWithImpl<$Res>
       confirmPassword: null == confirmPassword
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      pinCode: null == pinCode
+          ? _value.pinCode
+          : pinCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       loginStatus: null == loginStatus
           ? _value.loginStatus
@@ -279,6 +311,8 @@ class _$AuthInitialImpl extends AuthInitial {
       {this.email = "",
       this.password = "",
       this.confirmPassword = "",
+      this.pinCode = "",
+      this.fullName = "",
       this.loginStatus = false,
       this.signUpStatus = false,
       this.forgotPasswordStatus = false,
@@ -297,6 +331,12 @@ class _$AuthInitialImpl extends AuthInitial {
   @override
   @JsonKey()
   final String confirmPassword;
+  @override
+  @JsonKey()
+  final String pinCode;
+  @override
+  @JsonKey()
+  final String fullName;
   @override
   @JsonKey()
   final bool loginStatus;
@@ -321,7 +361,7 @@ class _$AuthInitialImpl extends AuthInitial {
 
   @override
   String toString() {
-    return 'AuthState.initial(email: $email, password: $password, confirmPassword: $confirmPassword, loginStatus: $loginStatus, signUpStatus: $signUpStatus, forgotPasswordStatus: $forgotPasswordStatus, resetPasswordStatus: $resetPasswordStatus, verifyStatus: $verifyStatus, showPassword: $showPassword, verifyType: $verifyType)';
+    return 'AuthState.initial(email: $email, password: $password, confirmPassword: $confirmPassword, pinCode: $pinCode, fullName: $fullName, loginStatus: $loginStatus, signUpStatus: $signUpStatus, forgotPasswordStatus: $forgotPasswordStatus, resetPasswordStatus: $resetPasswordStatus, verifyStatus: $verifyStatus, showPassword: $showPassword, verifyType: $verifyType)';
   }
 
   @override
@@ -334,6 +374,9 @@ class _$AuthInitialImpl extends AuthInitial {
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
                 other.confirmPassword == confirmPassword) &&
+            (identical(other.pinCode, pinCode) || other.pinCode == pinCode) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
             (identical(other.loginStatus, loginStatus) ||
                 other.loginStatus == loginStatus) &&
             (identical(other.signUpStatus, signUpStatus) ||
@@ -356,6 +399,8 @@ class _$AuthInitialImpl extends AuthInitial {
       email,
       password,
       confirmPassword,
+      pinCode,
+      fullName,
       loginStatus,
       signUpStatus,
       forgotPasswordStatus,
@@ -377,6 +422,8 @@ class _$AuthInitialImpl extends AuthInitial {
             String email,
             String password,
             String confirmPassword,
+            String pinCode,
+            String fullName,
             bool loginStatus,
             bool signUpStatus,
             bool forgotPasswordStatus,
@@ -390,6 +437,8 @@ class _$AuthInitialImpl extends AuthInitial {
         email,
         password,
         confirmPassword,
+        pinCode,
+        fullName,
         loginStatus,
         signUpStatus,
         forgotPasswordStatus,
@@ -406,6 +455,8 @@ class _$AuthInitialImpl extends AuthInitial {
             String email,
             String password,
             String confirmPassword,
+            String pinCode,
+            String fullName,
             bool loginStatus,
             bool signUpStatus,
             bool forgotPasswordStatus,
@@ -419,6 +470,8 @@ class _$AuthInitialImpl extends AuthInitial {
         email,
         password,
         confirmPassword,
+        pinCode,
+        fullName,
         loginStatus,
         signUpStatus,
         forgotPasswordStatus,
@@ -435,6 +488,8 @@ class _$AuthInitialImpl extends AuthInitial {
             String email,
             String password,
             String confirmPassword,
+            String pinCode,
+            String fullName,
             bool loginStatus,
             bool signUpStatus,
             bool forgotPasswordStatus,
@@ -450,6 +505,8 @@ class _$AuthInitialImpl extends AuthInitial {
           email,
           password,
           confirmPassword,
+          pinCode,
+          fullName,
           loginStatus,
           signUpStatus,
           forgotPasswordStatus,
@@ -495,6 +552,8 @@ abstract class AuthInitial extends AuthState {
       {final String email,
       final String password,
       final String confirmPassword,
+      final String pinCode,
+      final String fullName,
       final bool loginStatus,
       final bool signUpStatus,
       final bool forgotPasswordStatus,
@@ -510,6 +569,10 @@ abstract class AuthInitial extends AuthState {
   String get password;
   @override
   String get confirmPassword;
+  @override
+  String get pinCode;
+  @override
+  String get fullName;
   @override
   bool get loginStatus;
   @override

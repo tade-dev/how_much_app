@@ -24,7 +24,8 @@ class AuthTextField extends StatelessWidget {
     this.maxLength,
     this.maxLines = 1,
     this.minLines,
-    this.readOnly = false
+    this.readOnly = false,
+    this.validator
   });
 
   final TextEditingController? controller;
@@ -46,6 +47,7 @@ class AuthTextField extends StatelessWidget {
   final int? maxLines;
   final int? maxLength;
   final bool readOnly;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +80,7 @@ class AuthTextField extends StatelessWidget {
               controller: controller,
               onSaved: onSaved,
               readOnly: readOnly,
+              validator: validator,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               onFieldSubmitted: onFieldSubmitted,
               onEditingComplete: onEditingComplete,

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:how_much_app/core/enums/enums.dart';
+import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart';
 import 'package:injectable/injectable.dart';
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
@@ -10,7 +10,21 @@ part 'auth_cubit.freezed.dart';
 @lazySingleton
 class AuthCubit extends Cubit<AuthState> {
 
-  AuthCubit() : super(const AuthState.initial());
+  LoginUserUseCase loginUserUseCase;
+  RegisterUserUseCase registerUserUseCase;
+  ForgotPasswordUseCase forgotPasswordUseCase;
+  ResetPasswordUseCase resetPasswordUseCase;
+  VerifyEmailUseCase verifyEmailUseCase;
+  UpdatePasswordUseCase updatePasswordUseCase;
+
+  AuthCubit(
+    this.forgotPasswordUseCase,
+    this.loginUserUseCase,
+    this.registerUserUseCase,
+    this.verifyEmailUseCase,
+    this.updatePasswordUseCase,
+    this.resetPasswordUseCase,
+  ) : super(const AuthState.initial());
 
   toggleShowPassword() {
     emit(state.copyWith(

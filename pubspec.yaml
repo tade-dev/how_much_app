@@ -33,6 +33,10 @@ dependencies:
   form_validator: ^2.1.1
   pinput: ^5.0.1
   dio: ^5.7.0
+  equatable: ^2.0.7
+  dartz: ^0.10.1
+  json_serializable: ^6.8.0
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +58,7 @@ flutter:
     - assets/svg/
     - assets/icons/
     - assets/png/
-  
+    - .env
   
   fonts:
   - family: Urbanist

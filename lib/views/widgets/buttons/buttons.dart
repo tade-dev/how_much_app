@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 
@@ -15,7 +16,9 @@ class Buttons {
     return SizedBox(
       width: 250,
       child: ElevatedButton(
-        onPressed: isDisabled ?
+        onPressed: isLoading ?
+        (){}:
+        isDisabled ?
         null:
         onTap, 
         style: ElevatedButton.styleFrom(
@@ -26,7 +29,12 @@ class Buttons {
             borderRadius: BorderRadius.circular(10)
           )
         ),
-        child: Row(
+        child: (isLoading) ?
+        const SpinKitThreeBounce(
+          color: Colors.white,
+          size: 30,
+        ):
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [

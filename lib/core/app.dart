@@ -4,9 +4,9 @@ import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/core/services/theme_services.dart';
 import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart';
+import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart';
 import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart';
-import 'package:how_much_app/features/auth/login/login_cubit.dart';
-import 'package:how_much_app/features/auth/register/register_cubit.dart';
 import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
 

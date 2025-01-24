@@ -12,21 +12,25 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:how_much_app/core/api/api.dart' as _i4;
 import 'package:how_much_app/core/routes/routes.dart' as _i3;
 import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_cubit.dart'
-    as _i10;
-import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart'
-    as _i11;
-import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart'
     as _i12;
-import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart'
+import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart'
     as _i13;
+import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart'
+    as _i14;
+import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart'
+    as _i15;
 import 'package:how_much_app/features/auth/data/datasource/auth_s.dart' as _i6;
 import 'package:how_much_app/features/auth/data/datasource/auth_services.dart'
     as _i5;
 import 'package:how_much_app/features/auth/data/repository/auth_impl.dart'
-    as _i8;
+    as _i10;
 import 'package:how_much_app/features/auth/domain/repositories/auth_r.dart'
+    as _i9;
+import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart' as _i11;
+import 'package:how_much_app/features/profile/data/datasource/profile_s.dart'
+    as _i8;
+import 'package:how_much_app/features/profile/data/datasource/profile_service.dart'
     as _i7;
-import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart' as _i9;
 import 'package:injectable/injectable.dart' as _i2;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -46,35 +50,39 @@ extension GetItInjectableX on _i1.GetIt {
       () => _i6.AuthSource(api: gh<_i4.Api>()),
       instanceName: 'authsource',
     );
-    gh.factory<_i7.AuthRepository>(
-      () => _i8.AuthImpl(gh<_i5.AuthServices>(instanceName: 'authsource')),
+    gh.factory<_i7.ProfileService>(
+      () => _i8.ProfileSource(api: gh<_i4.Api>()),
+      instanceName: 'profilesource',
+    );
+    gh.factory<_i9.AuthRepository>(
+      () => _i10.AuthImpl(gh<_i5.AuthServices>(instanceName: 'authsource')),
       instanceName: 'AuthRepository',
     );
-    gh.factory<_i9.ForgotPasswordUseCase>(() => _i9.ForgotPasswordUseCase(
-        gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.factory<_i9.LoginUserUseCase>(() => _i9.LoginUserUseCase(
-        gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.factory<_i9.RegisterUserUseCase>(() => _i9.RegisterUserUseCase(
-        gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.factory<_i9.ResendCodeUseCase>(() => _i9.ResendCodeUseCase(
-        gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.factory<_i9.ResetPasswordUseCase>(() => _i9.ResetPasswordUseCase(
-        gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.factory<_i9.UpdatePasswordUseCase>(() => _i9.UpdatePasswordUseCase(
-        gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.factory<_i9.VerifyEmailUseCase>(() => _i9.VerifyEmailUseCase(
-        gh<_i7.AuthRepository>(instanceName: 'AuthRepository')));
-    gh.factory<_i10.ForgotPasswordCubit>(() => _i10.ForgotPasswordCubit(
-          gh<_i9.ForgotPasswordUseCase>(),
-          gh<_i9.ResetPasswordUseCase>(),
-          gh<_i9.UpdatePasswordUseCase>(),
+    gh.factory<_i11.ForgotPasswordUseCase>(() => _i11.ForgotPasswordUseCase(
+        gh<_i9.AuthRepository>(instanceName: 'AuthRepository')));
+    gh.factory<_i11.LoginUserUseCase>(() => _i11.LoginUserUseCase(
+        gh<_i9.AuthRepository>(instanceName: 'AuthRepository')));
+    gh.factory<_i11.RegisterUserUseCase>(() => _i11.RegisterUserUseCase(
+        gh<_i9.AuthRepository>(instanceName: 'AuthRepository')));
+    gh.factory<_i11.ResendCodeUseCase>(() => _i11.ResendCodeUseCase(
+        gh<_i9.AuthRepository>(instanceName: 'AuthRepository')));
+    gh.factory<_i11.ResetPasswordUseCase>(() => _i11.ResetPasswordUseCase(
+        gh<_i9.AuthRepository>(instanceName: 'AuthRepository')));
+    gh.factory<_i11.UpdatePasswordUseCase>(() => _i11.UpdatePasswordUseCase(
+        gh<_i9.AuthRepository>(instanceName: 'AuthRepository')));
+    gh.factory<_i11.VerifyEmailUseCase>(() => _i11.VerifyEmailUseCase(
+        gh<_i9.AuthRepository>(instanceName: 'AuthRepository')));
+    gh.factory<_i12.ForgotPasswordCubit>(() => _i12.ForgotPasswordCubit(
+          gh<_i11.ForgotPasswordUseCase>(),
+          gh<_i11.ResetPasswordUseCase>(),
+          gh<_i11.UpdatePasswordUseCase>(),
         ));
-    gh.factory<_i11.LoginCubit>(
-        () => _i11.LoginCubit(gh<_i9.LoginUserUseCase>()));
-    gh.factory<_i12.RegisterCubit>(
-        () => _i12.RegisterCubit(gh<_i9.RegisterUserUseCase>()));
-    gh.factory<_i13.VerifcationCubit>(
-        () => _i13.VerifcationCubit(gh<_i9.VerifyEmailUseCase>()));
+    gh.factory<_i13.LoginCubit>(
+        () => _i13.LoginCubit(gh<_i11.LoginUserUseCase>()));
+    gh.factory<_i14.RegisterCubit>(
+        () => _i14.RegisterCubit(gh<_i11.RegisterUserUseCase>()));
+    gh.factory<_i15.VerifcationCubit>(
+        () => _i15.VerifcationCubit(gh<_i11.VerifyEmailUseCase>()));
     return this;
   }
 }

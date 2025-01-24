@@ -20,6 +20,7 @@ mixin _$RegisterState {
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
+  String get selectedGender => throw _privateConstructorUsedError;
   FormzSubmissionStatus get signUpStatus => throw _privateConstructorUsedError;
   bool get showPassword => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,6 +30,7 @@ mixin _$RegisterState {
             String password,
             String confirmPassword,
             String fullName,
+            String selectedGender,
             FormzSubmissionStatus signUpStatus,
             bool showPassword)
         initial,
@@ -41,6 +43,7 @@ mixin _$RegisterState {
             String password,
             String confirmPassword,
             String fullName,
+            String selectedGender,
             FormzSubmissionStatus signUpStatus,
             bool showPassword)?
         initial,
@@ -53,6 +56,7 @@ mixin _$RegisterState {
             String password,
             String confirmPassword,
             String fullName,
+            String selectedGender,
             FormzSubmissionStatus signUpStatus,
             bool showPassword)?
         initial,
@@ -92,6 +96,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       String password,
       String confirmPassword,
       String fullName,
+      String selectedGender,
       FormzSubmissionStatus signUpStatus,
       bool showPassword});
 }
@@ -113,6 +118,7 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? password = null,
     Object? confirmPassword = null,
     Object? fullName = null,
+    Object? selectedGender = null,
     Object? signUpStatus = null,
     Object? showPassword = null,
   }) {
@@ -132,6 +138,10 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedGender: null == selectedGender
+          ? _value.selectedGender
+          : selectedGender // ignore: cast_nullable_to_non_nullable
               as String,
       signUpStatus: null == signUpStatus
           ? _value.signUpStatus
@@ -158,6 +168,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       String password,
       String confirmPassword,
       String fullName,
+      String selectedGender,
       FormzSubmissionStatus signUpStatus,
       bool showPassword});
 }
@@ -177,6 +188,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? password = null,
     Object? confirmPassword = null,
     Object? fullName = null,
+    Object? selectedGender = null,
     Object? signUpStatus = null,
     Object? showPassword = null,
   }) {
@@ -196,6 +208,10 @@ class __$$InitialImplCopyWithImpl<$Res>
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedGender: null == selectedGender
+          ? _value.selectedGender
+          : selectedGender // ignore: cast_nullable_to_non_nullable
               as String,
       signUpStatus: null == signUpStatus
           ? _value.signUpStatus
@@ -217,6 +233,7 @@ class _$InitialImpl extends _Initial {
       this.password = "",
       this.confirmPassword = "",
       this.fullName = "",
+      this.selectedGender = "",
       this.signUpStatus = FormzSubmissionStatus.initial,
       this.showPassword = false})
       : super._();
@@ -235,6 +252,9 @@ class _$InitialImpl extends _Initial {
   final String fullName;
   @override
   @JsonKey()
+  final String selectedGender;
+  @override
+  @JsonKey()
   final FormzSubmissionStatus signUpStatus;
   @override
   @JsonKey()
@@ -242,7 +262,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   String toString() {
-    return 'RegisterState.initial(email: $email, password: $password, confirmPassword: $confirmPassword, fullName: $fullName, signUpStatus: $signUpStatus, showPassword: $showPassword)';
+    return 'RegisterState.initial(email: $email, password: $password, confirmPassword: $confirmPassword, fullName: $fullName, selectedGender: $selectedGender, signUpStatus: $signUpStatus, showPassword: $showPassword)';
   }
 
   @override
@@ -257,6 +277,8 @@ class _$InitialImpl extends _Initial {
                 other.confirmPassword == confirmPassword) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
+            (identical(other.selectedGender, selectedGender) ||
+                other.selectedGender == selectedGender) &&
             (identical(other.signUpStatus, signUpStatus) ||
                 other.signUpStatus == signUpStatus) &&
             (identical(other.showPassword, showPassword) ||
@@ -265,7 +287,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   int get hashCode => Object.hash(runtimeType, email, password, confirmPassword,
-      fullName, signUpStatus, showPassword);
+      fullName, selectedGender, signUpStatus, showPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -281,12 +303,13 @@ class _$InitialImpl extends _Initial {
             String password,
             String confirmPassword,
             String fullName,
+            String selectedGender,
             FormzSubmissionStatus signUpStatus,
             bool showPassword)
         initial,
   }) {
-    return initial(
-        email, password, confirmPassword, fullName, signUpStatus, showPassword);
+    return initial(email, password, confirmPassword, fullName, selectedGender,
+        signUpStatus, showPassword);
   }
 
   @override
@@ -297,12 +320,13 @@ class _$InitialImpl extends _Initial {
             String password,
             String confirmPassword,
             String fullName,
+            String selectedGender,
             FormzSubmissionStatus signUpStatus,
             bool showPassword)?
         initial,
   }) {
-    return initial?.call(
-        email, password, confirmPassword, fullName, signUpStatus, showPassword);
+    return initial?.call(email, password, confirmPassword, fullName,
+        selectedGender, signUpStatus, showPassword);
   }
 
   @override
@@ -313,14 +337,15 @@ class _$InitialImpl extends _Initial {
             String password,
             String confirmPassword,
             String fullName,
+            String selectedGender,
             FormzSubmissionStatus signUpStatus,
             bool showPassword)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(email, password, confirmPassword, fullName, signUpStatus,
-          showPassword);
+      return initial(email, password, confirmPassword, fullName, selectedGender,
+          signUpStatus, showPassword);
     }
     return orElse();
   }
@@ -360,6 +385,7 @@ abstract class _Initial extends RegisterState {
       final String password,
       final String confirmPassword,
       final String fullName,
+      final String selectedGender,
       final FormzSubmissionStatus signUpStatus,
       final bool showPassword}) = _$InitialImpl;
   const _Initial._() : super._();
@@ -372,6 +398,8 @@ abstract class _Initial extends RegisterState {
   String get confirmPassword;
   @override
   String get fullName;
+  @override
+  String get selectedGender;
   @override
   FormzSubmissionStatus get signUpStatus;
   @override

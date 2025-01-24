@@ -12,6 +12,7 @@ abstract class AuthServices {
   Future<AuthModel> registerUser({
     email,
     fullname,
+    gender,
     password,
   });
 

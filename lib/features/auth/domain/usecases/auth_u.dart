@@ -32,6 +32,7 @@ class RegisterUserUseCase extends UseCase<AuthModel, RequestParams> {
     return await authRepository.registerUser(
       email: params.email,
       password: params.password,
+      gender: params.gender,
       fullname: params.fullName
     );
   }

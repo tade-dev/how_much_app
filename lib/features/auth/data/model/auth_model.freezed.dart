@@ -21,6 +21,8 @@ AuthModel _$AuthModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuthModel {
   bool? get success => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
   AuthData? get data => throw _privateConstructorUsedError;
 
@@ -35,7 +37,12 @@ abstract class $AuthModelCopyWith<$Res> {
   factory $AuthModelCopyWith(AuthModel value, $Res Function(AuthModel) then) =
       _$AuthModelCopyWithImpl<$Res, AuthModel>;
   @useResult
-  $Res call({bool? success, String? token, AuthData? data});
+  $Res call(
+      {bool? success,
+      String? error,
+      String? message,
+      String? token,
+      AuthData? data});
 
   $AuthDataCopyWith<$Res>? get data;
 }
@@ -54,6 +61,8 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
   @override
   $Res call({
     Object? success = freezed,
+    Object? error = freezed,
+    Object? message = freezed,
     Object? token = freezed,
     Object? data = freezed,
   }) {
@@ -62,6 +71,14 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -94,7 +111,12 @@ abstract class _$$AuthModelImplCopyWith<$Res>
       __$$AuthModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? success, String? token, AuthData? data});
+  $Res call(
+      {bool? success,
+      String? error,
+      String? message,
+      String? token,
+      AuthData? data});
 
   @override
   $AuthDataCopyWith<$Res>? get data;
@@ -112,6 +134,8 @@ class __$$AuthModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? success = freezed,
+    Object? error = freezed,
+    Object? message = freezed,
     Object? token = freezed,
     Object? data = freezed,
   }) {
@@ -120,6 +144,14 @@ class __$$AuthModelImplCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -135,7 +167,8 @@ class __$$AuthModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthModelImpl implements _AuthModel {
-  const _$AuthModelImpl({this.success, this.token, this.data});
+  const _$AuthModelImpl(
+      {this.success, this.error, this.message, this.token, this.data});
 
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthModelImplFromJson(json);
@@ -143,13 +176,17 @@ class _$AuthModelImpl implements _AuthModel {
   @override
   final bool? success;
   @override
+  final String? error;
+  @override
+  final String? message;
+  @override
   final String? token;
   @override
   final AuthData? data;
 
   @override
   String toString() {
-    return 'AuthModel(success: $success, token: $token, data: $data)';
+    return 'AuthModel(success: $success, error: $error, message: $message, token: $token, data: $data)';
   }
 
   @override
@@ -158,13 +195,16 @@ class _$AuthModelImpl implements _AuthModel {
         (other.runtimeType == runtimeType &&
             other is _$AuthModelImpl &&
             (identical(other.success, success) || other.success == success) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, token, data);
+  int get hashCode =>
+      Object.hash(runtimeType, success, error, message, token, data);
 
   @JsonKey(ignore: true)
   @override
@@ -183,6 +223,8 @@ class _$AuthModelImpl implements _AuthModel {
 abstract class _AuthModel implements AuthModel {
   const factory _AuthModel(
       {final bool? success,
+      final String? error,
+      final String? message,
       final String? token,
       final AuthData? data}) = _$AuthModelImpl;
 
@@ -191,6 +233,10 @@ abstract class _AuthModel implements AuthModel {
 
   @override
   bool? get success;
+  @override
+  String? get error;
+  @override
+  String? get message;
   @override
   String? get token;
   @override

@@ -9,6 +9,8 @@ part of 'auth_model.dart';
 _$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
     _$AuthModelImpl(
       success: json['success'] as bool?,
+      error: json['error'] as String?,
+      message: json['message'] as String?,
       token: json['token'] as String?,
       data: json['data'] == null
           ? null
@@ -18,6 +20,8 @@ _$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
     <String, dynamic>{
       'success': instance.success,
+      'error': instance.error,
+      'message': instance.message,
       'token': instance.token,
       'data': instance.data,
     };

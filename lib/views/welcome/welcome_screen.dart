@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
-import 'package:how_much_app/views/auth/create_account.dart';
-import 'package:how_much_app/views/auth/login.dart';
 import 'package:how_much_app/views/widgets/buttons/buttons.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -112,7 +112,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     Buttons.primaryButton(label: "Get Started", 
                     hasIcon: true,
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>  const CreateAccountScreen()));
+                      si<AppRouter>().push( CreateAccountScreen());
                     }),
                     const SizedBox(height: 30,),
                     RichText(
@@ -127,7 +127,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                             alignment: PlaceholderAlignment.middle,
                             child: InkWell(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>  const LoginScreen()));
+                                si<AppRouter>().push(LoginScreen());
                               },
                               child: Text(
                                " Sign In",

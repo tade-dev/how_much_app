@@ -12,6 +12,7 @@ class PinInputField extends StatelessWidget {
     this.onTap,
     this.onSaved,
     this.length,
+    this.validator,
     required this.onChanged,
   });
 
@@ -22,6 +23,7 @@ class PinInputField extends StatelessWidget {
   final Function(String?)? onSaved;
   final ValueChanged<String> onChanged;
   final int? length;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class PinInputField extends StatelessWidget {
       defaultPinTheme: defaultTheme,
       focusedPinTheme: focusedTheme,
       errorPinTheme: errorTheme,
+      validator: validator,
     );
   }
 }

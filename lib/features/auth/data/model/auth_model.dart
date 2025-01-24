@@ -16,6 +16,8 @@ String authModelToJson(AuthModel data) => json.encode(data.toJson());
 class AuthModel with _$AuthModel {
     const factory AuthModel({
         bool? success,
+        String? error,
+        String? message,
         String? token,
         AuthData? data,
     }) = _AuthModel;

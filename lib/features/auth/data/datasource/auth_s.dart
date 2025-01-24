@@ -42,14 +42,17 @@ class AuthSource extends AuthServices {
   Future<AuthModel> registerUser({
     email,
     fullname,
+    gender,
     password,
   }) async {
     var data = {
       "firstname": fullname.toString().split(" ").first,
       "lastname": fullname.toString().split(" ").last,
       "email": email,
+      "gender": gender,
       "password": password,
     };
+    log(data.toString());
     try {
       Response? response = await api.post(
         "$baseUrl${auth.signup}",

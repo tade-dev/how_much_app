@@ -20,6 +20,7 @@ class AuthImpl extends AuthRepository {
   Future<Either<AppError, AuthModel>> registerUser({
     email,
     fullname,
+    gender,
     password,
   }) async {
     try {
@@ -27,6 +28,7 @@ class AuthImpl extends AuthRepository {
         email: email,
         fullname: fullname,
         password: password,
+        gender: gender,
       );
       log('dataResp:: $dataResp');
       return Right(dataResp);

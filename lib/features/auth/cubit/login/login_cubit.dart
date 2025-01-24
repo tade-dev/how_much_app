@@ -1,6 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:how_much_app/core/api/exceptions.dart';
+import 'package:how_much_app/core/api/success.dart';
+import 'package:how_much_app/core/di/injectable.dart';
+import 'package:how_much_app/core/model/ranv_model.dart';
+import 'package:how_much_app/core/routes/route_string.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,7 +18,11 @@ class LoginCubit extends Cubit<LoginState> {
   LoginUserUseCase loginUserUseCase;
   LoginCubit(
     this.loginUserUseCase
-  ) : super(LoginState.initial());
+  ) : super(const LoginState.initial());
+
+  resetState(){
+    emit(const LoginState.initial());
+  }
 
   toggleShowPassword() {
     emit(state.copyWith(
@@ -30,6 +40,46 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(
       password: v
     ));
+  }
+
+  // LOGIN USER
+  loginUser(context) async {
+      emit(state.copyWith(
+        loginStatus: FormzSubmissionStatus.inProgress
+      ));
+
+      var loginReq = RequestParams(
+        email: state.email,
+        password: state.password
+      );
+
+      var resp = await loginUserUseCase(loginReq);
+
+      resp.fold((l){
+
+        emit(state.copyWith(
+          loginStatus: FormzSubmissionStatus.failure,
+        ));
+
+        handleException(l.message, context);
+
+      }, (r){
+
+        if (r.success == false) {
+          emit(state.copyWith(
+            loginStatus: FormzSubmissionStatus.failure,
+          ));
+          handleException((r.error ?? r.message).toString(), context);
+        }else {
+          emit(state.copyWith(
+            loginStatus: FormzSubmissionStatus.success,
+          ));
+          handleSuccess(context: context, message: "Login successful!");
+          si<AppRouter>().replaceNamed(RouteString.dashboard);
+        }
+
+      }
+    );
   }
 
 }

@@ -14,6 +14,7 @@ abstract class AuthRepository {
   Future<Either<AppError, AuthModel>> registerUser({
     email,
     fullname,
+    gender,
     password,
   });
 

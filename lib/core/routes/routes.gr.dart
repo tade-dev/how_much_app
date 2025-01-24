@@ -49,41 +49,51 @@ class AppRouter extends _i11.RootStackRouter {
       );
     },
     LoginScreen.name: (routeData) {
+      final args = routeData.argsAs<LoginScreenArgs>(
+          orElse: () => const LoginScreenArgs());
       return _i11.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i3.LoginScreen(),
+        child: _i3.LoginScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
     },
     CreateAccountScreen.name: (routeData) {
+      final args = routeData.argsAs<CreateAccountScreenArgs>(
+          orElse: () => const CreateAccountScreenArgs());
       return _i11.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i4.CreateAccountScreen(),
+        child: _i4.CreateAccountScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
     },
     ForgotPasswordScreen.name: (routeData) {
+      final args = routeData.argsAs<ForgotPasswordScreenArgs>(
+          orElse: () => const ForgotPasswordScreenArgs());
       return _i11.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i5.ForgotPasswordScreen(),
+        child: _i5.ForgotPasswordScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
     },
     ResetPasswordScreen.name: (routeData) {
+      final args = routeData.argsAs<ResetPasswordScreenArgs>(
+          orElse: () => const ResetPasswordScreenArgs());
       return _i11.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i6.ResetPasswordScreen(),
+        child: _i6.ResetPasswordScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
     },
     VerifyEmailScreen.name: (routeData) {
+      final args = routeData.argsAs<VerifyEmailScreenArgs>(
+          orElse: () => const VerifyEmailScreenArgs());
       return _i11.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i7.VerifyEmailScreen(),
+        child: _i7.VerifyEmailScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
@@ -196,62 +206,123 @@ class WelcomeScreen extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.LoginScreen]
-class LoginScreen extends _i11.PageRouteInfo<void> {
-  const LoginScreen()
+class LoginScreen extends _i11.PageRouteInfo<LoginScreenArgs> {
+  LoginScreen({_i12.Key? key})
       : super(
           LoginScreen.name,
           path: '/signin',
+          args: LoginScreenArgs(key: key),
         );
 
   static const String name = 'LoginScreen';
 }
 
+class LoginScreenArgs {
+  const LoginScreenArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'LoginScreenArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i4.CreateAccountScreen]
-class CreateAccountScreen extends _i11.PageRouteInfo<void> {
-  const CreateAccountScreen()
+class CreateAccountScreen extends _i11.PageRouteInfo<CreateAccountScreenArgs> {
+  CreateAccountScreen({_i12.Key? key})
       : super(
           CreateAccountScreen.name,
           path: '/signup',
+          args: CreateAccountScreenArgs(key: key),
         );
 
   static const String name = 'CreateAccountScreen';
 }
 
+class CreateAccountScreenArgs {
+  const CreateAccountScreenArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'CreateAccountScreenArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i5.ForgotPasswordScreen]
-class ForgotPasswordScreen extends _i11.PageRouteInfo<void> {
-  const ForgotPasswordScreen()
+class ForgotPasswordScreen
+    extends _i11.PageRouteInfo<ForgotPasswordScreenArgs> {
+  ForgotPasswordScreen({_i12.Key? key})
       : super(
           ForgotPasswordScreen.name,
           path: '/forgotPassword',
+          args: ForgotPasswordScreenArgs(key: key),
         );
 
   static const String name = 'ForgotPasswordScreen';
 }
 
+class ForgotPasswordScreenArgs {
+  const ForgotPasswordScreenArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'ForgotPasswordScreenArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i6.ResetPasswordScreen]
-class ResetPasswordScreen extends _i11.PageRouteInfo<void> {
-  const ResetPasswordScreen()
+class ResetPasswordScreen extends _i11.PageRouteInfo<ResetPasswordScreenArgs> {
+  ResetPasswordScreen({_i12.Key? key})
       : super(
           ResetPasswordScreen.name,
           path: '/resetPassword',
+          args: ResetPasswordScreenArgs(key: key),
         );
 
   static const String name = 'ResetPasswordScreen';
 }
 
+class ResetPasswordScreenArgs {
+  const ResetPasswordScreenArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'ResetPasswordScreenArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i7.VerifyEmailScreen]
-class VerifyEmailScreen extends _i11.PageRouteInfo<void> {
-  const VerifyEmailScreen()
+class VerifyEmailScreen extends _i11.PageRouteInfo<VerifyEmailScreenArgs> {
+  VerifyEmailScreen({_i12.Key? key})
       : super(
           VerifyEmailScreen.name,
           path: '/verifyEmail',
+          args: VerifyEmailScreenArgs(key: key),
         );
 
   static const String name = 'VerifyEmailScreen';
+}
+
+class VerifyEmailScreenArgs {
+  const VerifyEmailScreenArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'VerifyEmailScreenArgs{key: $key}';
+  }
 }
 
 /// generated route for

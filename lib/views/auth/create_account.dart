@@ -36,7 +36,7 @@ class CreateAccountScreen extends StatelessWidget {
                         height: 30,
                       ),
                       Text(
-                        "Create your\naccount",
+                        "Create your\naccount 🎉",
                         textAlign: TextAlign.center,
                         style:
                             getBoldStyle(color: ColorsX.textColor, fontSize: 40),

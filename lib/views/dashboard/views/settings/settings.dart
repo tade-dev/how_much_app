@@ -7,6 +7,7 @@ import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
+import 'package:how_much_app/views/widgets/sheet/h_sheets.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -82,7 +83,9 @@ class SettingsView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: buildForSettingsTile(
-                    onTap: () {},
+                    onTap: () {
+                      HSheets.showLogoutModal();
+                    },
                     title: "Logout",
                     islogoout: true,
                     icon: Iconsax.logout),

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:how_much_app/core/db/local_cache.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -33,9 +35,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.forward();
 
-    Timer(const Duration(seconds: 3), () {
-      si<AppRouter>().push(const WelcomeScreen());
-    });
+    navigateUser();
 
   }
 
@@ -43,6 +43,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  navigateUser() async {
+    String userToken = await UserTokenCache().getCacheUserToken();
+    if (userToken.isEmpty) {
+      Timer(const Duration(seconds: 3), () {
+        si<AppRouter>().push(const WelcomeScreen());
+      });
+    }else {
+      Timer(const Duration(seconds: 3), () {
+        si<AppRouter>().push(DashboardView());
+      });
+    }
   }
 
   @override

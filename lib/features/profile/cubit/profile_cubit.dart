@@ -34,7 +34,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     this.uploadImageUsecase,
     this.getProfileUsecase,
     this.setProfileUsecase,
-  ) : super(const ProfileState());
+  ) : super(const ProfileState()) {
+    getProfile(si<AppRouter>().navigatorKey.currentContext);
+  }
 
   resetState(){
     emit(const ProfileState());
@@ -50,8 +52,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     ));
   }
 
-  Future getImage({context, s}) async {
+  Future getImage({s}) async {
+    var context = si<AppRouter>().navigatorKey.currentContext!;
     final ImagePicker picker = ImagePicker();
+   
     try {
       var pickedImage = await picker.pickImage(
         source: s,
@@ -61,11 +65,15 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       if(pickedImage != null) {
         updateSelectedImage(File(pickedImage.path));
-        uploadImage(context);
+        if(context.mounted) {
+          uploadImage();
+        }
       }
 
     } on PlatformException catch (e) {
-      handleException(e.toString(), context);
+      if(context.mounted) {
+        handleException(e.toString(), context);
+      }
     }
   }
 
@@ -106,7 +114,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   // DELETE ACCOUNT
-  deleteAccount(context) async {
+  deleteAccount() async {
+    var context = si<AppRouter>().navigatorKey.currentContext!;
       emit(state.copyWith(
         deleteAccountStatus: FormzSubmissionStatus.inProgress
       ));
@@ -141,7 +150,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   // SET PROFILE
-  setProfile(context) async {
+  setProfile() async {
+    var context = si<AppRouter>().navigatorKey.currentContext!;
       emit(state.copyWith(
         updateProfileStatus: FormzSubmissionStatus.inProgress
       ));
@@ -194,7 +204,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   // UPLOAD IMAGE
-  uploadImage(context) async {
+  uploadImage() async {
+    var context = si<AppRouter>().navigatorKey.currentContext!;
       emit(state.copyWith(
         uploadImageStatus: FormzSubmissionStatus.inProgress
       ));

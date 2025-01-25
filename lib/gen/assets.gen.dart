@@ -20,8 +20,12 @@ class $AssetsImagesGen {
   AssetGenImage get maleImage =>
       const AssetGenImage('assets/images/male_image.jpg');
 
+  /// File path: assets/images/profile_avatar.webp
+  AssetGenImage get profileAvatar =>
+      const AssetGenImage('assets/images/profile_avatar.webp');
+
   /// List of all assets
-  List<AssetGenImage> get values => [rectangle, maleImage];
+  List<AssetGenImage> get values => [rectangle, maleImage, profileAvatar];
 }
 
 class Assets {

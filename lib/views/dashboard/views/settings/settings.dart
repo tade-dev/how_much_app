@@ -102,7 +102,11 @@ buildForProfileWid(context) {
          children: AnimateList(children: [
         CircleAvatar(
           radius: 50,
-          backgroundImage: AssetImage(Assets.images.rectangle.path),
+          backgroundImage: state.selectedImage != null
+              ? FileImage(state.selectedImage!)
+              : (state.userData?.image?.isNotEmpty ?? false)
+                  ? NetworkImage(state.userData!.image!)
+                  : AssetImage(Assets.images.profileAvatar.path) as ImageProvider,
         ),
         const SizedBox(
           height: 15,

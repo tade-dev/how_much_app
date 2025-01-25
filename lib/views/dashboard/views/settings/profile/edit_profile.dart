@@ -8,6 +8,7 @@ import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
 import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
+import 'package:how_much_app/views/widgets/sheet/h_sheets.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -21,17 +22,14 @@ class EditProfileScreen extends StatelessWidget {
             context,
             title: "EDIT PROFILE",
             w: IconButton(
-              icon: InkWell(
-                onTap: () {
-                  context.read<ProfileCubit>().setProfile(context);
-                },
-                child: state.updateProfileStatus.isInProgress ?
-                const CupertinoActivityIndicator() :
-                const Icon(
-                  Icons.check
-                ),
+              icon: state.updateProfileStatus.isInProgress || state.uploadImageStatus.isInProgress ?
+              const CupertinoActivityIndicator() :
+              const Icon(
+                Icons.check
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.read<ProfileCubit>().setProfile();
+              },
             ),
           ),
           body: Container(
@@ -48,19 +46,27 @@ class EditProfileScreen extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 50,
-                        backgroundImage:
-                            AssetImage(Assets.images.rectangle.path),
+                        backgroundImage: state.selectedImage != null
+                            ? FileImage(state.selectedImage!)
+                            : (state.userData?.image?.isNotEmpty ?? false)
+                                ? NetworkImage(state.userData!.image!)
+                                : AssetImage(Assets.images.profileAvatar.path) as ImageProvider,
                       ),
                       Positioned(
                         right: 0,
                         bottom: 0,
-                        child: CircleAvatar(
-                          radius: 15,
-                          backgroundColor: ColorsX.primaryColor,
-                          child: const Icon(
-                            Icons.camera_alt_outlined,
-                            size: 16,
-                            color: Colors.white,
+                        child: InkWell(
+                          onTap: () {
+                            HSheets.showUploadProfilePicSheet();
+                          },
+                          child: CircleAvatar(
+                            radius: 15,
+                            backgroundColor: ColorsX.primaryColor,
+                            child: const Icon(
+                              Icons.camera_alt_outlined,
+                              size: 16,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       )

@@ -12,7 +12,6 @@ import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/entites/no_params.dart';
 import 'package:how_much_app/core/model/ranv_model.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
-import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart';
 import 'package:how_much_app/features/profile/data/model/set_profile_model.dart';
 import 'package:how_much_app/features/profile/data/model/user_profile_model.dart';
 import 'package:how_much_app/features/profile/domain/usecase/profile_u.dart';
@@ -28,12 +27,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   GetProfileUsecase getProfileUsecase;
   UploadImageUsecase uploadImageUsecase;
   SetProfileUsecase setProfileUsecase;
-  UpdatePasswordUseCase updatePasswordUseCase;
   DeleteAccountUsecase deleteAccountUsecase;
 
   ProfileCubit(
     this.deleteAccountUsecase,
-    this.updatePasswordUseCase,
     this.uploadImageUsecase,
     this.getProfileUsecase,
     this.setProfileUsecase,

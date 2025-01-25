@@ -24,6 +24,8 @@ mixin _$ForgotPasswordState {
       throw _privateConstructorUsedError;
   FormzSubmissionStatus get resetPasswordStatus =>
       throw _privateConstructorUsedError;
+  FormzSubmissionStatus get changePasswordStatus =>
+      throw _privateConstructorUsedError;
   bool get showPassword => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -34,6 +36,7 @@ mixin _$ForgotPasswordState {
             String newPassword,
             FormzSubmissionStatus forgotPasswordStatus,
             FormzSubmissionStatus resetPasswordStatus,
+            FormzSubmissionStatus changePasswordStatus,
             bool showPassword)
         initial,
   }) =>
@@ -47,6 +50,7 @@ mixin _$ForgotPasswordState {
             String newPassword,
             FormzSubmissionStatus forgotPasswordStatus,
             FormzSubmissionStatus resetPasswordStatus,
+            FormzSubmissionStatus changePasswordStatus,
             bool showPassword)?
         initial,
   }) =>
@@ -60,6 +64,7 @@ mixin _$ForgotPasswordState {
             String newPassword,
             FormzSubmissionStatus forgotPasswordStatus,
             FormzSubmissionStatus resetPasswordStatus,
+            FormzSubmissionStatus changePasswordStatus,
             bool showPassword)?
         initial,
     required TResult orElse(),
@@ -100,6 +105,7 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
       String newPassword,
       FormzSubmissionStatus forgotPasswordStatus,
       FormzSubmissionStatus resetPasswordStatus,
+      FormzSubmissionStatus changePasswordStatus,
       bool showPassword});
 }
 
@@ -122,6 +128,7 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
     Object? newPassword = null,
     Object? forgotPasswordStatus = null,
     Object? resetPasswordStatus = null,
+    Object? changePasswordStatus = null,
     Object? showPassword = null,
   }) {
     return _then(_value.copyWith(
@@ -149,6 +156,10 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
           ? _value.resetPasswordStatus
           : resetPasswordStatus // ignore: cast_nullable_to_non_nullable
               as FormzSubmissionStatus,
+      changePasswordStatus: null == changePasswordStatus
+          ? _value.changePasswordStatus
+          : changePasswordStatus // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
       showPassword: null == showPassword
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
@@ -172,6 +183,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       String newPassword,
       FormzSubmissionStatus forgotPasswordStatus,
       FormzSubmissionStatus resetPasswordStatus,
+      FormzSubmissionStatus changePasswordStatus,
       bool showPassword});
 }
 
@@ -192,6 +204,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? newPassword = null,
     Object? forgotPasswordStatus = null,
     Object? resetPasswordStatus = null,
+    Object? changePasswordStatus = null,
     Object? showPassword = null,
   }) {
     return _then(_$InitialImpl(
@@ -219,6 +232,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.resetPasswordStatus
           : resetPasswordStatus // ignore: cast_nullable_to_non_nullable
               as FormzSubmissionStatus,
+      changePasswordStatus: null == changePasswordStatus
+          ? _value.changePasswordStatus
+          : changePasswordStatus // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
       showPassword: null == showPassword
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
@@ -237,6 +254,7 @@ class _$InitialImpl extends _Initial {
       this.newPassword = "",
       this.forgotPasswordStatus = FormzSubmissionStatus.initial,
       this.resetPasswordStatus = FormzSubmissionStatus.initial,
+      this.changePasswordStatus = FormzSubmissionStatus.initial,
       this.showPassword = false})
       : super._();
 
@@ -260,11 +278,14 @@ class _$InitialImpl extends _Initial {
   final FormzSubmissionStatus resetPasswordStatus;
   @override
   @JsonKey()
+  final FormzSubmissionStatus changePasswordStatus;
+  @override
+  @JsonKey()
   final bool showPassword;
 
   @override
   String toString() {
-    return 'ForgotPasswordState.initial(email: $email, password: $password, confirmPassword: $confirmPassword, newPassword: $newPassword, forgotPasswordStatus: $forgotPasswordStatus, resetPasswordStatus: $resetPasswordStatus, showPassword: $showPassword)';
+    return 'ForgotPasswordState.initial(email: $email, password: $password, confirmPassword: $confirmPassword, newPassword: $newPassword, forgotPasswordStatus: $forgotPasswordStatus, resetPasswordStatus: $resetPasswordStatus, changePasswordStatus: $changePasswordStatus, showPassword: $showPassword)';
   }
 
   @override
@@ -283,13 +304,23 @@ class _$InitialImpl extends _Initial {
                 other.forgotPasswordStatus == forgotPasswordStatus) &&
             (identical(other.resetPasswordStatus, resetPasswordStatus) ||
                 other.resetPasswordStatus == resetPasswordStatus) &&
+            (identical(other.changePasswordStatus, changePasswordStatus) ||
+                other.changePasswordStatus == changePasswordStatus) &&
             (identical(other.showPassword, showPassword) ||
                 other.showPassword == showPassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, confirmPassword,
-      newPassword, forgotPasswordStatus, resetPasswordStatus, showPassword);
+  int get hashCode => Object.hash(
+      runtimeType,
+      email,
+      password,
+      confirmPassword,
+      newPassword,
+      forgotPasswordStatus,
+      resetPasswordStatus,
+      changePasswordStatus,
+      showPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -307,11 +338,19 @@ class _$InitialImpl extends _Initial {
             String newPassword,
             FormzSubmissionStatus forgotPasswordStatus,
             FormzSubmissionStatus resetPasswordStatus,
+            FormzSubmissionStatus changePasswordStatus,
             bool showPassword)
         initial,
   }) {
-    return initial(email, password, confirmPassword, newPassword,
-        forgotPasswordStatus, resetPasswordStatus, showPassword);
+    return initial(
+        email,
+        password,
+        confirmPassword,
+        newPassword,
+        forgotPasswordStatus,
+        resetPasswordStatus,
+        changePasswordStatus,
+        showPassword);
   }
 
   @override
@@ -324,11 +363,19 @@ class _$InitialImpl extends _Initial {
             String newPassword,
             FormzSubmissionStatus forgotPasswordStatus,
             FormzSubmissionStatus resetPasswordStatus,
+            FormzSubmissionStatus changePasswordStatus,
             bool showPassword)?
         initial,
   }) {
-    return initial?.call(email, password, confirmPassword, newPassword,
-        forgotPasswordStatus, resetPasswordStatus, showPassword);
+    return initial?.call(
+        email,
+        password,
+        confirmPassword,
+        newPassword,
+        forgotPasswordStatus,
+        resetPasswordStatus,
+        changePasswordStatus,
+        showPassword);
   }
 
   @override
@@ -341,13 +388,21 @@ class _$InitialImpl extends _Initial {
             String newPassword,
             FormzSubmissionStatus forgotPasswordStatus,
             FormzSubmissionStatus resetPasswordStatus,
+            FormzSubmissionStatus changePasswordStatus,
             bool showPassword)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(email, password, confirmPassword, newPassword,
-          forgotPasswordStatus, resetPasswordStatus, showPassword);
+      return initial(
+          email,
+          password,
+          confirmPassword,
+          newPassword,
+          forgotPasswordStatus,
+          resetPasswordStatus,
+          changePasswordStatus,
+          showPassword);
     }
     return orElse();
   }
@@ -389,6 +444,7 @@ abstract class _Initial extends ForgotPasswordState {
       final String newPassword,
       final FormzSubmissionStatus forgotPasswordStatus,
       final FormzSubmissionStatus resetPasswordStatus,
+      final FormzSubmissionStatus changePasswordStatus,
       final bool showPassword}) = _$InitialImpl;
   const _Initial._() : super._();
 
@@ -404,6 +460,8 @@ abstract class _Initial extends ForgotPasswordState {
   FormzSubmissionStatus get forgotPasswordStatus;
   @override
   FormzSubmissionStatus get resetPasswordStatus;
+  @override
+  FormzSubmissionStatus get changePasswordStatus;
   @override
   bool get showPassword;
   @override

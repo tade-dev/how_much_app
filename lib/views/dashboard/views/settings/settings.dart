@@ -47,7 +47,7 @@ class SettingsView extends StatelessWidget {
                     ),
                     buildForSettingsTile(
                         onTap: () {
-                          si<AppRouter>().push(const ChangePasswordScreen());
+                          si<AppRouter>().push(ChangePasswordScreen());
                         },
                         title: "Change password",
                         icon: Iconsax.lock),

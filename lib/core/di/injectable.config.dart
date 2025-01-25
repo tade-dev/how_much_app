@@ -101,7 +101,6 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i16.LoginCubit(gh<_i11.LoginUserUseCase>()));
     gh.factory<_i17.ProfileCubit>(() => _i17.ProfileCubit(
           gh<_i14.DeleteAccountUsecase>(),
-          gh<_i11.UpdatePasswordUseCase>(),
           gh<_i14.UploadImageUsecase>(),
           gh<_i14.GetProfileUsecase>(),
           gh<_i14.SetProfileUsecase>(),

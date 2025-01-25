@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:how_much_app/core/api/api.dart';
+import 'package:how_much_app/core/db/local_cache.dart';
 import 'package:how_much_app/core/keys/endpoints.dart';
 import 'package:how_much_app/features/auth/data/datasource/auth_services.dart';
 import 'package:how_much_app/features/auth/data/model/auth_model.dart';
@@ -162,9 +163,15 @@ class AuthSource extends AuthServices {
       "confirmPassword": confirmPassword,
     };
     try {
+      String token = await UserTokenCache().getCacheUserToken();
       Response? response = await api.post(
         "$baseUrl${auth.updatePassword}",
-        data: data
+        data: data,
+        options: Options(headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $token"
+        }),
       );
       log('api-resp==> ${response?.data}');
       final r = AuthModel.fromJson(response?.data);

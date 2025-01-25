@@ -99,9 +99,11 @@ class AppRouter extends _i11.RootStackRouter {
       );
     },
     ChangePasswordScreen.name: (routeData) {
+      final args = routeData.argsAs<ChangePasswordScreenArgs>(
+          orElse: () => const ChangePasswordScreenArgs());
       return _i11.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i8.ChangePasswordScreen(),
+        child: _i8.ChangePasswordScreen(key: args.key),
         opaque: true,
         barrierDismissible: false,
       );
@@ -327,14 +329,27 @@ class VerifyEmailScreenArgs {
 
 /// generated route for
 /// [_i8.ChangePasswordScreen]
-class ChangePasswordScreen extends _i11.PageRouteInfo<void> {
-  const ChangePasswordScreen()
+class ChangePasswordScreen
+    extends _i11.PageRouteInfo<ChangePasswordScreenArgs> {
+  ChangePasswordScreen({_i12.Key? key})
       : super(
           ChangePasswordScreen.name,
           path: '/changePassword',
+          args: ChangePasswordScreenArgs(key: key),
         );
 
   static const String name = 'ChangePasswordScreen';
+}
+
+class ChangePasswordScreenArgs {
+  const ChangePasswordScreenArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'ChangePasswordScreenArgs{key: $key}';
+  }
 }
 
 /// generated route for

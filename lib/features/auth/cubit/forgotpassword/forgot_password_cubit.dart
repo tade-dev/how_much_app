@@ -56,6 +56,12 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
       password: v
     ));
   }
+  
+  updateNewPassword(v) {
+    emit(state.copyWith(
+      newPassword: v
+    ));
+  }
 
   // FORGOT PASSWORD
   initiateForgotPassword(context) async {
@@ -135,6 +141,48 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
           handleSuccess(context: context, message: r.message ?? "Password reset successfully!");
           si<VerifcationCubit>().setCurrentVerifyEmail(VerifyEmailType.password);
           si<AppRouter>().replaceNamed(RouteString.signin);
+        }
+
+      }
+    );
+  }
+
+  // UPDATE PASSWORD
+  initiateUpdatePassword(context) async {
+      emit(state.copyWith(
+        changePasswordStatus: FormzSubmissionStatus.inProgress
+      ));
+
+      var updatePasswordReq = RequestParams(
+        newPassword: state.newPassword,
+        currentPassword: state.password,
+        confirmPassword: state.confirmPassword,
+      );
+
+      var resp = await updatePasswordUseCase(updatePasswordReq);
+
+      resp.fold((l){
+
+        emit(state.copyWith(
+          changePasswordStatus: FormzSubmissionStatus.failure,
+        ));
+
+        handleException(l.message, context);
+
+      }, (r){
+
+        if (r.success == false) {
+          emit(state.copyWith(
+            changePasswordStatus: FormzSubmissionStatus.failure,
+          ));
+          handleException((r.error ?? r.message).toString(), context);
+        }else {
+          emit(state.copyWith(
+            changePasswordStatus: FormzSubmissionStatus.success,
+          ));
+          handleSuccess(context: context, message: r.message ?? "Password updated successfully!");
+          si<AppRouter>().pop();
+          resetState();
         }
 
       }

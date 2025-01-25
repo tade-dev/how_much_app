@@ -218,7 +218,7 @@ buildForSettingsTile(
     hasToggle = false,
     islogoout = false,
     hasDivider = false}) {
-  return GestureDetector(
+  return InkWell(
     onTap: onTap,
     child: Row(
       children: [

@@ -11,8 +11,42 @@ import 'package:how_much_app/views/widgets/sheet/h_sheets.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
-class SettingsView extends StatelessWidget {
+
+class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
+
+    @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> with SingleTickerProviderStateMixin {
+
+  late AnimationController _animationController;
+  late Animation<Offset> _offsetAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      vsync: this, 
+      duration: const Duration(milliseconds: 1000)
+    );
+
+    _offsetAnimation = Tween<Offset>(
+      begin: const Offset(0, 1),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
+
+    _animationController.forward();
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,47 +64,53 @@ class SettingsView extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Column(
-                  children: [
-                    buildForSettingsTile(
-                        onTap: () {},
-                        title: "My proposals",
-                        hasDivider: true,
-                        icon: Iconsax.box),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    buildForSettingsTile(
-                        onTap: () {
-                          si<AppRouter>().push(ChangePasswordScreen());
-                        },
-                        title: "Change password",
-                        icon: Iconsax.lock),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    buildForSettingsTile(
-                        onTap: () {},
-                        title: "Push notifications",
-                        hasDivider: true,
-                        icon: Iconsax.notification,
-                        hasToggle: true),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    buildForSettingsTile(
-                        onTap: () {},
-                        hasToggle: true,
-                        title: "Face ID",
-                        hasDivider: true,
-                        icon: HugeIcons.strokeRoundedBiometricAccess),
-                  ],
+              SlideTransition(
+                position: _offsetAnimation,
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Column(
+                    children: [
+                      buildForSettingsTile(
+                          onTap: () {},
+                          title: "My proposals",
+                          hasDivider: true,
+                          icon: Iconsax.box),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      buildForSettingsTile(
+                          onTap: () {
+                            si<AppRouter>().push(ChangePasswordScreen());
+                          },
+                          title: "Change password",
+                          icon: Iconsax.lock),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      buildForSettingsTile(
+                          onTap: () {},
+                          title: "Push notifications",
+                          hasDivider: true,
+                          icon: Iconsax.notification,
+                          hasToggle: true),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      buildForSettingsTile(
+                          onTap: () {},
+                          hasToggle: true,
+                          title: "Face ID",
+                          hasDivider: true,
+                          icon: HugeIcons.strokeRoundedBiometricAccess),
+                    ],
+                  ),
+                ).animate()
+                .fade(
+                  duration: const Duration(milliseconds: 1000)
                 ),
               ),
               const SizedBox(
@@ -89,7 +129,12 @@ class SettingsView extends StatelessWidget {
                     title: "Logout",
                     islogoout: true,
                     icon: Iconsax.logout),
-              ),
+              ).animate()
+                .fade(
+                  curve: Curves.easeInOut,
+                  duration: const Duration(milliseconds: 1000),
+                  delay: const Duration(milliseconds: 1000)
+                ),
             ],
           ),
         ),
@@ -102,7 +147,8 @@ buildForProfileWid(context) {
   return BlocBuilder<ProfileCubit, ProfileState>(
     builder: (context, state) {
       return Column(
-         children: AnimateList(children: [
+         children: AnimateList(
+          children: [
         CircleAvatar(
           radius: 50,
           backgroundImage: state.selectedImage != null
@@ -110,6 +156,9 @@ buildForProfileWid(context) {
               : (state.userData?.image?.isNotEmpty ?? false)
                   ? NetworkImage(state.userData!.image!)
                   : AssetImage(Assets.images.profileAvatar.path) as ImageProvider,
+        ).animate().fade().scale(
+          curve: Curves.easeInOut,
+          duration: const Duration(milliseconds: 900)
         ),
         const SizedBox(
           height: 15,
@@ -117,12 +166,20 @@ buildForProfileWid(context) {
         Text(
           state.fullName?.text ?? "",
           style: getBoldStyle(color: ColorsX.textColor, fontSize: 25),
+        ).animate().fade().scale(
+          curve: Curves.easeInOut,
+          duration: const Duration(milliseconds: 900),
+          delay: const Duration(milliseconds: 800),
         ),
         const SizedBox(
           height: 5,
         ),
         Text(state.emailAddress?.text ?? "",
-            style: getRegularStyle(color: ColorsX.textGrey, fontSize: 14)),
+            style: getRegularStyle(color: ColorsX.textGrey, fontSize: 14)).animate().fade().scale(
+          curve: Curves.elasticInOut,
+          duration: const Duration(milliseconds: 900),
+          delay: const Duration(milliseconds: 1000)
+        ),
         const SizedBox(
           height: 15,
         ),
@@ -144,6 +201,10 @@ buildForProfileWid(context) {
               ),
             ),
           ),
+        ).animate().fade().scale(
+          curve: Curves.elasticInOut,
+          duration: const Duration(milliseconds: 900),
+          delay: const Duration(milliseconds: 1200),
         ),
       ]));
     },

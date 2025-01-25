@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
@@ -52,22 +53,24 @@ class AuthTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
           Expanded(
             flex: 2,
             child: Padding(
               padding: const EdgeInsets.only(right: 15),
-              child: Text(
+              child: AutoSizeText(
+                minFontSize: 14,
                 "$label :",
+                maxLines: label!.contains(" ") ? 2 : 1,
                 style: getSemiBoldStyle(
                     color: ColorsX.textColor, fontSize: 16),
               ),
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 4,
             child: TextFormField(
               cursorColor: ColorsX.primaryColor,
               enabled: enabled,

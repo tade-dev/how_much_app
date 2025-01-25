@@ -59,6 +59,27 @@ class _HowMuchAppState extends State<HowMuchApp> {
         routeInformationParser: appRouter.defaultRouteParser(),
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
+        builder: (context, child) => Overlay(initialEntries: [
+          OverlayEntry(builder: (context) {
+            return Stack(children: [
+              MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                      systemGestureInsets:
+                          const EdgeInsets.all(400),
+                      navigationMode:
+                          NavigationMode.directional,
+                      textScaler:
+                          const TextScaler.linear(1.00)),
+                  child: Scaffold(
+                    backgroundColor: Colors.white,
+                    resizeToAvoidBottomInset: true,
+                    body: child
+                  )
+                ),
+            ]);
+          })
+        ]
+      ),
       ),
     );
   }

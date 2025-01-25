@@ -3,8 +3,9 @@ import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 
 
+// ignore: must_be_immutable
 class DropDownField extends StatelessWidget {
-  const DropDownField({
+  DropDownField({
     super.key,
     this.controller,
     this.hintText,
@@ -26,7 +27,8 @@ class DropDownField extends StatelessWidget {
     this.minLines,
     this.readOnly = false,
     this.validator,
-    this.dropDownItems
+    this.dropDownItems,
+    this.value
   });
 
   final TextEditingController? controller;
@@ -48,13 +50,14 @@ class DropDownField extends StatelessWidget {
   final int? maxLines;
   final int? maxLength;
   final bool readOnly;
+  String? value;
   final FormFieldValidator<String>? validator;
   final List<DropdownMenuItem<String>>? dropDownItems;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
           Expanded(
@@ -69,9 +72,10 @@ class DropDownField extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 4,
             child: DropdownButtonFormField(
               items: dropDownItems,
+              value: value,
               onChanged: onChanged,
               onTap: onTap,
               onSaved: onSaved,

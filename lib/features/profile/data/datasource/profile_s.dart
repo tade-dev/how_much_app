@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:how_much_app/core/api/api.dart';
+import 'package:how_much_app/core/db/local_cache.dart';
 import 'package:how_much_app/core/keys/endpoints.dart';
 import 'package:how_much_app/features/profile/data/datasource/profile_service.dart';
 import 'package:how_much_app/features/profile/data/model/set_profile_model.dart';
@@ -23,12 +24,13 @@ class ProfileSource extends ProfileService {
   @override
   Future<UserProfileModel> getProfile() async {
     try {
+      String token = await UserTokenCache().getCacheUserToken();
       Response? response = await api.get(
         "$baseUrl${userProfile.getProfile}",
         options: Options(headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          // "Authorization": "Bearer $token"
+          "Authorization": "Bearer $token"
         }),
       );
       log('api-resp==> ${response?.data}');
@@ -54,13 +56,14 @@ class ProfileSource extends ProfileService {
     };
 
     try {
+      String token = await UserTokenCache().getCacheUserToken();
       Response? response = await api.put(
         "$baseUrl${userProfile.setProfile}",
         data: data,
         options: Options(headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          // "Authorization": "Bearer $token"
+          "Authorization": "Bearer $token"
         }),
       );
       log('api-resp==> ${response?.data}');
@@ -83,13 +86,14 @@ class ProfileSource extends ProfileService {
     FormData formData = FormData.fromMap(data);
 
     try {
+      String token = await UserTokenCache().getCacheUserToken();
       Response? response = await api.put(
         "$baseUrl${userProfile.uploadImage}",
         data: formData,
         options: Options(headers: {
           "Content-Type": "multipart/form-data",
           "Accept": "application/json",
-          // "Authorization": "Bearer $token"
+          "Authorization": "Bearer $token"
         }),
       );
       log('api-resp==> ${response?.data}');
@@ -104,12 +108,13 @@ class ProfileSource extends ProfileService {
   Future<UserProfileModel> deleteAccount() async {
 
     try {
+      String token = await UserTokenCache().getCacheUserToken();
       Response? response = await api.delete(
         "$baseUrl${userProfile.deleteAccount}",
         options: Options(headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          // "Authorization": "Bearer $token"
+          "Authorization": "Bearer $token"
         }),
       );
       log('api-resp==> ${response?.data}');

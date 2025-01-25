@@ -3,7 +3,7 @@ part of 'profile_cubit.dart';
 @freezed
 class ProfileState with _$ProfileState {
   const ProfileState._();
-  const factory ProfileState.initial({
+  const factory ProfileState({
 
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus updateProfileStatus,
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus changePasswordStatus,

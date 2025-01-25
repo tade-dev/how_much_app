@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -16,10 +17,12 @@ import 'package:how_much_app/features/profile/data/model/set_profile_model.dart'
 import 'package:how_much_app/features/profile/data/model/user_profile_model.dart';
 import 'package:how_much_app/features/profile/domain/usecase/profile_u.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 
 part 'profile_state.dart';
 part 'profile_cubit.freezed.dart';
 
+@injectable
 class ProfileCubit extends Cubit<ProfileState> {
   
   GetProfileUsecase getProfileUsecase;
@@ -34,10 +37,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     this.uploadImageUsecase,
     this.getProfileUsecase,
     this.setProfileUsecase,
-  ) : super(const ProfileState.initial());
+  ) : super(const ProfileState());
 
   resetState(){
-    emit(const ProfileState.initial());
+    emit(const ProfileState());
   }
 
   List<String> convertStringToList(String? input) {
@@ -74,6 +77,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       var resp = await getProfileUsecase(NoParams());
 
+      log(resp.toString());
+
       resp.fold((l){
         
         handleException(l.message, context);
@@ -95,6 +100,8 @@ class ProfileCubit extends Cubit<ProfileState> {
             yearsOfExperience: TextEditingController(text: (r.data?.yearsOfExperience ?? "").toString()),
             portfolioLink: TextEditingController(text: r.data?.portfolioLink ?? ""),
           ));
+
+          log("User State::::${state.userData}");
         }
 
       }
@@ -171,9 +178,18 @@ class ProfileCubit extends Cubit<ProfileState> {
         }else {
           emit(state.copyWith(
             updateProfileStatus: FormzSubmissionStatus.success,
+            userData: r.data,
+            gender: TextEditingController(text: r.data?.gender ?? ""),
+            fullName: TextEditingController(text: ("${r.data?.firstname} ${r.data?.lastname}")),
+            emailAddress: TextEditingController(text: r.data?.email ?? ""),
+            certifications: TextEditingController(text: r.data?.certifications?.join(", ")),
+            developerStack: TextEditingController(text: r.data?.developerStack?.join(", ")),
+            developerTitle: TextEditingController(text: r.data?.developerTitle ?? ""),
+            cvLink: TextEditingController(text: r.data?.cvLink ?? ""),
+            yearsOfExperience: TextEditingController(text: (r.data?.yearsOfExperience ?? "").toString()),
+            portfolioLink: TextEditingController(text: r.data?.portfolioLink ?? ""),
           ));
           handleSuccess(context: context, message: r.message ?? "Account updated successfully!");
-          getProfile(context);
         }
 
       }

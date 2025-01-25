@@ -52,7 +52,7 @@ class VerifyEmailScreen extends StatelessWidget {
                       onChanged: (v){
                         context.read<VerifcationCubit>().updatePinCode(v);
                       },
-                      length: 4,
+                      length: 6,
                       validator: ValidationBuilder().build(),
                     ),
                     const SizedBox(height: 20,),

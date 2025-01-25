@@ -16,9 +16,9 @@ import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_
 import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart'
     as _i16;
 import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart'
-    as _i17;
-import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart'
     as _i18;
+import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart'
+    as _i19;
 import 'package:how_much_app/features/auth/data/datasource/auth_s.dart' as _i6;
 import 'package:how_much_app/features/auth/data/datasource/auth_services.dart'
     as _i5;
@@ -27,6 +27,7 @@ import 'package:how_much_app/features/auth/data/repository/auth_impl.dart'
 import 'package:how_much_app/features/auth/domain/repositories/auth_r.dart'
     as _i9;
 import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart' as _i11;
+import 'package:how_much_app/features/profile/cubit/profile_cubit.dart' as _i17;
 import 'package:how_much_app/features/profile/data/datasource/profile_s.dart'
     as _i8;
 import 'package:how_much_app/features/profile/data/datasource/profile_service.dart'
@@ -98,10 +99,17 @@ extension GetItInjectableX on _i1.GetIt {
         gh<_i12.ProfileRepository>(instanceName: 'ProfileRepository')));
     gh.factory<_i16.LoginCubit>(
         () => _i16.LoginCubit(gh<_i11.LoginUserUseCase>()));
-    gh.factory<_i17.RegisterCubit>(
-        () => _i17.RegisterCubit(gh<_i11.RegisterUserUseCase>()));
-    gh.factory<_i18.VerifcationCubit>(
-        () => _i18.VerifcationCubit(gh<_i11.VerifyEmailUseCase>()));
+    gh.factory<_i17.ProfileCubit>(() => _i17.ProfileCubit(
+          gh<_i14.DeleteAccountUsecase>(),
+          gh<_i11.UpdatePasswordUseCase>(),
+          gh<_i14.UploadImageUsecase>(),
+          gh<_i14.GetProfileUsecase>(),
+          gh<_i14.SetProfileUsecase>(),
+        ));
+    gh.factory<_i18.RegisterCubit>(
+        () => _i18.RegisterCubit(gh<_i11.RegisterUserUseCase>()));
+    gh.factory<_i19.VerifcationCubit>(
+        () => _i19.VerifcationCubit(gh<_i11.VerifyEmailUseCase>()));
     return this;
   }
 }

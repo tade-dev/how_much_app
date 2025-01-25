@@ -47,7 +47,7 @@ class VerifyEmailUseCase extends UseCase<AuthModel, RequestParams> {
   @override
   Future<Either<AppError, AuthModel>> call(RequestParams params) async {
     return await authRepository.verifyEmail(
-      otpCode: params.email,
+      otpCode: params.otpCode,
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
+import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
@@ -20,9 +22,13 @@ class SettingsView extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               buildForProfileWid(context),
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -32,39 +38,43 @@ class SettingsView extends StatelessWidget {
                 child: Column(
                   children: [
                     buildForSettingsTile(
-                      onTap: (){}, 
-                      title: "My proposals",
-                      hasDivider: true,
-                      icon: Iconsax.box
+                        onTap: () {},
+                        title: "My proposals",
+                        hasDivider: true,
+                        icon: Iconsax.box),
+                    const SizedBox(
+                      height: 30,
                     ),
-                    const SizedBox(height: 30,),
                     buildForSettingsTile(
-                      onTap: (){
-                        si<AppRouter>().push(const ChangePasswordScreen());
-                      }, 
-                      title: "Change password",
-                      icon: Iconsax.lock
+                        onTap: () {
+                          si<AppRouter>().push(const ChangePasswordScreen());
+                        },
+                        title: "Change password",
+                        icon: Iconsax.lock),
+                    const SizedBox(
+                      height: 30,
                     ),
-                    const SizedBox(height: 30,),
                     buildForSettingsTile(
-                      onTap: (){}, 
-                      title: "Push notifications",
-                      hasDivider: true,
-                      icon: Iconsax.notification,
-                      hasToggle: true
+                        onTap: () {},
+                        title: "Push notifications",
+                        hasDivider: true,
+                        icon: Iconsax.notification,
+                        hasToggle: true),
+                    const SizedBox(
+                      height: 30,
                     ),
-                    const SizedBox(height: 30,),
                     buildForSettingsTile(
-                      onTap: (){}, 
-                      hasToggle: true,
-                      title: "Face ID",
-                      hasDivider: true,
-                      icon: HugeIcons.strokeRoundedBiometricAccess
-                    ),
+                        onTap: () {},
+                        hasToggle: true,
+                        title: "Face ID",
+                        hasDivider: true,
+                        icon: HugeIcons.strokeRoundedBiometricAccess),
                   ],
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -72,11 +82,10 @@ class SettingsView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: buildForSettingsTile(
-                  onTap: (){}, 
-                  title: "Logout",
-                  islogoout: true,
-                  icon: Iconsax.logout
-                ),
+                    onTap: () {},
+                    title: "Logout",
+                    islogoout: true,
+                    icon: Iconsax.logout),
               ),
             ],
           ),
@@ -87,32 +96,29 @@ class SettingsView extends StatelessWidget {
 }
 
 buildForProfileWid(context) {
-  return Column(
-    children: AnimateList(
-      children: [
-         CircleAvatar(
+  return BlocBuilder<ProfileCubit, ProfileState>(
+    builder: (context, state) {
+      return Column(
+         children: AnimateList(children: [
+        CircleAvatar(
           radius: 50,
-          backgroundImage: AssetImage(
-            Assets.images.rectangle.path
-          ),
+          backgroundImage: AssetImage(Assets.images.rectangle.path),
         ),
-        const SizedBox(height: 15,),
+        const SizedBox(
+          height: 15,
+        ),
         Text(
-          "Akintade Oluwaseun",
-          style: getBoldStyle(
-            color: ColorsX.textColor,
-            fontSize: 25
-          ),
+          state.fullName?.text ?? "",
+          style: getBoldStyle(color: ColorsX.textColor, fontSize: 25),
         ),
-        const SizedBox(height: 5,),
-        Text(
-          "akintadeseun816@gmail.com",
-          style: getRegularStyle(
-            color: ColorsX.textGrey,
-            fontSize: 14
-          )
+        const SizedBox(
+          height: 5,
         ),
-        const SizedBox(height: 15,),
+        Text(state.emailAddress?.text ?? "",
+            style: getRegularStyle(color: ColorsX.textGrey, fontSize: 14)),
+        const SizedBox(
+          height: 15,
+        ),
         GestureDetector(
           onTap: () {
             si<AppRouter>().push(const EditProfileScreen());
@@ -132,19 +138,18 @@ buildForProfileWid(context) {
             ),
           ),
         ),
-      ]
-    )
+      ]));
+    },
   );
 }
 
-buildForSettingsTile({
-  required onTap,
-  required title,
-  icon,
-  hasToggle = false,
-  islogoout = false,
-  hasDivider = false
-}) {
+buildForSettingsTile(
+    {required onTap,
+    required title,
+    icon,
+    hasToggle = false,
+    islogoout = false,
+    hasDivider = false}) {
   return GestureDetector(
     onTap: onTap,
     child: Row(
@@ -154,43 +159,36 @@ buildForSettingsTile({
             children: [
               Icon(
                 icon,
-                color: islogoout ?
-                ColorsX.errorColor:
-                ColorsX.textGrey,
+                color: islogoout ? ColorsX.errorColor : ColorsX.textGrey,
                 size: 20,
               ),
-              const SizedBox(width: 15,),
-              Text(
-                title,
-                style: getMediumStyle(
-                  color: (islogoout)?
-                  ColorsX.errorColor:
-                  ColorsX.textColor,
-                  fontSize: 18
-                )
-              )
+              const SizedBox(
+                width: 15,
+              ),
+              Text(title,
+                  style: getMediumStyle(
+                      color:
+                          (islogoout) ? ColorsX.errorColor : ColorsX.textColor,
+                      fontSize: 18))
             ],
           ),
         ),
-        (islogoout)?
-        const SizedBox():
-        Visibility(
-          visible: hasToggle,
-          replacement: Icon(
-            Icons.arrow_forward,
-            color: ColorsX.textGrey,
-          ),
-          child: SizedBox.fromSize(
-            size: const Size(50, 30),
-            child: Switch.adaptive(
-              value: true, 
-              activeColor: ColorsX.primaryColor,
-              onChanged: (v){
-            
-              }
-            ),
-          ),
-        )
+        (islogoout)
+            ? const SizedBox()
+            : Visibility(
+                visible: hasToggle,
+                replacement: Icon(
+                  Icons.arrow_forward,
+                  color: ColorsX.textGrey,
+                ),
+                child: SizedBox.fromSize(
+                  size: const Size(50, 30),
+                  child: Switch.adaptive(
+                      value: true,
+                      activeColor: ColorsX.primaryColor,
+                      onChanged: (v) {}),
+                ),
+              )
       ],
     ),
   );

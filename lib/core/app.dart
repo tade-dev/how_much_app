@@ -7,6 +7,7 @@ import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_
 import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart';
 import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart';
 import 'package:how_much_app/features/auth/cubit/verification/verifcation_cubit.dart';
+import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +26,7 @@ class _HowMuchAppState extends State<HowMuchApp> {
   late ForgotPasswordCubit forgotPasswordCubit;
   late RegisterCubit registerCubit;
   late VerifcationCubit verifcationCubit;
+  late ProfileCubit profileCubit;
 
   @override
   void initState() {
@@ -33,6 +35,7 @@ class _HowMuchAppState extends State<HowMuchApp> {
     forgotPasswordCubit = si<ForgotPasswordCubit>();
     registerCubit = si<RegisterCubit>();
     verifcationCubit = si<VerifcationCubit>();
+    profileCubit = si<ProfileCubit>();
     super.initState();
   }
 
@@ -42,6 +45,7 @@ class _HowMuchAppState extends State<HowMuchApp> {
     registerCubit.close();
     forgotPasswordCubit.close();
     verifcationCubit.close();
+    profileCubit.close();
     super.dispose();
   }
 
@@ -65,6 +69,7 @@ class _HowMuchAppState extends State<HowMuchApp> {
       BlocProvider<RegisterCubit>.value(value: registerCubit),
       BlocProvider<ForgotPasswordCubit>.value(value: forgotPasswordCubit),
       BlocProvider<VerifcationCubit>.value(value: verifcationCubit),
+      BlocProvider<ProfileCubit>.value(value: profileCubit),
     ];
   }
 

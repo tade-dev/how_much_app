@@ -3,10 +3,8 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:how_much_app/core/api/exceptions.dart';
 import 'package:how_much_app/core/api/success.dart';
-import 'package:how_much_app/core/di/injectable.dart';
+import 'package:how_much_app/core/db/local_cache.dart';
 import 'package:how_much_app/core/model/ranv_model.dart';
-import 'package:how_much_app/core/routes/route_string.dart';
-import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart';
 import 'package:injectable/injectable.dart';
 
@@ -74,8 +72,8 @@ class LoginCubit extends Cubit<LoginState> {
           emit(state.copyWith(
             loginStatus: FormzSubmissionStatus.success,
           ));
-          handleSuccess(context: context, message: "Login successful!");
-          si<AppRouter>().replaceNamed(RouteString.dashboard);
+          UserTokenCache().cacheUserToken(r.token ?? "");
+          handleSuccess(context: context, message: r.message ?? "Login successful!");
         }
 
       }

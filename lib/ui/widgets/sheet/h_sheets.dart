@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
-import 'package:how_much_app/views/components/logout_wid.dart';
-import 'package:how_much_app/views/components/upload_profile_pic.dart';
+import 'package:how_much_app/ui/components/logout_wid.dart';
+import 'package:how_much_app/ui/components/upload_profile_pic.dart';
 
 class HSheets {
   

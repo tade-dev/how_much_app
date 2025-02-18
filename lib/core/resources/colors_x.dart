@@ -15,6 +15,8 @@ class ColorsX {
   static Color textGrey = const Color(0xff757575);
 
   static Color grey = const Color(0xff9E9E9E);
+
+  static Color tectFieldColor = const Color(0xffD9D9D9);
   
   static Color errorColor = const Color(0xffF44336);
 

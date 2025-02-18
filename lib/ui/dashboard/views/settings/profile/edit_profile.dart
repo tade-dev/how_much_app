@@ -8,10 +8,10 @@ import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/features/auth/cubit/register/register_cubit.dart';
 import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
-import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
-import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
-import 'package:how_much_app/views/widgets/inputs/drop_down_field.dart';
-import 'package:how_much_app/views/widgets/sheet/h_sheets.dart';
+import 'package:how_much_app/ui/widgets/appbar/h_app_bars.dart';
+import 'package:how_much_app/ui/widgets/inputs/auth_text_field.dart';
+import 'package:how_much_app/ui/widgets/inputs/drop_down_field.dart';
+import 'package:how_much_app/ui/widgets/sheet/h_sheets.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});

@@ -5,9 +5,9 @@ import 'package:formz/formz.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/features/auth/cubit/forgotpassword/forgot_password_cubit.dart';
-import 'package:how_much_app/views/widgets/appbar/h_app_bars.dart';
-import 'package:how_much_app/views/widgets/buttons/buttons.dart';
-import 'package:how_much_app/views/widgets/inputs/auth_text_field.dart';
+import 'package:how_much_app/ui/widgets/appbar/h_app_bars.dart';
+import 'package:how_much_app/ui/widgets/buttons/buttons.dart';
+import 'package:how_much_app/ui/widgets/inputs/auth_text_field.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});

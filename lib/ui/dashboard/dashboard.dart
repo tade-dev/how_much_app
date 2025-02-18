@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
-import 'package:how_much_app/views/dashboard/views/home/home.dart';
-import 'package:how_much_app/views/dashboard/views/proposals/proposals.dart';
-import 'package:how_much_app/views/dashboard/views/settings/settings.dart';
+import 'package:how_much_app/ui/dashboard/views/home/home.dart';
+import 'package:how_much_app/ui/dashboard/views/proposals/proposals.dart';
+import 'package:how_much_app/ui/dashboard/views/settings/settings.dart';
 import 'package:iconsax/iconsax.dart';
 
 

@@ -5,7 +5,7 @@ import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
-import 'package:how_much_app/views/widgets/buttons/buttons.dart';
+import 'package:how_much_app/ui/widgets/buttons/buttons.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

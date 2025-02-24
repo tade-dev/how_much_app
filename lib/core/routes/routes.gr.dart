@@ -20,8 +20,7 @@ import '../../ui/auth/login.dart' as _i3;
 import '../../ui/auth/reset_password.dart' as _i6;
 import '../../ui/auth/verify_email.dart' as _i7;
 import '../../ui/dashboard/dashboard.dart' as _i9;
-import '../../ui/dashboard/views/settings/profile/change_password.dart'
-    as _i8;
+import '../../ui/dashboard/views/settings/profile/change_password.dart' as _i8;
 import '../../ui/dashboard/views/settings/profile/edit_profile.dart' as _i10;
 import '../../ui/splash/splash_screen.dart' as _i1;
 import '../../ui/welcome/welcome_screen.dart' as _i2;

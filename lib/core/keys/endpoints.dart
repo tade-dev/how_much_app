@@ -18,6 +18,7 @@ class _Auth {
   final updatePassword = "/api/v1/auth/updatepassword";
 }
 
+
 class _Profile {
   final getProfile = "/api/v1/profile/get-profile";
   final setProfile = "/api/v1/profile/set-profile";
@@ -25,5 +26,14 @@ class _Profile {
   final deleteAccount = "/api/v1/profile/delete-profile";
 }
 
+
+class _Pricing {
+  final pricing = "/api/v1/pricing/get-pricing";
+  final singlePricing = "/api/v1/pricing/one-pricing/";
+  final generatePricing = "/api/v1/pricing/generate-pricing";
+}
+
+
 final auth = _Auth();
 final userProfile = _Profile();
+final pricing = _Pricing();

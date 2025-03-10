@@ -26,83 +26,84 @@ class ProposalsView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15,),
-              SearchInputField(
-                onChanged: (v) {
+              // SearchInputField(
+              //   onChanged: (v) {
 
-                },
-                prefixIcon: Icon(
-                  HugeIcons.strokeRoundedSearch01,
-                  color: ColorsX.grey,
-                ),
-                suffixIcon: PopupMenuButton(
-                  color: Colors.white,
-                  popUpAnimationStyle: AnimationStyle(
-                    curve: Curves.easeInOut,
-                    duration: const Duration(milliseconds: 500)
-                  ),
-                  icon: Icon(
-                    HugeIcons.strokeRoundedFilter,
-                    color: ColorsX.grey,
-                  ),
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                      value: 0,
-                      child: Row(
-                        children: [
-                          const Icon(
-                            HugeIcons.strokeRoundedAccess
-                          ),
-                          const SizedBox(width: 10,),
-                          Text(
-                            "Filter by Status",
-                            style: getMediumStyle(
-                              color: ColorsX.textColor,
-                              fontSize: 14
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem(
-                      value: 0,
-                      child: Row(
-                        children: [
-                          const Icon(
-                            HugeIcons.strokeRoundedCalendar01
-                          ),
-                          const SizedBox(width: 10,),
-                          Text(
-                            "Filter by Date",
-                            style: getMediumStyle(
-                              color: ColorsX.textColor,
-                              fontSize: 14
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem(
-                      value: 0,
-                      child: Row(
-                        children: [
-                          const Icon(
-                            HugeIcons.strokeRoundedUser
-                          ),
-                          const SizedBox(width: 10,),
-                          Text(
-                            "Filter by Client",
-                            style: getMediumStyle(
-                              color: ColorsX.textColor,
-                              fontSize: 14
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ]
-                ),
-                hintText: "Search for Proposals...",
-              )
+              //   },
+              //   prefixIcon: Icon(
+              //     HugeIcons.strokeRoundedSearch01,
+              //     color: ColorsX.grey,
+              //   ),
+              //   suffixIcon: PopupMenuButton(
+              //     color: Colors.white,
+              //     popUpAnimationStyle: AnimationStyle(
+              //       curve: Curves.easeInOut,
+              //       duration: const Duration(milliseconds: 500)
+              //     ),
+              //     icon: Icon(
+              //       HugeIcons.strokeRoundedFilter,
+              //       color: ColorsX.grey,
+              //     ),
+              //     itemBuilder: (context) => [
+              //       PopupMenuItem(
+              //         value: 0,
+              //         child: Row(
+              //           children: [
+              //             const Icon(
+              //               HugeIcons.strokeRoundedAccess
+              //             ),
+              //             const SizedBox(width: 10,),
+              //             Text(
+              //               "Filter by Status",
+              //               style: getMediumStyle(
+              //                 color: ColorsX.textColor,
+              //                 fontSize: 14
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       PopupMenuItem(
+              //         value: 0,
+              //         child: Row(
+              //           children: [
+              //             const Icon(
+              //               HugeIcons.strokeRoundedCalendar01
+              //             ),
+              //             const SizedBox(width: 10,),
+              //             Text(
+              //               "Filter by Date",
+              //               style: getMediumStyle(
+              //                 color: ColorsX.textColor,
+              //                 fontSize: 14
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       PopupMenuItem(
+              //         value: 0,
+              //         child: Row(
+              //           children: [
+              //             const Icon(
+              //               HugeIcons.strokeRoundedUser
+              //             ),
+              //             const SizedBox(width: 10,),
+              //             Text(
+              //               "Filter by Client",
+              //               style: getMediumStyle(
+              //                 color: ColorsX.textColor,
+              //                 fontSize: 14
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ]
+              //   ),
+              //   hintText: "Search for Proposals...",
+              // )
+            
             ],
           ),
         ),

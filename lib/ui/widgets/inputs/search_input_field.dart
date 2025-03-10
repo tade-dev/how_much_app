@@ -71,7 +71,7 @@ class SearchInputField extends StatelessWidget {
       keyboardType: inputType,
       style: getRegularStyle(color: ColorsX.textColor, fontSize: 16),
       decoration: InputDecoration(
-        fillColor: ColorsX.tectFieldColor,
+        fillColor: Colors.white,
         filled: true,
         errorStyle: getRegularStyle(color: ColorsX.errorColor, fontSize: 14),
         hintText: hintText,
@@ -93,7 +93,6 @@ class SearchInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           borderSide: BorderSide.none
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
           borderSide: BorderSide.none

@@ -58,7 +58,9 @@ class _DashboardViewState extends State<DashboardView> {
             left: 0,
             right: 0,
             bottom: 0,
-            child: buildForDashboardV(),
+            child: Center(
+              child: buildForDashboardV(),
+            )
           )
         ],
       ),
@@ -67,54 +69,63 @@ class _DashboardViewState extends State<DashboardView> {
 
   buildForDashboardV() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
       decoration: BoxDecoration(
         color: ColorsX.textColor,
         borderRadius: BorderRadius.circular(50)
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 1000),
-            child: GestureDetector(
-              onTap: () {
-                _pageController.jumpToPage(0);
-              },
+          GestureDetector(
+            onTap: () {
+              _pageController.jumpToPage(0);
+            },
+            child: CircleAvatar(
+              radius: 30,
+              backgroundColor: currentPage == 0.0 ?
+              Colors.white : Colors.transparent,
               child: Icon(
                 Iconsax.home,
                 color: currentPage == 0.0 ?
-                ColorsX.primaryColor:
-                ColorsX.textGrey
+                ColorsX.textColor:
+                Colors.white
               ),
             ),
           ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 1000),
-            child: GestureDetector(
-              onTap: () {
-                _pageController.jumpToPage(1);
-              },
-              child: Icon(
-                Iconsax.box,
-                color: currentPage == 1.0 ?
-                ColorsX.primaryColor:
-                ColorsX.textGrey
+          GestureDetector(
+            onTap: () {
+              _pageController.jumpToPage(1);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: CircleAvatar(
+                radius: 30,
+                backgroundColor: currentPage == 1.0 ?
+                Colors.white : Colors.transparent,
+                child: Icon(
+                  Iconsax.box,
+                  color: currentPage == 1.0 ?
+                  ColorsX.textColor:
+                  Colors.white
+                ),
               ),
             ),
           ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 1000),
-            child: GestureDetector(
-              onTap: () {
-                _pageController.jumpToPage(2);
-              },
+          GestureDetector(
+            onTap: () {
+              _pageController.jumpToPage(2);
+            },
+            child: CircleAvatar(
+              radius: 30,
+              backgroundColor: currentPage == 2.0 ?
+              Colors.white : Colors.transparent,
               child: Icon(
                 Iconsax.setting,
                 color: currentPage == 2.0 ?
-                ColorsX.primaryColor:
-                ColorsX.textGrey
+                ColorsX.textColor:
+                Colors.white
               ),
             ),
           ),

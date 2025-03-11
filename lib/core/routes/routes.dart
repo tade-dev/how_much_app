@@ -10,6 +10,7 @@ import 'package:how_much_app/ui/dashboard/dashboard.dart';
 import 'package:how_much_app/ui/dashboard/views/settings/profile/change_password.dart';
 import 'package:how_much_app/ui/dashboard/views/settings/profile/edit_profile.dart';
 import 'package:how_much_app/ui/splash/splash_screen.dart';
+import 'package:how_much_app/ui/splash/splash_screen2.dart';
 import 'package:how_much_app/ui/welcome/welcome_screen.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,9 +25,12 @@ import 'package:injectable/injectable.dart';
       initial: true
     ),
     CustomRoute(
+      page: SplashScreen2,
+      path: RouteString.splash2,
+    ),
+    CustomRoute(
       page: WelcomeScreen,
       path: RouteString.welcome,
-      initial: true
     ),
     CustomRoute(
       page: LoginScreen,

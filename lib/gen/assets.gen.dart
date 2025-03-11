@@ -28,11 +28,22 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [rectangle, maleImage, profileAvatar];
 }
 
+class $AssetsSvgGen {
+  const $AssetsSvgGen();
+
+  /// File path: assets/svg/splash_logo.svg
+  String get splashLogo => 'assets/svg/splash_logo.svg';
+
+  /// List of all assets
+  List<String> get values => [splashLogo];
+}
+
 class Assets {
   Assets._();
 
   static const String aEnv = '.env';
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsSvgGen svg = $AssetsSvgGen();
 
   /// List of all assets
   static List<String> get values => [aEnv];

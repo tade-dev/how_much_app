@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
@@ -15,41 +17,13 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
-
-  late AnimationController _animationController;
-  late Animation<double> scaleAnimations;
-  late Animation<Offset> offsetAnimation;
   
-  @override
-  void initState() {
-    super.initState();
-
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 900),
-      vsync: this
-    );
-
-    scaleAnimations = Tween<double>(
-      begin: 1,
-      end: 1.1
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
-
-    offsetAnimation = Tween<Offset>(
-      begin: const Offset(0, 30),
-      end: const Offset(0, 0)
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
-
-    _animationController.forward();
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          ScaleTransition(
-            scale: scaleAnimations,
+          Expanded(
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -59,91 +33,125 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   fit: BoxFit.cover,
                 )
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black.withOpacity(0),
-                      Colors.black.withOpacity(0.9),
-                    ]
-                  )
-                ),
-              ),
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              child: SlideTransition(
-                position: offsetAnimation,
-                child: Column(
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            decoration: const BoxDecoration(
+              color: Colors.white
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    const Icon(
-                      Icons.insights,
-                      size: 60,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(height: 10,),
                     Text(
-                      "Welcome To\nHow Much App",
-                      textAlign: TextAlign.center,
-                      style: getSemiBoldStyle(
-                        color: Colors.white,
+                      'How Much?',
+                      style: getBoldStyle(
                         fontSize: 30,
-                      ),
+                        color: ColorsX.textColor,
+                      )
                     ),
-                    const SizedBox(height: 10,),
-                    AutoSizeText(
-                      "A platform that generates a pricing proposal for developers based on their experiences and skillset 🚀",
-                      maxLines: 2,
-                      minFontSize: 13,
-                      textAlign: TextAlign.center,
-                      style: getRegularStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
+                    const SizedBox(width: 10),
+                    SvgPicture.asset(
+                      Assets.svg.splashLogo,
+                      height: 50,
+                      width: 50,
                     ),
-                    const SizedBox(height: 30,),
-                    Buttons.primaryButton(label: "Get Started", 
-                    hasIcon: true,
-                    onTap: (){
-                      si<AppRouter>().push( CreateAccountScreen());
-                    }),
-                    const SizedBox(height: 30,),
-                    RichText(
-                      text: TextSpan(
-                        text: "Already have an account ?",
-                        style: getRegularStyle(
-                          color: Colors.white,
-                          fontSize: 14
-                        ),
-                        children: [
-                          WidgetSpan(
-                            alignment: PlaceholderAlignment.middle,
-                            child: InkWell(
-                              onTap: () {
-                                si<AppRouter>().push(LoginScreen());
-                              },
-                              child: Text(
-                               " Sign In",
-                                style: getRegularStyle(
-                                  color: ColorsX.primaryColor,
-                                  fontSize: 14
-                                )
-                              ),
-                            ),
-                          )
-                        ]
-                      ),
-                    )
                   ],
+                ).animate()
+                .fade(
+                  begin: 0,
+                  end: 1,
+                  duration: const Duration(milliseconds: 800)
+                )
+                .slide(
+                  begin: const Offset(-1.0, 0.0),
+                  end: const Offset(0.0, 0.0),
+                  duration: const Duration(milliseconds: 200)
                 ),
-              ),
+                const SizedBox(height: 10,),
+                AutoSizeText(
+                  "The platform that generates a pricing proposal for developers based on their experiences and skillset 🚀",
+                  style: getMediumStyle(
+                    color: ColorsX.textGrey,
+                    fontSize: 18,
+                  ),
+                ).animate()
+                .fade(
+                  begin: 0,
+                  end: 1,
+                  duration: const Duration(milliseconds: 800),
+                  delay: const Duration(milliseconds: 100)
+                )
+                .slide(
+                  begin: const Offset(-1.0, 0.0),
+                  end: const Offset(0.0, 0.0),
+                  duration: const Duration(milliseconds: 200),
+                  delay: const Duration(milliseconds: 100),
+                ),
+                const SizedBox(height: 30,),
+                RichText(
+                  text: TextSpan(
+                    text: "Already have an account ?",
+                    style: getMediumStyle(
+                      color: ColorsX.textGrey,
+                      fontSize: 16
+                    ),
+                    children: [
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: InkWell(
+                          onTap: () {
+                            si<AppRouter>().push(LoginScreen());
+                          },
+                          child: Text(
+                           " Sign In",
+                            style: getSemiBoldStyle(
+                              color: ColorsX.primaryColor,
+                              fontSize: 16
+                            )
+                          ),
+                        ),
+                      )
+                    ]
+                  ),
+                ).animate()
+                .fade(
+                  begin: 0,
+                  end: 1,
+                  duration: const Duration(milliseconds: 800),
+                  delay: const Duration(milliseconds: 300)
+                )
+                .slide(
+                  begin: const Offset(-1.0, 0.0),
+                  end: const Offset(0.0, 0.0),
+                  duration: const Duration(milliseconds: 200),
+                  delay: const Duration(milliseconds: 300),
+                ),
+                const SizedBox(height: 20,),
+                Container(
+                  child: Buttons.primaryButton(label: "Get Started", 
+                  hasIcon: true,
+                  onTap: (){
+                    si<AppRouter>().push(CreateAccountScreen());
+                  }
+                ),
+                ).animate()
+                .fade(
+                  begin: 0,
+                  end: 1,
+                  duration: const Duration(milliseconds: 800),
+                  delay: const Duration(milliseconds: 200)
+                )
+                .slide(
+                  begin: const Offset(-1.0, 0.0),
+                  end: const Offset(0.0, 0.0),
+                  duration: const Duration(milliseconds: 200),
+                  delay: const Duration(milliseconds: 200),
+                ),
+                const SizedBox(height: 30,),
+              ],
             ),
           )
         ],

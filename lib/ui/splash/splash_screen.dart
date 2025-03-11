@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:how_much_app/core/db/local_cache.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:how_much_app/core/di/injectable.dart';
-import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
+import 'package:how_much_app/gen/assets.gen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -16,46 +17,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
     super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
-
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-    ));
-
-    _controller.forward();
-
-    navigateUser();
-
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  navigateUser() async {
-    String userToken = await UserTokenCache().getCacheUserToken();
-    if (userToken.isEmpty) {
-      Timer(const Duration(seconds: 3), () {
-        si<AppRouter>().push(const WelcomeScreen());
-      });
-    }else {
-      Timer(const Duration(seconds: 3), () {
-        si<AppRouter>().push(DashboardView());
-      });
-    }
+    Timer(const Duration(seconds: 2), () {
+      si<AppRouter>().push(const SplashScreen2());
+    });
   }
 
   @override
@@ -63,38 +31,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF4CAF50),
-              Color(0xFF81C784),
-              Color(0xFF388E3C),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          color: Colors.white
         ),
         child: Center(
-          child: FadeTransition(
-            opacity: _fadeAnimation,
-            child:  Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.insights,
-                  size: 100,
-                  color: Colors.white,
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  'How Much?',
-                  style: getBoldStyle(
-                    fontSize: 28,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          child: Hero(
+            tag: "splashLogo",
+            child: SvgPicture.asset(
+              Assets.svg.splashLogo,
+              height: 200,
+              width: 200,
+            ).animate()
+            .fade()
+            .scale(),
+          )
         ),
       ),
     );

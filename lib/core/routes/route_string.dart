@@ -2,6 +2,8 @@ class RouteString {
 
   static const splash = "/splash";
 
+  static const splash2 = "/splash2";
+
   static const welcome = "/welcome";
 
   static const signin = "/signin";

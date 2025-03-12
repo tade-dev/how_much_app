@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -8,8 +9,10 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:how_much_app/core/api/exceptions.dart';
 import 'package:how_much_app/core/api/success.dart';
+import 'package:how_much_app/core/db/local_cache.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/entites/no_params.dart';
+import 'package:how_much_app/core/enums/enums.dart';
 import 'package:how_much_app/core/model/ranv_model.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/profile/data/model/set_profile_model.dart';
@@ -34,9 +37,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     this.uploadImageUsecase,
     this.getProfileUsecase,
     this.setProfileUsecase,
-  ) : super(const ProfileState()) {
-    getProfile(si<AppRouter>().navigatorKey.currentContext);
-  }
+  ) : super(const ProfileState());
 
   resetState(){
     emit(const ProfileState());
@@ -49,6 +50,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   updateSelectedImage(v) {
     emit(state.copyWith(
       selectedImage: v
+    ));
+  }
+
+  updateEditProfileCurrentState(v) {
+    emit(state.copyWith(
+      editProfileCurrentState: v
     ));
   }
 
@@ -78,7 +85,33 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   // GET PROFILE
-  getProfile(context) async {
+  getProfile() async {
+
+      var context = si<AppRouter>().navigatorKey.currentContext;
+
+      String encodedData = await UserDataCache().getCacheProfileData();
+
+      if(encodedData.isEmpty) {
+        null;
+      }else {
+        Map<String, dynamic> decodedData = jsonDecode(encodedData);
+
+        emit(state.copyWith(
+          userData: UserData.fromJson(decodedData)
+        ));
+
+        emit(state.copyWith(
+          gender: TextEditingController(text: state.userData?.gender ?? ""),
+          fullName: TextEditingController(text: ("${state.userData?.firstname} ${state.userData?.lastname}")),
+          emailAddress: TextEditingController(text: state.userData?.email ?? ""),
+          certifications: TextEditingController(text: state.userData?.certifications?.join(", ")),
+          developerStack: TextEditingController(text: state.userData?.developerStack?.join(", ")),
+          developerTitle: TextEditingController(text: state.userData?.developerTitle ?? ""),
+          cvLink: TextEditingController(text: state.userData?.cvLink ?? ""),
+          yearsOfExperience: TextEditingController(text: (state.userData?.yearsOfExperience ?? "").toString()),
+          portfolioLink: TextEditingController(text: state.userData?.portfolioLink ?? ""),
+        ));
+      }
 
       var resp = await getProfileUsecase(NoParams());
 
@@ -86,13 +119,16 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       resp.fold((l){
         
-        handleException(l.message, context);
+      handleException(l.message, context!);
 
       }, (r){
 
         if (r.success == false) {
-          handleException((r.error ?? r.message).toString(), context);
+
+          handleException((r.error ?? r.message).toString(), context!);
+
         }else {
+
           emit(state.copyWith(
             userData: r.data,
             gender: TextEditingController(text: r.data?.gender ?? ""),
@@ -106,9 +142,13 @@ class ProfileCubit extends Cubit<ProfileState> {
             portfolioLink: TextEditingController(text: r.data?.portfolioLink ?? ""),
           ));
 
-          log("User State::::${state.userData}");
-        }
+          var userData = r.data?.toJson();
+          String encodedData = jsonEncode(userData);
+          UserDataCache().cacheProfileData(encodedData);
 
+          log("User State::::${state.userData}");
+
+        }
       }
     );
   }

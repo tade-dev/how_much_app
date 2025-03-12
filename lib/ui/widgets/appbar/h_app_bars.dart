@@ -27,13 +27,17 @@ class HAppBars {
     c,
     {
       title,
-      w
+      w,
+      hideIcon = false
     }
   ) {
     return AppBar(
       elevation: 0,
       scrolledUnderElevation: 0,
-      leading: InkWell(
+      automaticallyImplyLeading: false,
+      leading:  hideIcon ?
+      null:
+      InkWell(
         onTap: () {
           Navigator.pop(c);
         },

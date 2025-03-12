@@ -19,7 +19,8 @@ class ProfileState with _$ProfileState {
     TextEditingController? developerTitle,
     TextEditingController? portfolioLink,
     TextEditingController? yearsOfExperience,
-    UserData? userData
+    UserData? userData,
+    @Default(EditProfileCurrentState.dashboard) EditProfileCurrentState editProfileCurrentState
 
   }) = _Initial;
 }

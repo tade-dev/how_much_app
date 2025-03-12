@@ -28,6 +28,16 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [rectangle, maleImage, profileAvatar];
 }
 
+class $AssetsPngGen {
+  const $AssetsPngGen();
+
+  /// File path: assets/png/box.png
+  AssetGenImage get box => const AssetGenImage('assets/png/box.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [box];
+}
+
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
@@ -43,6 +53,7 @@ class Assets {
 
   static const String aEnv = '.env';
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 
   /// List of all assets

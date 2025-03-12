@@ -12,41 +12,8 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
 
-class SettingsView extends StatefulWidget {
+class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
-
-    @override
-  State<SettingsView> createState() => _SettingsViewState();
-}
-
-class _SettingsViewState extends State<SettingsView> with SingleTickerProviderStateMixin {
-
-  late AnimationController _animationController;
-  late Animation<Offset> _offsetAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _animationController = AnimationController(
-      vsync: this, 
-      duration: const Duration(milliseconds: 1000)
-    );
-
-    _offsetAnimation = Tween<Offset>(
-      begin: const Offset(0, 1),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
-
-    _animationController.forward();
-
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _animationController.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,54 +31,60 @@ class _SettingsViewState extends State<SettingsView> with SingleTickerProviderSt
               const SizedBox(
                 height: 30,
               ),
-              SlideTransition(
-                position: _offsetAnimation,
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Column(
-                    children: [
-                      buildForSettingsTile(
-                          onTap: () {},
-                          title: "My proposals",
-                          hasDivider: true,
-                          icon: Iconsax.box),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      buildForSettingsTile(
-                          onTap: () {
-                            si<AppRouter>().push(ChangePasswordScreen());
-                          },
-                          title: "Change password",
-                          icon: Iconsax.lock),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      buildForSettingsTile(
-                          onTap: () {},
-                          title: "Push notifications",
-                          hasDivider: true,
-                          icon: Iconsax.notification,
-                          hasToggle: true),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      buildForSettingsTile(
-                          onTap: () {},
-                          hasToggle: true,
-                          title: "Face ID",
-                          hasDivider: true,
-                          icon: HugeIcons.strokeRoundedBiometricAccess),
-                    ],
-                  ),
-                ).animate()
-                .fade(
-                  duration: const Duration(milliseconds: 1000)
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
                 ),
+                child: Column(
+                  children: [
+                    buildForSettingsTile(
+                        onTap: () {},
+                        title: "My proposals",
+                        hasDivider: true,
+                        icon: Iconsax.box),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    buildForSettingsTile(
+                        onTap: () {
+                          si<AppRouter>().push(ChangePasswordScreen());
+                        },
+                        title: "Change password",
+                        icon: Iconsax.lock),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    buildForSettingsTile(
+                        onTap: () {},
+                        title: "Push notifications",
+                        hasDivider: true,
+                        icon: Iconsax.notification,
+                        hasToggle: true),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    buildForSettingsTile(
+                        onTap: () {},
+                        hasToggle: true,
+                        title: "Face ID",
+                        hasDivider: true,
+                        icon: HugeIcons.strokeRoundedBiometricAccess),
+                  ],
+                ),
+              ).animate()
+              .fade(
+                begin: 0,
+                end: 1,
+                delay: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 900)
+              )
+              .slide(
+                begin: const Offset(0, 2.0),
+                end: const Offset(0, 0),
+                delay: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 200)
               ),
               const SizedBox(
                 height: 20,
@@ -130,11 +103,18 @@ class _SettingsViewState extends State<SettingsView> with SingleTickerProviderSt
                     islogoout: true,
                     icon: Iconsax.logout),
               ).animate()
-                .fade(
-                  curve: Curves.easeInOut,
-                  duration: const Duration(milliseconds: 1000),
-                  delay: const Duration(milliseconds: 1000)
-                ),
+              .fade(
+                begin: 0,
+                end: 1,
+                delay: const Duration(milliseconds: 600),
+                duration: const Duration(milliseconds: 1100)
+              )
+              .slide(
+                begin: const Offset(0, 1.0),
+                end: const Offset(0, 0),
+                delay: const Duration(milliseconds: 700),
+                duration: const Duration(milliseconds: 200)
+              )
             ],
           ),
         ),
@@ -156,9 +136,18 @@ buildForProfileWid(context) {
               : (state.userData?.image?.isNotEmpty ?? false)
                   ? NetworkImage(state.userData!.image!)
                   : AssetImage(Assets.images.profileAvatar.path) as ImageProvider,
-        ).animate().fade().scale(
-          curve: Curves.easeInOut,
-          duration: const Duration(milliseconds: 900)
+        ).animate()
+        .fade(
+          begin: 0,
+          end: 1,
+          delay: const Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 1200)
+        )
+        .slide(
+          begin: const Offset(0, 2.0),
+          end: const Offset(0, 0),
+          delay: const Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 200)
         ),
         const SizedBox(
           height: 15,
@@ -166,19 +155,35 @@ buildForProfileWid(context) {
         Text(
           state.fullName?.text ?? "",
           style: getBoldStyle(color: ColorsX.textColor, fontSize: 25),
-        ).animate().fade().scale(
-          curve: Curves.easeInOut,
-          duration: const Duration(milliseconds: 900),
-          delay: const Duration(milliseconds: 800),
+        ).animate()
+        .fade(
+          begin: 0,
+          end: 1,
+          delay: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 1200)
+        )
+        .slide(
+          begin: const Offset(0, 2.0),
+          end: const Offset(0, 0),
+          delay: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200)
         ),
         const SizedBox(
           height: 5,
         ),
         Text(state.emailAddress?.text ?? "",
-            style: getRegularStyle(color: ColorsX.textGrey, fontSize: 14)).animate().fade().scale(
-          curve: Curves.elasticInOut,
-          duration: const Duration(milliseconds: 900),
-          delay: const Duration(milliseconds: 1000)
+            style: getRegularStyle(color: ColorsX.textGrey, fontSize: 14)).animate()
+        .fade(
+          begin: 0,
+          end: 1,
+          delay: const Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 1200)
+        )
+        .slide(
+          begin: const Offset(0, 2.0),
+          end: const Offset(0, 0),
+          delay: const Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 200)
         ),
         const SizedBox(
           height: 15,
@@ -190,7 +195,7 @@ buildForProfileWid(context) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(
-              color: ColorsX.textColor,
+              color: ColorsX.primaryColor,
               borderRadius: BorderRadius.circular(50),
             ),
             child: Text(
@@ -201,11 +206,19 @@ buildForProfileWid(context) {
               ),
             ),
           ),
-        ).animate().fade().scale(
-          curve: Curves.elasticInOut,
-          duration: const Duration(milliseconds: 900),
-          delay: const Duration(milliseconds: 1200),
-        ),
+        ).animate()
+        .fade(
+          begin: 0,
+          end: 1,
+          delay: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 1200)
+        )
+        .slide(
+          begin: const Offset(0, 2.0),
+          end: const Offset(0, 0),
+          delay: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 200)
+        )
       ]));
     },
   );
@@ -246,8 +259,9 @@ buildForSettingsTile(
             : Visibility(
                 visible: hasToggle,
                 replacement: Icon(
-                  Icons.arrow_forward,
+                  Icons.arrow_forward_ios_rounded,
                   color: ColorsX.textGrey,
+                  size: 15,
                 ),
                 child: SizedBox.fromSize(
                   size: const Size(50, 30),

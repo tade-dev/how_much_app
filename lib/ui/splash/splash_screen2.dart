@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:how_much_app/core/db/local_cache.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
+import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
 
 
@@ -37,6 +39,7 @@ class _SplashScreen2State extends State<SplashScreen2> with SingleTickerProvider
     }else {
       Timer(const Duration(seconds: 3), () {
         si<AppRouter>().push(DashboardView());
+        context.read<ProfileCubit>().getProfile();
       });
     }
   }

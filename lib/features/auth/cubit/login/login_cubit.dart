@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:how_much_app/core/api/exceptions.dart';
 import 'package:how_much_app/core/api/success.dart';
 import 'package:how_much_app/core/db/local_cache.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/model/ranv_model.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart';
 import 'package:injectable/injectable.dart';
 
@@ -41,7 +45,8 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   // LOGIN USER
-  loginUser(context) async {
+  loginUser() async {
+    var context = si<AppRouter>().navigatorKey.currentContext;
       emit(state.copyWith(
         loginStatus: FormzSubmissionStatus.inProgress
       ));
@@ -59,7 +64,7 @@ class LoginCubit extends Cubit<LoginState> {
           loginStatus: FormzSubmissionStatus.failure,
         ));
 
-        handleException(l.message, context);
+        handleException(l.message, context!);
 
       }, (r){
 
@@ -67,13 +72,16 @@ class LoginCubit extends Cubit<LoginState> {
           emit(state.copyWith(
             loginStatus: FormzSubmissionStatus.failure,
           ));
-          handleException((r.error ?? r.message).toString(), context);
+          handleException((r.error ?? r.message).toString(), context!);
         }else {
+          UserTokenCache().cacheUserToken(r.token ?? "");
+          var userData = r.data?.toJson();
+          String encodedData = jsonEncode(userData);
+          UserDataCache().cacheProfileData(encodedData);
           emit(state.copyWith(
             loginStatus: FormzSubmissionStatus.success,
           ));
-          UserTokenCache().cacheUserToken(r.token ?? "");
-          handleSuccess(context: context, message: r.message ?? "Login successful!");
+          handleSuccess(context: context!, message: r.message ?? "Login successful!");
         }
 
       }

@@ -26,3 +26,28 @@ class UserTokenCache {
   }
 
 }
+
+class UserDataCache {
+
+  Future<void> cacheProfileData(String data) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(
+      LocalKeys.UserData, 
+      data
+    );
+    log("Profile:$data Cached !!!!");
+  }
+
+  Future<String> getCacheProfileData() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final userData = sharedPreferences.getString(LocalKeys.UserData);
+    log("Profile:$userData Fetched !!!!");
+    return userData ?? "";
+  }
+
+  Future<void> clearUserDataCache() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.remove(LocalKeys.UserData);
+  }
+
+}

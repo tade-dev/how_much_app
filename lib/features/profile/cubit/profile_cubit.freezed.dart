@@ -40,6 +40,8 @@ mixin _$ProfileState {
   TextEditingController? get yearsOfExperience =>
       throw _privateConstructorUsedError;
   UserData? get userData => throw _privateConstructorUsedError;
+  EditProfileCurrentState get editProfileCurrentState =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -67,7 +69,8 @@ abstract class $ProfileStateCopyWith<$Res> {
       TextEditingController? developerTitle,
       TextEditingController? portfolioLink,
       TextEditingController? yearsOfExperience,
-      UserData? userData});
+      UserData? userData,
+      EditProfileCurrentState editProfileCurrentState});
 
   $UserDataCopyWith<$Res>? get userData;
 }
@@ -100,6 +103,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? portfolioLink = freezed,
     Object? yearsOfExperience = freezed,
     Object? userData = freezed,
+    Object? editProfileCurrentState = null,
   }) {
     return _then(_value.copyWith(
       updateProfileStatus: null == updateProfileStatus
@@ -162,6 +166,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      editProfileCurrentState: null == editProfileCurrentState
+          ? _value.editProfileCurrentState
+          : editProfileCurrentState // ignore: cast_nullable_to_non_nullable
+              as EditProfileCurrentState,
     ) as $Val);
   }
 
@@ -201,7 +209,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       TextEditingController? developerTitle,
       TextEditingController? portfolioLink,
       TextEditingController? yearsOfExperience,
-      UserData? userData});
+      UserData? userData,
+      EditProfileCurrentState editProfileCurrentState});
 
   @override
   $UserDataCopyWith<$Res>? get userData;
@@ -233,6 +242,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? portfolioLink = freezed,
     Object? yearsOfExperience = freezed,
     Object? userData = freezed,
+    Object? editProfileCurrentState = null,
   }) {
     return _then(_$InitialImpl(
       updateProfileStatus: null == updateProfileStatus
@@ -295,6 +305,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      editProfileCurrentState: null == editProfileCurrentState
+          ? _value.editProfileCurrentState
+          : editProfileCurrentState // ignore: cast_nullable_to_non_nullable
+              as EditProfileCurrentState,
     ));
   }
 }
@@ -317,7 +331,8 @@ class _$InitialImpl extends _Initial {
       this.developerTitle,
       this.portfolioLink,
       this.yearsOfExperience,
-      this.userData})
+      this.userData,
+      this.editProfileCurrentState = EditProfileCurrentState.dashboard})
       : super._();
 
   @override
@@ -354,10 +369,13 @@ class _$InitialImpl extends _Initial {
   final TextEditingController? yearsOfExperience;
   @override
   final UserData? userData;
+  @override
+  @JsonKey()
+  final EditProfileCurrentState editProfileCurrentState;
 
   @override
   String toString() {
-    return 'ProfileState(updateProfileStatus: $updateProfileStatus, changePasswordStatus: $changePasswordStatus, uploadImageStatus: $uploadImageStatus, deleteAccountStatus: $deleteAccountStatus, selectedImage: $selectedImage, fullName: $fullName, emailAddress: $emailAddress, gender: $gender, certifications: $certifications, cvLink: $cvLink, developerStack: $developerStack, developerTitle: $developerTitle, portfolioLink: $portfolioLink, yearsOfExperience: $yearsOfExperience, userData: $userData)';
+    return 'ProfileState(updateProfileStatus: $updateProfileStatus, changePasswordStatus: $changePasswordStatus, uploadImageStatus: $uploadImageStatus, deleteAccountStatus: $deleteAccountStatus, selectedImage: $selectedImage, fullName: $fullName, emailAddress: $emailAddress, gender: $gender, certifications: $certifications, cvLink: $cvLink, developerStack: $developerStack, developerTitle: $developerTitle, portfolioLink: $portfolioLink, yearsOfExperience: $yearsOfExperience, userData: $userData, editProfileCurrentState: $editProfileCurrentState)';
   }
 
   @override
@@ -392,7 +410,10 @@ class _$InitialImpl extends _Initial {
             (identical(other.yearsOfExperience, yearsOfExperience) ||
                 other.yearsOfExperience == yearsOfExperience) &&
             (identical(other.userData, userData) ||
-                other.userData == userData));
+                other.userData == userData) &&
+            (identical(
+                    other.editProfileCurrentState, editProfileCurrentState) ||
+                other.editProfileCurrentState == editProfileCurrentState));
   }
 
   @override
@@ -412,7 +433,8 @@ class _$InitialImpl extends _Initial {
       developerTitle,
       portfolioLink,
       yearsOfExperience,
-      userData);
+      userData,
+      editProfileCurrentState);
 
   @JsonKey(ignore: true)
   @override
@@ -437,7 +459,8 @@ abstract class _Initial extends ProfileState {
       final TextEditingController? developerTitle,
       final TextEditingController? portfolioLink,
       final TextEditingController? yearsOfExperience,
-      final UserData? userData}) = _$InitialImpl;
+      final UserData? userData,
+      final EditProfileCurrentState editProfileCurrentState}) = _$InitialImpl;
   const _Initial._() : super._();
 
   @override
@@ -470,6 +493,8 @@ abstract class _Initial extends ProfileState {
   TextEditingController? get yearsOfExperience;
   @override
   UserData? get userData;
+  @override
+  EditProfileCurrentState get editProfileCurrentState;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

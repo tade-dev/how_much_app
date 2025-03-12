@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/ui/dashboard/views/home/home.dart';
 import 'package:how_much_app/ui/dashboard/views/proposals/proposals.dart';
@@ -131,14 +130,6 @@ class _DashboardViewState extends State<DashboardView> {
           ),
         ],
       ),
-    ).animate()
-    .fade(
-      duration: const Duration(milliseconds: 1000),
-      curve: Curves.easeInOut
-    )
-    .scale(
-      duration: const Duration(milliseconds: 1000),
-      curve: Curves.easeInOut
     );
   }
 

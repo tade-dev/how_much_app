@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
@@ -6,9 +7,11 @@ import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
+import 'package:how_much_app/ui/components/proposal_list_view.dart';
 import 'package:how_much_app/ui/widgets/inputs/search_input_field.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
+
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -52,18 +55,31 @@ class HomeView extends StatelessWidget {
                         onTap: () {
                           si<AppRouter>().push(const EditProfileScreen());
                         },
-                        child: CircleAvatar(
-                          radius: 25,
-                          backgroundImage: (state.selectedImage != null)
+                        child: Hero(
+                          tag: "profile_image",
+                          child: CircleAvatar(
+                            radius: 25,
+                            backgroundImage: state.selectedImage != null
                               ? FileImage(state.selectedImage!)
-                              : (state.userData?.image != null)
-                                  ? NetworkImage(
-                                      state.userData?.image ?? "")
-                                  : AssetImage(
-                                      Assets.images.profileAvatar.path),
+                              : (state.userData?.image?.isNotEmpty ?? false)
+                                  ? NetworkImage(state.userData!.image!)
+                                  : AssetImage(Assets.images.profileAvatar.path) as ImageProvider,
+                          ),
                         ),
                       ),
                     ],
+                  ).animate()
+                  .fade(
+                    begin: 0,
+                    end: 1,
+                    curve: Curves.easeInOut,
+                    duration: const Duration(milliseconds: 600)
+                  )
+                  .slide(
+                    begin: const Offset(1, 0),
+                    end: const Offset(0, 0),
+                    curve: Curves.easeInOut,
+                    duration: const Duration(milliseconds: 400)
                   );
                 },
               ),
@@ -97,7 +113,7 @@ class HomeView extends StatelessWidget {
                         
                       },
                       elevation: 0,
-                      backgroundColor: ColorsX.textColor,
+                      backgroundColor: ColorsX.primaryColor,
                       shape: const CircleBorder(),
                       child: const Icon(
                         Iconsax.setting_4,
@@ -106,17 +122,16 @@ class HomeView extends StatelessWidget {
                     ),
                   ],
                 ),
+              ).animate()
+              .fade(
+                begin: 0,
+                end: 1,
+                curve: Curves.easeInOut,
+                duration: const Duration(milliseconds: 500),
+                delay:  const Duration(milliseconds: 500),
               ),
               const SizedBox(
                 height: 20,
-              ),
-              Text(
-                "Quick actions",
-                style: getBoldStyle(
-                    color: ColorsX.textColor, fontSize: 25),
-              ),
-              const SizedBox(
-                height: 5,
               ),
               SingleChildScrollView(
                 child: Row(
@@ -136,28 +151,28 @@ class HomeView extends StatelessWidget {
                       isScnd: true
                     ),
                   ],
-                ),
+                ).animate()
+                  .fade(
+                    begin: 0,
+                    end: 1,
+                    curve: Curves.easeInOut,
+                    delay:  const Duration(milliseconds: 1000),
+                    duration: const Duration(milliseconds: 600)
+                  )
+                  .slide(
+                    begin: const Offset(0, -1.0),
+                    end: const Offset(0, 0),
+                    curve: Curves.easeInOut,
+                    delay:  const Duration(milliseconds: 1000),
+                    duration: const Duration(milliseconds: 400)
+                  ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Recent Proposals",
-                    style: getBoldStyle(
-                      color: ColorsX.textColor, fontSize: 25
-                    ),
-                  ),
-                  Text(
-                    "View all",
-                    style: getMediumStyle(
-                      color: ColorsX.textColor, fontSize: 14
-                    ),
-                  ),
-                ],
-              ),
+              Expanded(
+                child: ProposalListView(onTap: (){}),
+              )
             ],
           ),
         ),
@@ -172,7 +187,7 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: isScnd ? ColorsX.textColor :
+          color: isScnd ? ColorsX.primaryColor :
           Colors.white
         ),
         child: Text(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
-import 'package:how_much_app/ui/widgets/inputs/search_input_field.dart';
-import 'package:hugeicons/hugeicons.dart';
 
 class ProposalsView extends StatelessWidget {
   const ProposalsView({super.key});

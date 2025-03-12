@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 
 class HAppBars {
 
@@ -24,13 +26,13 @@ class HAppBars {
   }
 
   AppBar mainAppBar(
-    c,
     {
       title,
       w,
       hideIcon = false
     }
   ) {
+    var context = si<AppRouter>().navigatorKey.currentContext;
     return AppBar(
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -39,7 +41,7 @@ class HAppBars {
       null:
       InkWell(
         onTap: () {
-          Navigator.pop(c);
+          Navigator.pop(context!);
         },
         child: Icon(
           Icons.arrow_back,

@@ -18,7 +18,6 @@ class ChangePasswordScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: HAppBars().mainAppBar(
-            context,
             title: "CHANGE PASSWORD",
           ),
           body: Container(

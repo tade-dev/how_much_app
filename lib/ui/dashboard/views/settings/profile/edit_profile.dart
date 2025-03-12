@@ -31,7 +31,6 @@ class EditProfileScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: HAppBars().mainAppBar(
-              context,
               title: "EDIT PROFILE",
               hideIcon: state.editProfileCurrentState == EditProfileCurrentState.dashboard ?
               false:

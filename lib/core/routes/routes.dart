@@ -7,6 +7,7 @@ import 'package:how_much_app/ui/auth/login.dart';
 import 'package:how_much_app/ui/auth/reset_password.dart';
 import 'package:how_much_app/ui/auth/verify_email.dart';
 import 'package:how_much_app/ui/dashboard/dashboard.dart';
+import 'package:how_much_app/ui/dashboard/views/proposals/proposal_details_screen.dart';
 import 'package:how_much_app/ui/dashboard/views/settings/profile/change_password.dart';
 import 'package:how_much_app/ui/dashboard/views/settings/profile/edit_profile.dart';
 import 'package:how_much_app/ui/splash/splash_screen.dart';
@@ -63,6 +64,9 @@ import 'package:injectable/injectable.dart';
     CustomRoute(
       page: EditProfileScreen,
       path: RouteString.editProfile,
+    ),
+    CustomRoute(
+      page: ProposalDetailsScreen,
     ),
 
   ]

@@ -24,9 +24,15 @@ mixin _$PricingState {
   TextEditingController? get projectCost => throw _privateConstructorUsedError;
   bool get hasAdvancedFeatures => throw _privateConstructorUsedError;
   List<String> get advancedFeaturesList => throw _privateConstructorUsedError;
-  List<String> get proposalList => throw _privateConstructorUsedError;
+  List<ProposalData> get proposalList => throw _privateConstructorUsedError;
   TextEditingController? get featureText => throw _privateConstructorUsedError;
+  GenPricingResponse? get genPricingResponse =>
+      throw _privateConstructorUsedError;
+  GenPricingResponseData? get genPricingResponseData =>
+      throw _privateConstructorUsedError;
   FormzSubmissionStatus get generationStatus =>
+      throw _privateConstructorUsedError;
+  FormzSubmissionStatus get getPricingStatus =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -48,9 +54,15 @@ abstract class $PricingStateCopyWith<$Res> {
       TextEditingController? projectCost,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
-      List<String> proposalList,
+      List<ProposalData> proposalList,
       TextEditingController? featureText,
-      FormzSubmissionStatus generationStatus});
+      GenPricingResponse? genPricingResponse,
+      GenPricingResponseData? genPricingResponseData,
+      FormzSubmissionStatus generationStatus,
+      FormzSubmissionStatus getPricingStatus});
+
+  $GenPricingResponseCopyWith<$Res>? get genPricingResponse;
+  $GenPricingResponseDataCopyWith<$Res>? get genPricingResponseData;
 }
 
 /// @nodoc
@@ -75,7 +87,10 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
     Object? advancedFeaturesList = null,
     Object? proposalList = null,
     Object? featureText = freezed,
+    Object? genPricingResponse = freezed,
+    Object? genPricingResponseData = freezed,
     Object? generationStatus = null,
+    Object? getPricingStatus = null,
   }) {
     return _then(_value.copyWith(
       selectedDate: freezed == selectedDate
@@ -109,16 +124,54 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
       proposalList: null == proposalList
           ? _value.proposalList
           : proposalList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<ProposalData>,
       featureText: freezed == featureText
           ? _value.featureText
           : featureText // ignore: cast_nullable_to_non_nullable
               as TextEditingController?,
+      genPricingResponse: freezed == genPricingResponse
+          ? _value.genPricingResponse
+          : genPricingResponse // ignore: cast_nullable_to_non_nullable
+              as GenPricingResponse?,
+      genPricingResponseData: freezed == genPricingResponseData
+          ? _value.genPricingResponseData
+          : genPricingResponseData // ignore: cast_nullable_to_non_nullable
+              as GenPricingResponseData?,
       generationStatus: null == generationStatus
           ? _value.generationStatus
           : generationStatus // ignore: cast_nullable_to_non_nullable
               as FormzSubmissionStatus,
+      getPricingStatus: null == getPricingStatus
+          ? _value.getPricingStatus
+          : getPricingStatus // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GenPricingResponseCopyWith<$Res>? get genPricingResponse {
+    if (_value.genPricingResponse == null) {
+      return null;
+    }
+
+    return $GenPricingResponseCopyWith<$Res>(_value.genPricingResponse!,
+        (value) {
+      return _then(_value.copyWith(genPricingResponse: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GenPricingResponseDataCopyWith<$Res>? get genPricingResponseData {
+    if (_value.genPricingResponseData == null) {
+      return null;
+    }
+
+    return $GenPricingResponseDataCopyWith<$Res>(_value.genPricingResponseData!,
+        (value) {
+      return _then(_value.copyWith(genPricingResponseData: value) as $Val);
+    });
   }
 }
 
@@ -138,9 +191,17 @@ abstract class _$$InitialImplCopyWith<$Res>
       TextEditingController? projectCost,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
-      List<String> proposalList,
+      List<ProposalData> proposalList,
       TextEditingController? featureText,
-      FormzSubmissionStatus generationStatus});
+      GenPricingResponse? genPricingResponse,
+      GenPricingResponseData? genPricingResponseData,
+      FormzSubmissionStatus generationStatus,
+      FormzSubmissionStatus getPricingStatus});
+
+  @override
+  $GenPricingResponseCopyWith<$Res>? get genPricingResponse;
+  @override
+  $GenPricingResponseDataCopyWith<$Res>? get genPricingResponseData;
 }
 
 /// @nodoc
@@ -163,7 +224,10 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? advancedFeaturesList = null,
     Object? proposalList = null,
     Object? featureText = freezed,
+    Object? genPricingResponse = freezed,
+    Object? genPricingResponseData = freezed,
     Object? generationStatus = null,
+    Object? getPricingStatus = null,
   }) {
     return _then(_$InitialImpl(
       selectedDate: freezed == selectedDate
@@ -197,14 +261,26 @@ class __$$InitialImplCopyWithImpl<$Res>
       proposalList: null == proposalList
           ? _value._proposalList
           : proposalList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<ProposalData>,
       featureText: freezed == featureText
           ? _value.featureText
           : featureText // ignore: cast_nullable_to_non_nullable
               as TextEditingController?,
+      genPricingResponse: freezed == genPricingResponse
+          ? _value.genPricingResponse
+          : genPricingResponse // ignore: cast_nullable_to_non_nullable
+              as GenPricingResponse?,
+      genPricingResponseData: freezed == genPricingResponseData
+          ? _value.genPricingResponseData
+          : genPricingResponseData // ignore: cast_nullable_to_non_nullable
+              as GenPricingResponseData?,
       generationStatus: null == generationStatus
           ? _value.generationStatus
           : generationStatus // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
+      getPricingStatus: null == getPricingStatus
+          ? _value.getPricingStatus
+          : getPricingStatus // ignore: cast_nullable_to_non_nullable
               as FormzSubmissionStatus,
     ));
   }
@@ -221,9 +297,12 @@ class _$InitialImpl extends _Initial {
       this.projectCost,
       this.hasAdvancedFeatures = false,
       final List<String> advancedFeaturesList = const [],
-      final List<String> proposalList = const [],
+      final List<ProposalData> proposalList = const [],
       this.featureText,
-      this.generationStatus = FormzSubmissionStatus.initial})
+      this.genPricingResponse,
+      this.genPricingResponseData,
+      this.generationStatus = FormzSubmissionStatus.initial,
+      this.getPricingStatus = FormzSubmissionStatus.initial})
       : _advancedFeaturesList = advancedFeaturesList,
         _proposalList = proposalList,
         super._();
@@ -251,10 +330,10 @@ class _$InitialImpl extends _Initial {
     return EqualUnmodifiableListView(_advancedFeaturesList);
   }
 
-  final List<String> _proposalList;
+  final List<ProposalData> _proposalList;
   @override
   @JsonKey()
-  List<String> get proposalList {
+  List<ProposalData> get proposalList {
     if (_proposalList is EqualUnmodifiableListView) return _proposalList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_proposalList);
@@ -263,12 +342,19 @@ class _$InitialImpl extends _Initial {
   @override
   final TextEditingController? featureText;
   @override
+  final GenPricingResponse? genPricingResponse;
+  @override
+  final GenPricingResponseData? genPricingResponseData;
+  @override
   @JsonKey()
   final FormzSubmissionStatus generationStatus;
+  @override
+  @JsonKey()
+  final FormzSubmissionStatus getPricingStatus;
 
   @override
   String toString() {
-    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, proposalList: $proposalList, featureText: $featureText, generationStatus: $generationStatus)';
+    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, proposalList: $proposalList, featureText: $featureText, genPricingResponse: $genPricingResponse, genPricingResponseData: $genPricingResponseData, generationStatus: $generationStatus, getPricingStatus: $getPricingStatus)';
   }
 
   @override
@@ -294,8 +380,14 @@ class _$InitialImpl extends _Initial {
                 .equals(other._proposalList, _proposalList) &&
             (identical(other.featureText, featureText) ||
                 other.featureText == featureText) &&
+            (identical(other.genPricingResponse, genPricingResponse) ||
+                other.genPricingResponse == genPricingResponse) &&
+            (identical(other.genPricingResponseData, genPricingResponseData) ||
+                other.genPricingResponseData == genPricingResponseData) &&
             (identical(other.generationStatus, generationStatus) ||
-                other.generationStatus == generationStatus));
+                other.generationStatus == generationStatus) &&
+            (identical(other.getPricingStatus, getPricingStatus) ||
+                other.getPricingStatus == getPricingStatus));
   }
 
   @override
@@ -310,7 +402,10 @@ class _$InitialImpl extends _Initial {
       const DeepCollectionEquality().hash(_advancedFeaturesList),
       const DeepCollectionEquality().hash(_proposalList),
       featureText,
-      generationStatus);
+      genPricingResponse,
+      genPricingResponseData,
+      generationStatus,
+      getPricingStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -328,9 +423,12 @@ abstract class _Initial extends PricingState {
       final TextEditingController? projectCost,
       final bool hasAdvancedFeatures,
       final List<String> advancedFeaturesList,
-      final List<String> proposalList,
+      final List<ProposalData> proposalList,
       final TextEditingController? featureText,
-      final FormzSubmissionStatus generationStatus}) = _$InitialImpl;
+      final GenPricingResponse? genPricingResponse,
+      final GenPricingResponseData? genPricingResponseData,
+      final FormzSubmissionStatus generationStatus,
+      final FormzSubmissionStatus getPricingStatus}) = _$InitialImpl;
   const _Initial._() : super._();
 
   @override
@@ -348,11 +446,17 @@ abstract class _Initial extends PricingState {
   @override
   List<String> get advancedFeaturesList;
   @override
-  List<String> get proposalList;
+  List<ProposalData> get proposalList;
   @override
   TextEditingController? get featureText;
   @override
+  GenPricingResponse? get genPricingResponse;
+  @override
+  GenPricingResponseData? get genPricingResponseData;
+  @override
   FormzSubmissionStatus get generationStatus;
+  @override
+  FormzSubmissionStatus get getPricingStatus;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

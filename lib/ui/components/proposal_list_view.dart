@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/features/proposals/cubit/pricing_cubit.dart';
@@ -23,21 +24,14 @@ class ProposalListView extends StatelessWidget {
       builder: (context, state) {
         return SizedBox(
           width: double.infinity,
-          child: state.proposalList.isEmpty ?
-            SingleChildScrollView(
-              child: Column(
-                children: List.generate(
-                  4,
-                  (index) => ProposalTile(
-                    onTap: () {},
-                  )
-                      .animate()
-                      .fade(duration: 300.ms, curve: Curves.easeInOut, delay: 1500.ms)
-                      .slideY(begin: 0.2, end: 0, duration: 500.ms,curve: Curves.easeOut),
-                ),
-              ),
-            ):
-           Column(
+          child: state.getPricingStatus.isInProgress ?
+          Center(
+            child: CircularProgressIndicator(
+              color: ColorsX.primaryColor,
+            ),
+          ):
+          state.proposalList.isEmpty ?
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
@@ -61,7 +55,20 @@ class ProposalListView extends StatelessWidget {
           ).animate().fade(
             duration: const Duration(milliseconds: 500),
             delay: const Duration(milliseconds: 1500),
-          ),
+          ):
+          SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                  state.proposalList.length,
+                  (index) => ProposalTile(
+                    onTap: () {},
+                  )
+                      .animate()
+                      .fade(duration: 300.ms, curve: Curves.easeInOut, delay: 1500.ms)
+                      .slideY(begin: 0.2, end: 0, duration: 500.ms,curve: Curves.easeOut),
+                ),
+              ),
+            )
         );
       },
     );

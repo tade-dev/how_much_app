@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:how_much_app/core/di/injectable.dart';
@@ -242,7 +243,7 @@ class EditProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            ).animate().fade(duration: 500.ms),
           );
         },
       ),

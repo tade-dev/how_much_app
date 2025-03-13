@@ -35,14 +35,14 @@ class _ProposalTileState extends State<ProposalTile> {
     return GestureDetector(
       onTap: _toggleSelection,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 500), // Adjusted duration
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
         ),
-        margin: EdgeInsets.only(bottom: isSelected ? 10 : 20), // Animates margin
+        margin: EdgeInsets.only(bottom: isSelected ? 10 : 15), // Animates margin
         child: Column(
           children: [
             Row(

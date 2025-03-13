@@ -40,7 +40,7 @@ class PricingImpl extends PricingRepository {
       log('dataResp:: $dataResp');
       return Right(dataResp);
     } on DioException catch (e) {
-      if (e.response?.statusCode == 400) {
+      if (e.response?.statusCode == 400 || e.response?.statusCode == 401) {
         return Right(GenPricingResponse.fromJson(e.response!.data));
       } else {
         return Left(AppError(e.message ?? "Unexpected error please try again"));

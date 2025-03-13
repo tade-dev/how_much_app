@@ -1,6 +1,7 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
@@ -132,7 +133,7 @@ class ProposalDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
+              ).animate().fade(duration: 500.ms),
           );
         },
       ),

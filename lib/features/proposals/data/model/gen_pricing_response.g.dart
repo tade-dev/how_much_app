@@ -12,7 +12,9 @@ _$GenPricingResponseImpl _$$GenPricingResponseImplFromJson(
       success: json['success'] as bool?,
       data: json['data'] == null
           ? null
-          : Data.fromJson(json['data'] as Map<String, dynamic>),
+          : GenPricingResponseData.fromJson(
+              json['data'] as Map<String, dynamic>),
+      error: json['error'] as String?,
     );
 
 Map<String, dynamic> _$$GenPricingResponseImplToJson(
@@ -20,16 +22,20 @@ Map<String, dynamic> _$$GenPricingResponseImplToJson(
     <String, dynamic>{
       'success': instance.success,
       'data': instance.data,
+      'error': instance.error,
     };
 
-_$DataImpl _$$DataImplFromJson(Map<String, dynamic> json) => _$DataImpl(
+_$GenPricingResponseDataImpl _$$GenPricingResponseDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GenPricingResponseDataImpl(
       invoice: json['invoice'] as String?,
       pricing: json['pricing'] == null
           ? null
           : Pricing.fromJson(json['pricing'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$DataImplToJson(_$DataImpl instance) =>
+Map<String, dynamic> _$$GenPricingResponseDataImplToJson(
+        _$GenPricingResponseDataImpl instance) =>
     <String, dynamic>{
       'invoice': instance.invoice,
       'pricing': instance.pricing,

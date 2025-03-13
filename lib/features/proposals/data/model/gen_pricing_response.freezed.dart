@@ -21,7 +21,8 @@ GenPricingResponse _$GenPricingResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GenPricingResponse {
   bool? get success => throw _privateConstructorUsedError;
-  Data? get data => throw _privateConstructorUsedError;
+  GenPricingResponseData? get data => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +36,9 @@ abstract class $GenPricingResponseCopyWith<$Res> {
           GenPricingResponse value, $Res Function(GenPricingResponse) then) =
       _$GenPricingResponseCopyWithImpl<$Res, GenPricingResponse>;
   @useResult
-  $Res call({bool? success, Data? data});
+  $Res call({bool? success, GenPricingResponseData? data, String? error});
 
-  $DataCopyWith<$Res>? get data;
+  $GenPricingResponseDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$GenPricingResponseCopyWithImpl<$Res, $Val extends GenPricingResponse>
   $Res call({
     Object? success = freezed,
     Object? data = freezed,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       success: freezed == success
@@ -64,18 +66,22 @@ class _$GenPricingResponseCopyWithImpl<$Res, $Val extends GenPricingResponse>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as GenPricingResponseData?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DataCopyWith<$Res>? get data {
+  $GenPricingResponseDataCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $DataCopyWith<$Res>(_value.data!, (value) {
+    return $GenPricingResponseDataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -89,10 +95,10 @@ abstract class _$$GenPricingResponseImplCopyWith<$Res>
       __$$GenPricingResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? success, Data? data});
+  $Res call({bool? success, GenPricingResponseData? data, String? error});
 
   @override
-  $DataCopyWith<$Res>? get data;
+  $GenPricingResponseDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -108,6 +114,7 @@ class __$$GenPricingResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? success = freezed,
     Object? data = freezed,
+    Object? error = freezed,
   }) {
     return _then(_$GenPricingResponseImpl(
       success: freezed == success
@@ -117,7 +124,11 @@ class __$$GenPricingResponseImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as GenPricingResponseData?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -125,7 +136,7 @@ class __$$GenPricingResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GenPricingResponseImpl implements _GenPricingResponse {
-  const _$GenPricingResponseImpl({this.success, this.data});
+  const _$GenPricingResponseImpl({this.success, this.data, this.error});
 
   factory _$GenPricingResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$GenPricingResponseImplFromJson(json);
@@ -133,11 +144,13 @@ class _$GenPricingResponseImpl implements _GenPricingResponse {
   @override
   final bool? success;
   @override
-  final Data? data;
+  final GenPricingResponseData? data;
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'GenPricingResponse(success: $success, data: $data)';
+    return 'GenPricingResponse(success: $success, data: $data, error: $error)';
   }
 
   @override
@@ -146,12 +159,13 @@ class _$GenPricingResponseImpl implements _GenPricingResponse {
         (other.runtimeType == runtimeType &&
             other is _$GenPricingResponseImpl &&
             (identical(other.success, success) || other.success == success) &&
-            (identical(other.data, data) || other.data == data));
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, data);
+  int get hashCode => Object.hash(runtimeType, success, data, error);
 
   @JsonKey(ignore: true)
   @override
@@ -169,8 +183,10 @@ class _$GenPricingResponseImpl implements _GenPricingResponse {
 }
 
 abstract class _GenPricingResponse implements GenPricingResponse {
-  const factory _GenPricingResponse({final bool? success, final Data? data}) =
-      _$GenPricingResponseImpl;
+  const factory _GenPricingResponse(
+      {final bool? success,
+      final GenPricingResponseData? data,
+      final String? error}) = _$GenPricingResponseImpl;
 
   factory _GenPricingResponse.fromJson(Map<String, dynamic> json) =
       _$GenPricingResponseImpl.fromJson;
@@ -178,31 +194,36 @@ abstract class _GenPricingResponse implements GenPricingResponse {
   @override
   bool? get success;
   @override
-  Data? get data;
+  GenPricingResponseData? get data;
+  @override
+  String? get error;
   @override
   @JsonKey(ignore: true)
   _$$GenPricingResponseImplCopyWith<_$GenPricingResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Data _$DataFromJson(Map<String, dynamic> json) {
-  return _Data.fromJson(json);
+GenPricingResponseData _$GenPricingResponseDataFromJson(
+    Map<String, dynamic> json) {
+  return _GenPricingResponseData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Data {
+mixin _$GenPricingResponseData {
   String? get invoice => throw _privateConstructorUsedError;
   Pricing? get pricing => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+  $GenPricingResponseDataCopyWith<GenPricingResponseData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DataCopyWith<$Res> {
-  factory $DataCopyWith(Data value, $Res Function(Data) then) =
-      _$DataCopyWithImpl<$Res, Data>;
+abstract class $GenPricingResponseDataCopyWith<$Res> {
+  factory $GenPricingResponseDataCopyWith(GenPricingResponseData value,
+          $Res Function(GenPricingResponseData) then) =
+      _$GenPricingResponseDataCopyWithImpl<$Res, GenPricingResponseData>;
   @useResult
   $Res call({String? invoice, Pricing? pricing});
 
@@ -210,9 +231,10 @@ abstract class $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<$Res, $Val extends Data>
-    implements $DataCopyWith<$Res> {
-  _$DataCopyWithImpl(this._value, this._then);
+class _$GenPricingResponseDataCopyWithImpl<$Res,
+        $Val extends GenPricingResponseData>
+    implements $GenPricingResponseDataCopyWith<$Res> {
+  _$GenPricingResponseDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -251,10 +273,12 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
 }
 
 /// @nodoc
-abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$$DataImplCopyWith(
-          _$DataImpl value, $Res Function(_$DataImpl) then) =
-      __$$DataImplCopyWithImpl<$Res>;
+abstract class _$$GenPricingResponseDataImplCopyWith<$Res>
+    implements $GenPricingResponseDataCopyWith<$Res> {
+  factory _$$GenPricingResponseDataImplCopyWith(
+          _$GenPricingResponseDataImpl value,
+          $Res Function(_$GenPricingResponseDataImpl) then) =
+      __$$GenPricingResponseDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? invoice, Pricing? pricing});
@@ -264,10 +288,13 @@ abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DataImplCopyWithImpl<$Res>
-    extends _$DataCopyWithImpl<$Res, _$DataImpl>
-    implements _$$DataImplCopyWith<$Res> {
-  __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
+class __$$GenPricingResponseDataImplCopyWithImpl<$Res>
+    extends _$GenPricingResponseDataCopyWithImpl<$Res,
+        _$GenPricingResponseDataImpl>
+    implements _$$GenPricingResponseDataImplCopyWith<$Res> {
+  __$$GenPricingResponseDataImplCopyWithImpl(
+      _$GenPricingResponseDataImpl _value,
+      $Res Function(_$GenPricingResponseDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -276,7 +303,7 @@ class __$$DataImplCopyWithImpl<$Res>
     Object? invoice = freezed,
     Object? pricing = freezed,
   }) {
-    return _then(_$DataImpl(
+    return _then(_$GenPricingResponseDataImpl(
       invoice: freezed == invoice
           ? _value.invoice
           : invoice // ignore: cast_nullable_to_non_nullable
@@ -291,11 +318,11 @@ class __$$DataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DataImpl implements _Data {
-  const _$DataImpl({this.invoice, this.pricing});
+class _$GenPricingResponseDataImpl implements _GenPricingResponseData {
+  const _$GenPricingResponseDataImpl({this.invoice, this.pricing});
 
-  factory _$DataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DataImplFromJson(json);
+  factory _$GenPricingResponseDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GenPricingResponseDataImplFromJson(json);
 
   @override
   final String? invoice;
@@ -304,14 +331,14 @@ class _$DataImpl implements _Data {
 
   @override
   String toString() {
-    return 'Data(invoice: $invoice, pricing: $pricing)';
+    return 'GenPricingResponseData(invoice: $invoice, pricing: $pricing)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataImpl &&
+            other is _$GenPricingResponseDataImpl &&
             (identical(other.invoice, invoice) || other.invoice == invoice) &&
             (identical(other.pricing, pricing) || other.pricing == pricing));
   }
@@ -323,22 +350,25 @@ class _$DataImpl implements _Data {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
-      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
+  _$$GenPricingResponseDataImplCopyWith<_$GenPricingResponseDataImpl>
+      get copyWith => __$$GenPricingResponseDataImplCopyWithImpl<
+          _$GenPricingResponseDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DataImplToJson(
+    return _$$GenPricingResponseDataImplToJson(
       this,
     );
   }
 }
 
-abstract class _Data implements Data {
-  const factory _Data({final String? invoice, final Pricing? pricing}) =
-      _$DataImpl;
+abstract class _GenPricingResponseData implements GenPricingResponseData {
+  const factory _GenPricingResponseData(
+      {final String? invoice,
+      final Pricing? pricing}) = _$GenPricingResponseDataImpl;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
+  factory _GenPricingResponseData.fromJson(Map<String, dynamic> json) =
+      _$GenPricingResponseDataImpl.fromJson;
 
   @override
   String? get invoice;
@@ -346,8 +376,8 @@ abstract class _Data implements Data {
   Pricing? get pricing;
   @override
   @JsonKey(ignore: true)
-  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GenPricingResponseDataImplCopyWith<_$GenPricingResponseDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 Pricing _$PricingFromJson(Map<String, dynamic> json) {

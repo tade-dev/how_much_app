@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:formz/formz.dart';
@@ -121,7 +122,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          ).animate().fade(duration: 500.ms),
         );
       },
     );

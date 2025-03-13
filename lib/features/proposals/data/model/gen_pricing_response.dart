@@ -16,20 +16,21 @@ String genPricingResponseToJson(GenPricingResponse data) => json.encode(data.toJ
 class GenPricingResponse with _$GenPricingResponse {
     const factory GenPricingResponse({
         bool? success,
-        Data? data,
+        GenPricingResponseData? data,
+        String? error
     }) = _GenPricingResponse;
 
     factory GenPricingResponse.fromJson(Map<String, dynamic> json) => _$GenPricingResponseFromJson(json);
 }
 
 @freezed
-class Data with _$Data {
-    const factory Data({
+class GenPricingResponseData with _$GenPricingResponseData {
+    const factory GenPricingResponseData({
         String? invoice,
         Pricing? pricing,
-    }) = _Data;
+    }) = _GenPricingResponseData;
 
-    factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+    factory GenPricingResponseData.fromJson(Map<String, dynamic> json) => _$GenPricingResponseDataFromJson(json);
 }
 
 @freezed

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
@@ -35,7 +36,7 @@ class AdvancedFeaturesView extends StatelessWidget {
                 ),
               ),
               label: "Advanced Features",
-            ),
+            ).animate().fade(duration: 500.ms),
             const SizedBox(
               height: 20,
             ),

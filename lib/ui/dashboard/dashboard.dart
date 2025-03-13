@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
+import 'package:how_much_app/features/proposals/cubit/pricing_cubit.dart';
 import 'package:how_much_app/ui/dashboard/views/home/home.dart';
 import 'package:how_much_app/ui/dashboard/views/proposals/proposals.dart';
 import 'package:how_much_app/ui/dashboard/views/settings/settings.dart';
@@ -40,6 +42,9 @@ class _DashboardViewState extends State<DashboardView> {
       const ProposalsView(),
       const SettingsView(),
     ];
+
+    context.read<PricingCubit>().getAllPricing();
+
   }
 
   @override

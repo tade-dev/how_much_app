@@ -43,6 +43,7 @@ class PricingSource extends PricingService {
 
   @override
   Future<GenPricingResponse> generatePricing({pricingDetails}) async {
+    log("REQQQ:$pricingDetails");
     try {
       String token = await UserTokenCache().getCacheUserToken();
       Response? response = await api.post(

@@ -11,9 +11,12 @@ class PricingState with _$PricingState {
     TextEditingController? projectCost,
     @Default(false) bool hasAdvancedFeatures,
     @Default([]) List<String> advancedFeaturesList,
-    @Default([]) List<String> proposalList,
+    @Default([]) List<ProposalData> proposalList,
     TextEditingController? featureText,
-    @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus generationStatus
+    GenPricingResponse? genPricingResponse,
+    GenPricingResponseData? genPricingResponseData,
+    @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus generationStatus,
+    @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus getPricingStatus,
   }) = _Initial;
 
   List<String> get currencies => [

@@ -28,6 +28,8 @@ import 'package:injectable/injectable.dart';
     CustomRoute(
       page: SplashScreen2,
       path: RouteString.splash2,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      durationInMilliseconds: 1000,
     ),
     CustomRoute(
       page: WelcomeScreen,

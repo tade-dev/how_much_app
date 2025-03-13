@@ -24,6 +24,7 @@ mixin _$PricingState {
   TextEditingController? get projectCost => throw _privateConstructorUsedError;
   bool get hasAdvancedFeatures => throw _privateConstructorUsedError;
   List<String> get advancedFeaturesList => throw _privateConstructorUsedError;
+  List<String> get proposalList => throw _privateConstructorUsedError;
   TextEditingController? get featureText => throw _privateConstructorUsedError;
   FormzSubmissionStatus get generationStatus =>
       throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $PricingStateCopyWith<$Res> {
       TextEditingController? projectCost,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
+      List<String> proposalList,
       TextEditingController? featureText,
       FormzSubmissionStatus generationStatus});
 }
@@ -71,6 +73,7 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
     Object? projectCost = freezed,
     Object? hasAdvancedFeatures = null,
     Object? advancedFeaturesList = null,
+    Object? proposalList = null,
     Object? featureText = freezed,
     Object? generationStatus = null,
   }) {
@@ -103,6 +106,10 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
           ? _value.advancedFeaturesList
           : advancedFeaturesList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      proposalList: null == proposalList
+          ? _value.proposalList
+          : proposalList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       featureText: freezed == featureText
           ? _value.featureText
           : featureText // ignore: cast_nullable_to_non_nullable
@@ -131,6 +138,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       TextEditingController? projectCost,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
+      List<String> proposalList,
       TextEditingController? featureText,
       FormzSubmissionStatus generationStatus});
 }
@@ -153,6 +161,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? projectCost = freezed,
     Object? hasAdvancedFeatures = null,
     Object? advancedFeaturesList = null,
+    Object? proposalList = null,
     Object? featureText = freezed,
     Object? generationStatus = null,
   }) {
@@ -185,6 +194,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._advancedFeaturesList
           : advancedFeaturesList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      proposalList: null == proposalList
+          ? _value._proposalList
+          : proposalList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       featureText: freezed == featureText
           ? _value.featureText
           : featureText // ignore: cast_nullable_to_non_nullable
@@ -208,9 +221,11 @@ class _$InitialImpl extends _Initial {
       this.projectCost,
       this.hasAdvancedFeatures = false,
       final List<String> advancedFeaturesList = const [],
+      final List<String> proposalList = const [],
       this.featureText,
       this.generationStatus = FormzSubmissionStatus.initial})
       : _advancedFeaturesList = advancedFeaturesList,
+        _proposalList = proposalList,
         super._();
 
   @override
@@ -236,6 +251,15 @@ class _$InitialImpl extends _Initial {
     return EqualUnmodifiableListView(_advancedFeaturesList);
   }
 
+  final List<String> _proposalList;
+  @override
+  @JsonKey()
+  List<String> get proposalList {
+    if (_proposalList is EqualUnmodifiableListView) return _proposalList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_proposalList);
+  }
+
   @override
   final TextEditingController? featureText;
   @override
@@ -244,7 +268,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   String toString() {
-    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, featureText: $featureText, generationStatus: $generationStatus)';
+    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, proposalList: $proposalList, featureText: $featureText, generationStatus: $generationStatus)';
   }
 
   @override
@@ -266,6 +290,8 @@ class _$InitialImpl extends _Initial {
                 other.hasAdvancedFeatures == hasAdvancedFeatures) &&
             const DeepCollectionEquality()
                 .equals(other._advancedFeaturesList, _advancedFeaturesList) &&
+            const DeepCollectionEquality()
+                .equals(other._proposalList, _proposalList) &&
             (identical(other.featureText, featureText) ||
                 other.featureText == featureText) &&
             (identical(other.generationStatus, generationStatus) ||
@@ -282,6 +308,7 @@ class _$InitialImpl extends _Initial {
       projectCost,
       hasAdvancedFeatures,
       const DeepCollectionEquality().hash(_advancedFeaturesList),
+      const DeepCollectionEquality().hash(_proposalList),
       featureText,
       generationStatus);
 
@@ -301,6 +328,7 @@ abstract class _Initial extends PricingState {
       final TextEditingController? projectCost,
       final bool hasAdvancedFeatures,
       final List<String> advancedFeaturesList,
+      final List<String> proposalList,
       final TextEditingController? featureText,
       final FormzSubmissionStatus generationStatus}) = _$InitialImpl;
   const _Initial._() : super._();
@@ -319,6 +347,8 @@ abstract class _Initial extends PricingState {
   bool get hasAdvancedFeatures;
   @override
   List<String> get advancedFeaturesList;
+  @override
+  List<String> get proposalList;
   @override
   TextEditingController? get featureText;
   @override

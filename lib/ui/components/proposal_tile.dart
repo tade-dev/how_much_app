@@ -1,0 +1,149 @@
+import 'package:flutter/material.dart';
+import 'package:how_much_app/core/resources/colors_x.dart';
+import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:hugeicons/hugeicons.dart';
+
+// ignore: must_be_immutable
+class ProposalTile extends StatefulWidget {
+
+  ProposalTile({
+    super.key,
+    required this.onTap
+  });
+
+  Function() onTap;
+
+
+  @override
+  State<ProposalTile> createState() => _ProposalTileState();
+  
+}
+
+class _ProposalTileState extends State<ProposalTile> {
+
+  bool isSelected = false;
+
+  void _toggleSelection() {
+    setState(() {
+      isSelected = !isSelected;
+    });
+    widget.onTap();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _toggleSelection,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500), // Adjusted duration
+        curve: Curves.easeInOut,
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        margin: EdgeInsets.only(bottom: isSelected ? 10 : 20), // Animates margin
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Mar 2025",
+                  style: getBoldStyle(
+                    color: ColorsX.textColor,
+                    fontSize: 25,
+                  ),
+                ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  transitionBuilder: (child, animation) => ScaleTransition(
+                    scale: animation,
+                    child: child,
+                  ),
+                  child: Icon(
+                    isSelected
+                        ? Icons.keyboard_arrow_up_rounded
+                        : Icons.keyboard_arrow_down_rounded,
+                    color: ColorsX.textColor,
+                    size: 20,
+                    key: ValueKey(isSelected),
+                  ),
+                )
+              ],
+            ),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+              child: Visibility(
+                visible: isSelected,
+                child: Column(
+                  children: List.generate(
+                    3,
+                    (index) => buildProposalTile(
+                      onTap: () {},
+                      title: "Active",
+                      desc: "Neno",
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+
+  buildProposalTile({
+    required Function() onTap,
+    required String title,
+    required String desc,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 18,
+                  backgroundColor: ColorsX.primaryColor.withOpacity(0.2),
+                  child: Icon(
+                    HugeIcons.strokeRoundedDocumentAttachment,
+                    color: ColorsX.primaryColor,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 15,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "James Abang",
+                      style: getSemiBoldStyle(
+                        color: ColorsX.textColor,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      "INV0002",
+                      style: getMediumStyle(
+                        color: ColorsX.textGrey,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+}

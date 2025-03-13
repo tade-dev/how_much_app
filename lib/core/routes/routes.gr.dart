@@ -46,6 +46,8 @@ class AppRouter extends _i13.RootStackRouter {
       return _i13.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i2.SplashScreen2(),
+        transitionsBuilder: _i13.TransitionsBuilders.fadeIn,
+        durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false,
       );

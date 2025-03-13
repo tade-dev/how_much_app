@@ -11,6 +11,7 @@ class PricingState with _$PricingState {
     TextEditingController? projectCost,
     @Default(false) bool hasAdvancedFeatures,
     @Default([]) List<String> advancedFeaturesList,
+    @Default([]) List<String> proposalList,
     TextEditingController? featureText,
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus generationStatus
   }) = _Initial;

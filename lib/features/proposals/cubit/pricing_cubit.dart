@@ -74,7 +74,6 @@ class PricingCubit extends Cubit<PricingState> {
       ));
     
     }
-
   }
 
 }

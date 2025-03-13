@@ -8,6 +8,7 @@ class Buttons {
   static primaryButton({
     isLoading = false,
     hasIcon = false,
+    isIconLeft = false,
     icon,
     required label,
     required onTap,
@@ -34,29 +35,35 @@ class Buttons {
           color: Colors.white,
           size: 30,
         ):
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              label,
-              style: getMediumStyle(
-                color: Colors.white,
-                fontSize: 18
-              ),
-            ),
-            Visibility(
-              visible: hasIcon,
-              child: const Padding(
-                padding: EdgeInsets.only(left: 15),
-                child: Icon(
-                  Icons.arrow_forward,
+        Directionality(
+          textDirection: isIconLeft ?
+          TextDirection.rtl:
+          TextDirection.ltr,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                label,
+                style: getMediumStyle(
                   color: Colors.white,
-                  size: 18,
+                  fontSize: 18
                 ),
               ),
-            )
-          ],
+              Visibility(
+                visible: hasIcon,
+                child:  Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 10),
+                  child: Icon(
+                    icon ??
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                ),
+              )
+            ],
+          ),
         )
       ),
     );

@@ -29,7 +29,8 @@ class HAppBars {
     {
       title,
       w,
-      hideIcon = false
+      hideIcon = false,
+      Color? bgnColor
     }
   ) {
     var context = si<AppRouter>().navigatorKey.currentContext;
@@ -48,6 +49,7 @@ class HAppBars {
           color: ColorsX.textColor,
         ),
       ),
+      backgroundColor: bgnColor,
       centerTitle: true,
       title: Text(
         title,

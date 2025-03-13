@@ -139,7 +139,7 @@ class HomeView extends StatelessWidget {
                     buildQuickActionBtn(
                       title: "Generate New Proposal ", 
                       onTap: (){
-                        si<AppRouter>().push(const ProposalDetailsScreen());
+                        si<AppRouter>().push(ProposalDetailsScreen());
                       }
                     ),
                     const SizedBox(width: 10,),
@@ -172,7 +172,7 @@ class HomeView extends StatelessWidget {
               ),
               Expanded(
                 child: ProposalListView(onTap: (){
-                  si<AppRouter>().push(const ProposalDetailsScreen());
+                  si<AppRouter>().push(ProposalDetailsScreen());
                 }),
               )
             ],

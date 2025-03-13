@@ -11,8 +11,8 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i13;
-import 'package:flutter/material.dart' as _i14;
+import 'package:auto_route/auto_route.dart' as _i14;
+import 'package:flutter/material.dart' as _i15;
 
 import '../../ui/auth/create_account.dart' as _i5;
 import '../../ui/auth/forgot_password.dart' as _i6;
@@ -22,20 +22,21 @@ import '../../ui/auth/verify_email.dart' as _i8;
 import '../../ui/dashboard/dashboard.dart' as _i10;
 import '../../ui/dashboard/views/proposals/proposal_details_screen.dart'
     as _i12;
+import '../../ui/dashboard/views/proposals/view_proposal_screen.dart' as _i13;
 import '../../ui/dashboard/views/settings/profile/change_password.dart' as _i9;
 import '../../ui/dashboard/views/settings/profile/edit_profile.dart' as _i11;
 import '../../ui/splash/splash_screen.dart' as _i1;
 import '../../ui/splash/splash_screen2.dart' as _i2;
 import '../../ui/welcome/welcome_screen.dart' as _i3;
 
-class AppRouter extends _i13.RootStackRouter {
-  AppRouter([_i14.GlobalKey<_i14.NavigatorState>? navigatorKey])
+class AppRouter extends _i14.RootStackRouter {
+  AppRouter([_i15.GlobalKey<_i15.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i13.PageFactory> pagesMap = {
+  final Map<String, _i14.PageFactory> pagesMap = {
     SplashScreen.name: (routeData) {
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i1.SplashScreen(),
         opaque: true,
@@ -43,17 +44,17 @@ class AppRouter extends _i13.RootStackRouter {
       );
     },
     SplashScreen2.name: (routeData) {
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i2.SplashScreen2(),
-        transitionsBuilder: _i13.TransitionsBuilders.fadeIn,
+        transitionsBuilder: _i14.TransitionsBuilders.fadeIn,
         durationInMilliseconds: 1000,
         opaque: true,
         barrierDismissible: false,
       );
     },
     WelcomeScreen.name: (routeData) {
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i3.WelcomeScreen(),
         opaque: true,
@@ -63,7 +64,7 @@ class AppRouter extends _i13.RootStackRouter {
     LoginScreen.name: (routeData) {
       final args = routeData.argsAs<LoginScreenArgs>(
           orElse: () => const LoginScreenArgs());
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: _i4.LoginScreen(key: args.key),
         opaque: true,
@@ -73,7 +74,7 @@ class AppRouter extends _i13.RootStackRouter {
     CreateAccountScreen.name: (routeData) {
       final args = routeData.argsAs<CreateAccountScreenArgs>(
           orElse: () => const CreateAccountScreenArgs());
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: _i5.CreateAccountScreen(key: args.key),
         opaque: true,
@@ -83,7 +84,7 @@ class AppRouter extends _i13.RootStackRouter {
     ForgotPasswordScreen.name: (routeData) {
       final args = routeData.argsAs<ForgotPasswordScreenArgs>(
           orElse: () => const ForgotPasswordScreenArgs());
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: _i6.ForgotPasswordScreen(key: args.key),
         opaque: true,
@@ -93,7 +94,7 @@ class AppRouter extends _i13.RootStackRouter {
     ResetPasswordScreen.name: (routeData) {
       final args = routeData.argsAs<ResetPasswordScreenArgs>(
           orElse: () => const ResetPasswordScreenArgs());
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: _i7.ResetPasswordScreen(key: args.key),
         opaque: true,
@@ -103,7 +104,7 @@ class AppRouter extends _i13.RootStackRouter {
     VerifyEmailScreen.name: (routeData) {
       final args = routeData.argsAs<VerifyEmailScreenArgs>(
           orElse: () => const VerifyEmailScreenArgs());
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: _i8.VerifyEmailScreen(key: args.key),
         opaque: true,
@@ -113,7 +114,7 @@ class AppRouter extends _i13.RootStackRouter {
     ChangePasswordScreen.name: (routeData) {
       final args = routeData.argsAs<ChangePasswordScreenArgs>(
           orElse: () => const ChangePasswordScreenArgs());
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: _i9.ChangePasswordScreen(key: args.key),
         opaque: true,
@@ -123,7 +124,7 @@ class AppRouter extends _i13.RootStackRouter {
     DashboardView.name: (routeData) {
       final args = routeData.argsAs<DashboardViewArgs>(
           orElse: () => const DashboardViewArgs());
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: _i10.DashboardView(
           key: args.key,
@@ -134,7 +135,7 @@ class AppRouter extends _i13.RootStackRouter {
       );
     },
     EditProfileScreen.name: (routeData) {
-      return _i13.CustomPage<dynamic>(
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i11.EditProfileScreen(),
         opaque: true,
@@ -142,9 +143,19 @@ class AppRouter extends _i13.RootStackRouter {
       );
     },
     ProposalDetailsScreen.name: (routeData) {
-      return _i13.CustomPage<dynamic>(
+      final args = routeData.argsAs<ProposalDetailsScreenArgs>(
+          orElse: () => const ProposalDetailsScreenArgs());
+      return _i14.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i12.ProposalDetailsScreen(),
+        child: _i12.ProposalDetailsScreen(key: args.key),
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    ViewProposalScreen.name: (routeData) {
+      return _i14.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i13.ViewProposalScreen(),
         opaque: true,
         barrierDismissible: false,
       );
@@ -152,67 +163,71 @@ class AppRouter extends _i13.RootStackRouter {
   };
 
   @override
-  List<_i13.RouteConfig> get routes => [
-        _i13.RouteConfig(
+  List<_i14.RouteConfig> get routes => [
+        _i14.RouteConfig(
           '/#redirect',
           path: '/',
           redirectTo: '/splash',
           fullMatch: true,
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           SplashScreen.name,
           path: '/splash',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           SplashScreen2.name,
           path: '/splash2',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           WelcomeScreen.name,
           path: '/welcome',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           LoginScreen.name,
           path: '/signin',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           CreateAccountScreen.name,
           path: '/signup',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           ForgotPasswordScreen.name,
           path: '/forgotPassword',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           ResetPasswordScreen.name,
           path: '/resetPassword',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           VerifyEmailScreen.name,
           path: '/verifyEmail',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           ChangePasswordScreen.name,
           path: '/changePassword',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           DashboardView.name,
           path: '/dashboard',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           EditProfileScreen.name,
           path: '/editProfile',
         ),
-        _i13.RouteConfig(
+        _i14.RouteConfig(
           ProposalDetailsScreen.name,
           path: '/proposal-details-screen',
+        ),
+        _i14.RouteConfig(
+          ViewProposalScreen.name,
+          path: '/view-proposal-screen',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashScreen extends _i13.PageRouteInfo<void> {
+class SplashScreen extends _i14.PageRouteInfo<void> {
   const SplashScreen()
       : super(
           SplashScreen.name,
@@ -224,7 +239,7 @@ class SplashScreen extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.SplashScreen2]
-class SplashScreen2 extends _i13.PageRouteInfo<void> {
+class SplashScreen2 extends _i14.PageRouteInfo<void> {
   const SplashScreen2()
       : super(
           SplashScreen2.name,
@@ -236,7 +251,7 @@ class SplashScreen2 extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.WelcomeScreen]
-class WelcomeScreen extends _i13.PageRouteInfo<void> {
+class WelcomeScreen extends _i14.PageRouteInfo<void> {
   const WelcomeScreen()
       : super(
           WelcomeScreen.name,
@@ -248,8 +263,8 @@ class WelcomeScreen extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.LoginScreen]
-class LoginScreen extends _i13.PageRouteInfo<LoginScreenArgs> {
-  LoginScreen({_i14.Key? key})
+class LoginScreen extends _i14.PageRouteInfo<LoginScreenArgs> {
+  LoginScreen({_i15.Key? key})
       : super(
           LoginScreen.name,
           path: '/signin',
@@ -262,7 +277,7 @@ class LoginScreen extends _i13.PageRouteInfo<LoginScreenArgs> {
 class LoginScreenArgs {
   const LoginScreenArgs({this.key});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -272,8 +287,8 @@ class LoginScreenArgs {
 
 /// generated route for
 /// [_i5.CreateAccountScreen]
-class CreateAccountScreen extends _i13.PageRouteInfo<CreateAccountScreenArgs> {
-  CreateAccountScreen({_i14.Key? key})
+class CreateAccountScreen extends _i14.PageRouteInfo<CreateAccountScreenArgs> {
+  CreateAccountScreen({_i15.Key? key})
       : super(
           CreateAccountScreen.name,
           path: '/signup',
@@ -286,7 +301,7 @@ class CreateAccountScreen extends _i13.PageRouteInfo<CreateAccountScreenArgs> {
 class CreateAccountScreenArgs {
   const CreateAccountScreenArgs({this.key});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -297,8 +312,8 @@ class CreateAccountScreenArgs {
 /// generated route for
 /// [_i6.ForgotPasswordScreen]
 class ForgotPasswordScreen
-    extends _i13.PageRouteInfo<ForgotPasswordScreenArgs> {
-  ForgotPasswordScreen({_i14.Key? key})
+    extends _i14.PageRouteInfo<ForgotPasswordScreenArgs> {
+  ForgotPasswordScreen({_i15.Key? key})
       : super(
           ForgotPasswordScreen.name,
           path: '/forgotPassword',
@@ -311,7 +326,7 @@ class ForgotPasswordScreen
 class ForgotPasswordScreenArgs {
   const ForgotPasswordScreenArgs({this.key});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -321,8 +336,8 @@ class ForgotPasswordScreenArgs {
 
 /// generated route for
 /// [_i7.ResetPasswordScreen]
-class ResetPasswordScreen extends _i13.PageRouteInfo<ResetPasswordScreenArgs> {
-  ResetPasswordScreen({_i14.Key? key})
+class ResetPasswordScreen extends _i14.PageRouteInfo<ResetPasswordScreenArgs> {
+  ResetPasswordScreen({_i15.Key? key})
       : super(
           ResetPasswordScreen.name,
           path: '/resetPassword',
@@ -335,7 +350,7 @@ class ResetPasswordScreen extends _i13.PageRouteInfo<ResetPasswordScreenArgs> {
 class ResetPasswordScreenArgs {
   const ResetPasswordScreenArgs({this.key});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -345,8 +360,8 @@ class ResetPasswordScreenArgs {
 
 /// generated route for
 /// [_i8.VerifyEmailScreen]
-class VerifyEmailScreen extends _i13.PageRouteInfo<VerifyEmailScreenArgs> {
-  VerifyEmailScreen({_i14.Key? key})
+class VerifyEmailScreen extends _i14.PageRouteInfo<VerifyEmailScreenArgs> {
+  VerifyEmailScreen({_i15.Key? key})
       : super(
           VerifyEmailScreen.name,
           path: '/verifyEmail',
@@ -359,7 +374,7 @@ class VerifyEmailScreen extends _i13.PageRouteInfo<VerifyEmailScreenArgs> {
 class VerifyEmailScreenArgs {
   const VerifyEmailScreenArgs({this.key});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -370,8 +385,8 @@ class VerifyEmailScreenArgs {
 /// generated route for
 /// [_i9.ChangePasswordScreen]
 class ChangePasswordScreen
-    extends _i13.PageRouteInfo<ChangePasswordScreenArgs> {
-  ChangePasswordScreen({_i14.Key? key})
+    extends _i14.PageRouteInfo<ChangePasswordScreenArgs> {
+  ChangePasswordScreen({_i15.Key? key})
       : super(
           ChangePasswordScreen.name,
           path: '/changePassword',
@@ -384,7 +399,7 @@ class ChangePasswordScreen
 class ChangePasswordScreenArgs {
   const ChangePasswordScreenArgs({this.key});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -394,9 +409,9 @@ class ChangePasswordScreenArgs {
 
 /// generated route for
 /// [_i10.DashboardView]
-class DashboardView extends _i13.PageRouteInfo<DashboardViewArgs> {
+class DashboardView extends _i14.PageRouteInfo<DashboardViewArgs> {
   DashboardView({
-    _i14.Key? key,
+    _i15.Key? key,
     int initialPage = 0,
   }) : super(
           DashboardView.name,
@@ -416,7 +431,7 @@ class DashboardViewArgs {
     this.initialPage = 0,
   });
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   final int initialPage;
 
@@ -428,7 +443,7 @@ class DashboardViewArgs {
 
 /// generated route for
 /// [_i11.EditProfileScreen]
-class EditProfileScreen extends _i13.PageRouteInfo<void> {
+class EditProfileScreen extends _i14.PageRouteInfo<void> {
   const EditProfileScreen()
       : super(
           EditProfileScreen.name,
@@ -440,12 +455,37 @@ class EditProfileScreen extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.ProposalDetailsScreen]
-class ProposalDetailsScreen extends _i13.PageRouteInfo<void> {
-  const ProposalDetailsScreen()
+class ProposalDetailsScreen
+    extends _i14.PageRouteInfo<ProposalDetailsScreenArgs> {
+  ProposalDetailsScreen({_i15.Key? key})
       : super(
           ProposalDetailsScreen.name,
           path: '/proposal-details-screen',
+          args: ProposalDetailsScreenArgs(key: key),
         );
 
   static const String name = 'ProposalDetailsScreen';
+}
+
+class ProposalDetailsScreenArgs {
+  const ProposalDetailsScreenArgs({this.key});
+
+  final _i15.Key? key;
+
+  @override
+  String toString() {
+    return 'ProposalDetailsScreenArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i13.ViewProposalScreen]
+class ViewProposalScreen extends _i14.PageRouteInfo<void> {
+  const ViewProposalScreen()
+      : super(
+          ViewProposalScreen.name,
+          path: '/view-proposal-screen',
+        );
+
+  static const String name = 'ViewProposalScreen';
 }

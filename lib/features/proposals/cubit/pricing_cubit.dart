@@ -28,12 +28,37 @@ class PricingCubit extends Cubit<PricingState> {
     required this.generatePricingUsecase,
     required this.getAllPricingUsecase
 
-  }) : super(const PricingState()) {
-    getAllPricing();
-  }
+  }) : super(const PricingState());
 
   resetState() {
     emit(const PricingState());
+  }
+
+  clearState() {
+    emit(state.copyWith(
+      advancedFeaturesList: [],
+      // advancedFeaturesList: [],
+    ));
+  }
+
+  updateDescriptionText(v) {
+    emit(state.copyWith(
+      description: v
+    ));
+  }
+
+  updateSelectedCurrency(v) {
+    emit(state.copyWith(
+      selectedCurrency: v
+    ));
+  }
+
+  updateProjectCost(v) {
+    emit(state.copyWith(
+      projectCost: v
+    ));
+    log(state.projectCost);
+
   }
 
   toggleHasAdvancedFetaures() {
@@ -125,14 +150,15 @@ class PricingCubit extends Cubit<PricingState> {
     
     emit(state.copyWith(
       generationStatus: FormzSubmissionStatus.inProgress,
-      proposalList: []
     ));
 
+    log(state.projectCost);
+
     var generateParams = GenPricingReq(pricingDetails: PricingDetails(
-      projectDescription: state.description?.text,
+      projectDescription: state.description,
       requiredTimeline: state.timeline?.text,
-      currency: state.selectedCurrency?.text,
-      estimatedCost: double.parse(state.projectCost?.text.replaceAll(",", "") ?? "0").toInt(),
+      currency: state.selectedCurrency,
+      estimatedCost: int.parse(state.projectCost.replaceAll(",", "").split(".").first),
       advancedFeatures: state.advancedFeaturesList,
     ));
 
@@ -144,15 +170,29 @@ class PricingCubit extends Cubit<PricingState> {
 
       emit(state.copyWith(
         generationStatus: FormzSubmissionStatus.failure,
+        exceptionError: l.message
       ));
 
     }, (r){
 
-      emit(state.copyWith(
-        generationStatus: FormzSubmissionStatus.success,
-        genPricingResponse: r,
-        genPricingResponseData: r.data
-      ));
+      if(r.error?.isNotEmpty ?? false) {
+
+        emit(state.copyWith(
+          generationStatus: FormzSubmissionStatus.failure,
+          genPricingResponse: r
+        ));
+
+      }else {
+
+        emit(state.copyWith(
+          generationStatus: FormzSubmissionStatus.success,
+          genPricingResponse: r,
+          genPricingResponseData: r.data
+        ));
+
+        getAllPricing();
+
+      }
 
     });
   }

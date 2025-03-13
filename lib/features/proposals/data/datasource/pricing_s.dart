@@ -47,7 +47,9 @@ class PricingSource extends PricingService {
     try {
       String token = await UserTokenCache().getCacheUserToken();
       Response? response = await api.post(
-        data: pricingDetails,
+        data: {
+          "pricingDetails" : pricingDetails
+        },
         "$baseUrl${pricing.generatePricing}",
         options: Options(headers: {
           "Content-Type": "application/json",

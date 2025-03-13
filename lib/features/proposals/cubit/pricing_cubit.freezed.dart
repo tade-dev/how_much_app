@@ -17,14 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PricingState {
   DateTimeRange? get selectedDate => throw _privateConstructorUsedError;
-  TextEditingController? get description => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   TextEditingController? get timeline => throw _privateConstructorUsedError;
-  TextEditingController? get selectedCurrency =>
-      throw _privateConstructorUsedError;
-  TextEditingController? get projectCost => throw _privateConstructorUsedError;
+  String get selectedCurrency => throw _privateConstructorUsedError;
+  String get projectCost => throw _privateConstructorUsedError;
   bool get hasAdvancedFeatures => throw _privateConstructorUsedError;
   List<String> get advancedFeaturesList => throw _privateConstructorUsedError;
   List<ProposalData> get proposalList => throw _privateConstructorUsedError;
+  String get exceptionError => throw _privateConstructorUsedError;
   TextEditingController? get featureText => throw _privateConstructorUsedError;
   GenPricingResponse? get genPricingResponse =>
       throw _privateConstructorUsedError;
@@ -48,13 +48,14 @@ abstract class $PricingStateCopyWith<$Res> {
   @useResult
   $Res call(
       {DateTimeRange? selectedDate,
-      TextEditingController? description,
+      String description,
       TextEditingController? timeline,
-      TextEditingController? selectedCurrency,
-      TextEditingController? projectCost,
+      String selectedCurrency,
+      String projectCost,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
       List<ProposalData> proposalList,
+      String exceptionError,
       TextEditingController? featureText,
       GenPricingResponse? genPricingResponse,
       GenPricingResponseData? genPricingResponseData,
@@ -79,13 +80,14 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
   @override
   $Res call({
     Object? selectedDate = freezed,
-    Object? description = freezed,
+    Object? description = null,
     Object? timeline = freezed,
-    Object? selectedCurrency = freezed,
-    Object? projectCost = freezed,
+    Object? selectedCurrency = null,
+    Object? projectCost = null,
     Object? hasAdvancedFeatures = null,
     Object? advancedFeaturesList = null,
     Object? proposalList = null,
+    Object? exceptionError = null,
     Object? featureText = freezed,
     Object? genPricingResponse = freezed,
     Object? genPricingResponseData = freezed,
@@ -97,22 +99,22 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
           ? _value.selectedDate
           : selectedDate // ignore: cast_nullable_to_non_nullable
               as DateTimeRange?,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
+              as String,
       timeline: freezed == timeline
           ? _value.timeline
           : timeline // ignore: cast_nullable_to_non_nullable
               as TextEditingController?,
-      selectedCurrency: freezed == selectedCurrency
+      selectedCurrency: null == selectedCurrency
           ? _value.selectedCurrency
           : selectedCurrency // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-      projectCost: freezed == projectCost
+              as String,
+      projectCost: null == projectCost
           ? _value.projectCost
           : projectCost // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
+              as String,
       hasAdvancedFeatures: null == hasAdvancedFeatures
           ? _value.hasAdvancedFeatures
           : hasAdvancedFeatures // ignore: cast_nullable_to_non_nullable
@@ -125,6 +127,10 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
           ? _value.proposalList
           : proposalList // ignore: cast_nullable_to_non_nullable
               as List<ProposalData>,
+      exceptionError: null == exceptionError
+          ? _value.exceptionError
+          : exceptionError // ignore: cast_nullable_to_non_nullable
+              as String,
       featureText: freezed == featureText
           ? _value.featureText
           : featureText // ignore: cast_nullable_to_non_nullable
@@ -185,13 +191,14 @@ abstract class _$$InitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {DateTimeRange? selectedDate,
-      TextEditingController? description,
+      String description,
       TextEditingController? timeline,
-      TextEditingController? selectedCurrency,
-      TextEditingController? projectCost,
+      String selectedCurrency,
+      String projectCost,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
       List<ProposalData> proposalList,
+      String exceptionError,
       TextEditingController? featureText,
       GenPricingResponse? genPricingResponse,
       GenPricingResponseData? genPricingResponseData,
@@ -216,13 +223,14 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedDate = freezed,
-    Object? description = freezed,
+    Object? description = null,
     Object? timeline = freezed,
-    Object? selectedCurrency = freezed,
-    Object? projectCost = freezed,
+    Object? selectedCurrency = null,
+    Object? projectCost = null,
     Object? hasAdvancedFeatures = null,
     Object? advancedFeaturesList = null,
     Object? proposalList = null,
+    Object? exceptionError = null,
     Object? featureText = freezed,
     Object? genPricingResponse = freezed,
     Object? genPricingResponseData = freezed,
@@ -234,22 +242,22 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.selectedDate
           : selectedDate // ignore: cast_nullable_to_non_nullable
               as DateTimeRange?,
-      description: freezed == description
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
+              as String,
       timeline: freezed == timeline
           ? _value.timeline
           : timeline // ignore: cast_nullable_to_non_nullable
               as TextEditingController?,
-      selectedCurrency: freezed == selectedCurrency
+      selectedCurrency: null == selectedCurrency
           ? _value.selectedCurrency
           : selectedCurrency // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-      projectCost: freezed == projectCost
+              as String,
+      projectCost: null == projectCost
           ? _value.projectCost
           : projectCost // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
+              as String,
       hasAdvancedFeatures: null == hasAdvancedFeatures
           ? _value.hasAdvancedFeatures
           : hasAdvancedFeatures // ignore: cast_nullable_to_non_nullable
@@ -262,6 +270,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._proposalList
           : proposalList // ignore: cast_nullable_to_non_nullable
               as List<ProposalData>,
+      exceptionError: null == exceptionError
+          ? _value.exceptionError
+          : exceptionError // ignore: cast_nullable_to_non_nullable
+              as String,
       featureText: freezed == featureText
           ? _value.featureText
           : featureText // ignore: cast_nullable_to_non_nullable
@@ -291,13 +303,14 @@ class __$$InitialImplCopyWithImpl<$Res>
 class _$InitialImpl extends _Initial {
   const _$InitialImpl(
       {this.selectedDate,
-      this.description,
+      this.description = "",
       this.timeline,
-      this.selectedCurrency,
-      this.projectCost,
+      this.selectedCurrency = "",
+      this.projectCost = "",
       this.hasAdvancedFeatures = false,
       final List<String> advancedFeaturesList = const [],
       final List<ProposalData> proposalList = const [],
+      this.exceptionError = "",
       this.featureText,
       this.genPricingResponse,
       this.genPricingResponseData,
@@ -310,13 +323,16 @@ class _$InitialImpl extends _Initial {
   @override
   final DateTimeRange? selectedDate;
   @override
-  final TextEditingController? description;
+  @JsonKey()
+  final String description;
   @override
   final TextEditingController? timeline;
   @override
-  final TextEditingController? selectedCurrency;
+  @JsonKey()
+  final String selectedCurrency;
   @override
-  final TextEditingController? projectCost;
+  @JsonKey()
+  final String projectCost;
   @override
   @JsonKey()
   final bool hasAdvancedFeatures;
@@ -340,6 +356,9 @@ class _$InitialImpl extends _Initial {
   }
 
   @override
+  @JsonKey()
+  final String exceptionError;
+  @override
   final TextEditingController? featureText;
   @override
   final GenPricingResponse? genPricingResponse;
@@ -354,7 +373,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   String toString() {
-    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, proposalList: $proposalList, featureText: $featureText, genPricingResponse: $genPricingResponse, genPricingResponseData: $genPricingResponseData, generationStatus: $generationStatus, getPricingStatus: $getPricingStatus)';
+    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, proposalList: $proposalList, exceptionError: $exceptionError, featureText: $featureText, genPricingResponse: $genPricingResponse, genPricingResponseData: $genPricingResponseData, generationStatus: $generationStatus, getPricingStatus: $getPricingStatus)';
   }
 
   @override
@@ -378,6 +397,8 @@ class _$InitialImpl extends _Initial {
                 .equals(other._advancedFeaturesList, _advancedFeaturesList) &&
             const DeepCollectionEquality()
                 .equals(other._proposalList, _proposalList) &&
+            (identical(other.exceptionError, exceptionError) ||
+                other.exceptionError == exceptionError) &&
             (identical(other.featureText, featureText) ||
                 other.featureText == featureText) &&
             (identical(other.genPricingResponse, genPricingResponse) ||
@@ -401,6 +422,7 @@ class _$InitialImpl extends _Initial {
       hasAdvancedFeatures,
       const DeepCollectionEquality().hash(_advancedFeaturesList),
       const DeepCollectionEquality().hash(_proposalList),
+      exceptionError,
       featureText,
       genPricingResponse,
       genPricingResponseData,
@@ -417,13 +439,14 @@ class _$InitialImpl extends _Initial {
 abstract class _Initial extends PricingState {
   const factory _Initial(
       {final DateTimeRange? selectedDate,
-      final TextEditingController? description,
+      final String description,
       final TextEditingController? timeline,
-      final TextEditingController? selectedCurrency,
-      final TextEditingController? projectCost,
+      final String selectedCurrency,
+      final String projectCost,
       final bool hasAdvancedFeatures,
       final List<String> advancedFeaturesList,
       final List<ProposalData> proposalList,
+      final String exceptionError,
       final TextEditingController? featureText,
       final GenPricingResponse? genPricingResponse,
       final GenPricingResponseData? genPricingResponseData,
@@ -434,19 +457,21 @@ abstract class _Initial extends PricingState {
   @override
   DateTimeRange? get selectedDate;
   @override
-  TextEditingController? get description;
+  String get description;
   @override
   TextEditingController? get timeline;
   @override
-  TextEditingController? get selectedCurrency;
+  String get selectedCurrency;
   @override
-  TextEditingController? get projectCost;
+  String get projectCost;
   @override
   bool get hasAdvancedFeatures;
   @override
   List<String> get advancedFeaturesList;
   @override
   List<ProposalData> get proposalList;
+  @override
+  String get exceptionError;
   @override
   TextEditingController? get featureText;
   @override

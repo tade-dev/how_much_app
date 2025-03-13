@@ -83,7 +83,13 @@ class ViewProposalScreen extends StatelessWidget {
                           hasIcon: true,
                           icon: Iconsax.send_1,
                           isIconLeft: true,
-                          onTap: (){}
+                          onTap: (){
+                            context.read<PricingCubit>().convertToPdf(
+                                "${state.genPricingResponseData?.invoice}"
+                                .replaceAll("**", "")
+                                .replaceAll("---", "")
+                            );
+                          }
                         )
                       ],
                     ),

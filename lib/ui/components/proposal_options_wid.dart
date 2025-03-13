@@ -28,20 +28,36 @@ class ProposalOptionsWid extends StatelessWidget {
                   icon: HugeIcons.strokeRoundedPdf01,
                   title: 'Convert to PDF',
                   ontap: () {
-                    context.read<PricingCubit>().convertToPdf(state.genPricingResponseData?.invoice ?? "");
+                    context.read<PricingCubit>().convertToPdf(
+                        "${state.genPricingResponseData?.invoice}"
+                        .replaceAll("**", "")
+                        .replaceAll("---", "")
+                    );
                   },
                 ),
                 const Divider(),
                 buildProposalOption(
                   icon: HugeIcons.strokeRoundedDownload01,
                   title: 'Download as image',
-                  ontap: () {},
+                  ontap: () {
+                    context.read<PricingCubit>().convertToImageAndSave(
+                                        "${state.genPricingResponseData?.invoice}"
+                        .replaceAll("**", "")
+                        .replaceAll("---", "")
+                    );
+                  },
                 ),
                 const Divider(),
                 buildProposalOption(
                   icon: HugeIcons.strokeRoundedPrinter,
                   title: 'Print',
-                  ontap: () {},
+                  ontap: () {
+                    context.read<PricingCubit>().printPdf(
+                        "${state.genPricingResponseData?.invoice}"
+                        .replaceAll("**", "")
+                        .replaceAll("---", "")
+                    );
+                  },
                 ),
               ],
             ),

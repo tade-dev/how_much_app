@@ -56,19 +56,12 @@ class ProposalListView extends StatelessWidget {
             duration: const Duration(milliseconds: 500),
             delay: const Duration(milliseconds: 1500),
           ):
-          SingleChildScrollView(
-              child: Column(
-                children: List.generate(
-                  state.proposalList.length,
-                  (index) => ProposalTile(
-                    onTap: () {},
-                  )
-                      .animate()
-                      .fade(duration: 300.ms, curve: Curves.easeInOut, delay: 1500.ms)
-                      .slideY(begin: 0.2, end: 0, duration: 500.ms,curve: Curves.easeOut),
-                ),
-              ),
-            )
+          ProposalTile(
+            onTap: () {},
+            proposals: state.proposalList.map((proposal) => proposal.toJson()).toList(),
+          ).animate()
+                    .fade(duration: 300.ms, curve: Curves.easeInOut, delay: 1500.ms)
+                    .slideY(begin: 0.2, end: 0, duration: 500.ms,curve: Curves.easeOut),
         );
       },
     );

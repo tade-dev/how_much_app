@@ -46,6 +46,11 @@ dependencies:
   currency_text_input_formatter: ^2.2.9
   intl: ^0.20.2
   share_plus: ^10.1.4
+  path_provider: ^2.1.5
+  syncfusion_flutter_pdf: ^28.2.11
+  printing: ^5.14.2
+  image_gallery_saver: ^2.0.3
+  pdfx: ^2.8.0
 
 dev_dependencies:
   flutter_test:

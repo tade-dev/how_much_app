@@ -4,6 +4,7 @@ part of 'pricing_cubit.dart';
 class PricingState with _$PricingState {
   const PricingState._();
   const factory PricingState({
+
     DateTimeRange? selectedDate,
     @Default("") String description,
     TextEditingController? timeline,
@@ -18,6 +19,7 @@ class PricingState with _$PricingState {
     GenPricingResponseData? genPricingResponseData,
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus generationStatus,
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus getPricingStatus,
+
   }) = _Initial;
 
   List<String> get currencies => [

@@ -176,6 +176,7 @@ PricingDetails _$PricingDetailsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PricingDetails {
   String? get projectDescription => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   String? get requiredTimeline => throw _privateConstructorUsedError;
   int? get approxNumberOfScreens => throw _privateConstructorUsedError;
   String? get currency => throw _privateConstructorUsedError;
@@ -196,6 +197,7 @@ abstract class $PricingDetailsCopyWith<$Res> {
   @useResult
   $Res call(
       {String? projectDescription,
+      String? title,
       String? requiredTimeline,
       int? approxNumberOfScreens,
       String? currency,
@@ -217,6 +219,7 @@ class _$PricingDetailsCopyWithImpl<$Res, $Val extends PricingDetails>
   @override
   $Res call({
     Object? projectDescription = freezed,
+    Object? title = freezed,
     Object? requiredTimeline = freezed,
     Object? approxNumberOfScreens = freezed,
     Object? currency = freezed,
@@ -227,6 +230,10 @@ class _$PricingDetailsCopyWithImpl<$Res, $Val extends PricingDetails>
       projectDescription: freezed == projectDescription
           ? _value.projectDescription
           : projectDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       requiredTimeline: freezed == requiredTimeline
           ? _value.requiredTimeline
@@ -262,6 +269,7 @@ abstract class _$$PricingDetailsImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? projectDescription,
+      String? title,
       String? requiredTimeline,
       int? approxNumberOfScreens,
       String? currency,
@@ -281,6 +289,7 @@ class __$$PricingDetailsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? projectDescription = freezed,
+    Object? title = freezed,
     Object? requiredTimeline = freezed,
     Object? approxNumberOfScreens = freezed,
     Object? currency = freezed,
@@ -291,6 +300,10 @@ class __$$PricingDetailsImplCopyWithImpl<$Res>
       projectDescription: freezed == projectDescription
           ? _value.projectDescription
           : projectDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       requiredTimeline: freezed == requiredTimeline
           ? _value.requiredTimeline
@@ -321,6 +334,7 @@ class __$$PricingDetailsImplCopyWithImpl<$Res>
 class _$PricingDetailsImpl implements _PricingDetails {
   const _$PricingDetailsImpl(
       {this.projectDescription,
+      this.title,
       this.requiredTimeline,
       this.approxNumberOfScreens,
       this.currency,
@@ -333,6 +347,8 @@ class _$PricingDetailsImpl implements _PricingDetails {
 
   @override
   final String? projectDescription;
+  @override
+  final String? title;
   @override
   final String? requiredTimeline;
   @override
@@ -354,7 +370,7 @@ class _$PricingDetailsImpl implements _PricingDetails {
 
   @override
   String toString() {
-    return 'PricingDetails(projectDescription: $projectDescription, requiredTimeline: $requiredTimeline, approxNumberOfScreens: $approxNumberOfScreens, currency: $currency, estimatedCost: $estimatedCost, advancedFeatures: $advancedFeatures)';
+    return 'PricingDetails(projectDescription: $projectDescription, title: $title, requiredTimeline: $requiredTimeline, approxNumberOfScreens: $approxNumberOfScreens, currency: $currency, estimatedCost: $estimatedCost, advancedFeatures: $advancedFeatures)';
   }
 
   @override
@@ -364,6 +380,7 @@ class _$PricingDetailsImpl implements _PricingDetails {
             other is _$PricingDetailsImpl &&
             (identical(other.projectDescription, projectDescription) ||
                 other.projectDescription == projectDescription) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.requiredTimeline, requiredTimeline) ||
                 other.requiredTimeline == requiredTimeline) &&
             (identical(other.approxNumberOfScreens, approxNumberOfScreens) ||
@@ -381,6 +398,7 @@ class _$PricingDetailsImpl implements _PricingDetails {
   int get hashCode => Object.hash(
       runtimeType,
       projectDescription,
+      title,
       requiredTimeline,
       approxNumberOfScreens,
       currency,
@@ -405,6 +423,7 @@ class _$PricingDetailsImpl implements _PricingDetails {
 abstract class _PricingDetails implements PricingDetails {
   const factory _PricingDetails(
       {final String? projectDescription,
+      final String? title,
       final String? requiredTimeline,
       final int? approxNumberOfScreens,
       final String? currency,
@@ -416,6 +435,8 @@ abstract class _PricingDetails implements PricingDetails {
 
   @override
   String? get projectDescription;
+  @override
+  String? get title;
   @override
   String? get requiredTimeline;
   @override

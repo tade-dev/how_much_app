@@ -189,6 +189,7 @@ mixin _$ProposalData {
   DateTime? get createdAt => throw _privateConstructorUsedError;
   String? get projectDescription => throw _privateConstructorUsedError;
   String? get requiredTimeline => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   int? get approxNumberOfScreens => throw _privateConstructorUsedError;
   String? get currency => throw _privateConstructorUsedError;
   int? get estimatedCost => throw _privateConstructorUsedError;
@@ -216,6 +217,7 @@ abstract class $ProposalDataCopyWith<$Res> {
       DateTime? createdAt,
       String? projectDescription,
       String? requiredTimeline,
+      String? title,
       int? approxNumberOfScreens,
       String? currency,
       int? estimatedCost,
@@ -244,6 +246,7 @@ class _$ProposalDataCopyWithImpl<$Res, $Val extends ProposalData>
     Object? createdAt = freezed,
     Object? projectDescription = freezed,
     Object? requiredTimeline = freezed,
+    Object? title = freezed,
     Object? approxNumberOfScreens = freezed,
     Object? currency = freezed,
     Object? estimatedCost = freezed,
@@ -270,6 +273,10 @@ class _$ProposalDataCopyWithImpl<$Res, $Val extends ProposalData>
       requiredTimeline: freezed == requiredTimeline
           ? _value.requiredTimeline
           : requiredTimeline // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       approxNumberOfScreens: freezed == approxNumberOfScreens
           ? _value.approxNumberOfScreens
@@ -324,6 +331,7 @@ abstract class _$$ProposalDataImplCopyWith<$Res>
       DateTime? createdAt,
       String? projectDescription,
       String? requiredTimeline,
+      String? title,
       int? approxNumberOfScreens,
       String? currency,
       int? estimatedCost,
@@ -350,6 +358,7 @@ class __$$ProposalDataImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? projectDescription = freezed,
     Object? requiredTimeline = freezed,
+    Object? title = freezed,
     Object? approxNumberOfScreens = freezed,
     Object? currency = freezed,
     Object? estimatedCost = freezed,
@@ -376,6 +385,10 @@ class __$$ProposalDataImplCopyWithImpl<$Res>
       requiredTimeline: freezed == requiredTimeline
           ? _value.requiredTimeline
           : requiredTimeline // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       approxNumberOfScreens: freezed == approxNumberOfScreens
           ? _value.approxNumberOfScreens
@@ -425,6 +438,7 @@ class _$ProposalDataImpl implements _ProposalData {
       this.createdAt,
       this.projectDescription,
       this.requiredTimeline,
+      this.title,
       this.approxNumberOfScreens,
       this.currency,
       this.estimatedCost,
@@ -447,6 +461,8 @@ class _$ProposalDataImpl implements _ProposalData {
   final String? projectDescription;
   @override
   final String? requiredTimeline;
+  @override
+  final String? title;
   @override
   final int? approxNumberOfScreens;
   @override
@@ -477,7 +493,7 @@ class _$ProposalDataImpl implements _ProposalData {
 
   @override
   String toString() {
-    return 'ProposalData(id: $id, createdAt: $createdAt, projectDescription: $projectDescription, requiredTimeline: $requiredTimeline, approxNumberOfScreens: $approxNumberOfScreens, currency: $currency, estimatedCost: $estimatedCost, advancedFeatures: $advancedFeatures, user: $user, priceRange: $priceRange, generatedInvoice: $generatedInvoice, updatedAt: $updatedAt, v: $v)';
+    return 'ProposalData(id: $id, createdAt: $createdAt, projectDescription: $projectDescription, requiredTimeline: $requiredTimeline, title: $title, approxNumberOfScreens: $approxNumberOfScreens, currency: $currency, estimatedCost: $estimatedCost, advancedFeatures: $advancedFeatures, user: $user, priceRange: $priceRange, generatedInvoice: $generatedInvoice, updatedAt: $updatedAt, v: $v)';
   }
 
   @override
@@ -492,6 +508,7 @@ class _$ProposalDataImpl implements _ProposalData {
                 other.projectDescription == projectDescription) &&
             (identical(other.requiredTimeline, requiredTimeline) ||
                 other.requiredTimeline == requiredTimeline) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.approxNumberOfScreens, approxNumberOfScreens) ||
                 other.approxNumberOfScreens == approxNumberOfScreens) &&
             (identical(other.currency, currency) ||
@@ -518,6 +535,7 @@ class _$ProposalDataImpl implements _ProposalData {
       createdAt,
       projectDescription,
       requiredTimeline,
+      title,
       approxNumberOfScreens,
       currency,
       estimatedCost,
@@ -548,6 +566,7 @@ abstract class _ProposalData implements ProposalData {
       final DateTime? createdAt,
       final String? projectDescription,
       final String? requiredTimeline,
+      final String? title,
       final int? approxNumberOfScreens,
       final String? currency,
       final int? estimatedCost,
@@ -569,6 +588,8 @@ abstract class _ProposalData implements ProposalData {
   String? get projectDescription;
   @override
   String? get requiredTimeline;
+  @override
+  String? get title;
   @override
   int? get approxNumberOfScreens;
   @override

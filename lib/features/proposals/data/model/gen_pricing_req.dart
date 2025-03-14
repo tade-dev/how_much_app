@@ -25,6 +25,7 @@ class GenPricingReq with _$GenPricingReq {
 class PricingDetails with _$PricingDetails {
     const factory PricingDetails({
         String? projectDescription,
+        String? title,
         String? requiredTimeline,
         int? approxNumberOfScreens,
         String? currency,

@@ -12,6 +12,7 @@ ProposalDetailModel proposalDetailModelFromJson(String str) => ProposalDetailMod
 
 String proposalDetailModelToJson(ProposalDetailModel data) => json.encode(data.toJson());
 
+
 @freezed
 class ProposalDetailModel with _$ProposalDetailModel {
     const factory ProposalDetailModel({
@@ -20,7 +21,9 @@ class ProposalDetailModel with _$ProposalDetailModel {
     }) = _ProposalDetailModel;
 
     factory ProposalDetailModel.fromJson(Map<String, dynamic> json) => _$ProposalDetailModelFromJson(json);
+
 }
+
 
 @freezed
 class ProposalData with _$ProposalData {
@@ -29,6 +32,7 @@ class ProposalData with _$ProposalData {
         DateTime? createdAt,
         String? projectDescription,
         String? requiredTimeline,
+        String? title,
         int? approxNumberOfScreens,
         String? currency,
         int? estimatedCost,

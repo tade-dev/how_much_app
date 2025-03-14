@@ -28,9 +28,10 @@ class _Profile {
 
 
 class _Pricing {
-  final pricing = "/api/v1/pricing/get-pricing";
-  final singlePricing = "/api/v1/pricing/one-pricing/";
-  final generatePricing = "/api/v1/pricing/generate-pricing";
+  final pricing = "/api/v1/proposal/get-proposal";
+  final singlePricing = "/api/v1/proposal/one-proposal/";
+  final generatePricing = "/api/v1/proposal/generate-proposal";
+  final deleteProposal = "/api/v1/proposal/delete-proposal/";
 }
 
 

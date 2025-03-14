@@ -11,6 +11,7 @@ import 'package:how_much_app/ui/widgets/buttons/buttons.dart';
 
 // ignore: must_be_immutable
 class ProposalListView extends StatelessWidget {
+  
   ProposalListView({
     super.key,
     required this.onTap,

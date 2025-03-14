@@ -22,6 +22,7 @@ Map<String, dynamic> _$$GenPricingReqImplToJson(_$GenPricingReqImpl instance) =>
 _$PricingDetailsImpl _$$PricingDetailsImplFromJson(Map<String, dynamic> json) =>
     _$PricingDetailsImpl(
       projectDescription: json['projectDescription'] as String?,
+      title: json['title'] as String?,
       requiredTimeline: json['requiredTimeline'] as String?,
       approxNumberOfScreens: (json['approxNumberOfScreens'] as num?)?.toInt(),
       currency: json['currency'] as String?,
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$PricingDetailsImplToJson(
         _$PricingDetailsImpl instance) =>
     <String, dynamic>{
       'projectDescription': instance.projectDescription,
+      'title': instance.title,
       'requiredTimeline': instance.requiredTimeline,
       'approxNumberOfScreens': instance.approxNumberOfScreens,
       'currency': instance.currency,

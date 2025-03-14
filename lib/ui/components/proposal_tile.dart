@@ -31,7 +31,6 @@ class _ProposalTileState extends State<ProposalTile> {
   String? selectedMonth;
 
 
-
   Map<String, List<Map<String, dynamic>>> groupProposalsByMonth(List<Map<String, dynamic>> proposals) {
     Map<String, List<Map<String, dynamic>>> groupedData = {};
 
@@ -48,6 +47,7 @@ class _ProposalTileState extends State<ProposalTile> {
     log("Grouped data: ${groupedData.toString()}");
 
     return groupedData;
+    
   }
 
   void _toggleSelection() {

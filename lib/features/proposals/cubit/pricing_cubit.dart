@@ -54,6 +54,12 @@ class PricingCubit extends Cubit<PricingState> {
     ));
   }
 
+  updateProjectTitle(v) {
+    emit(state.copyWith(
+      projectTitle: v
+    ));
+  }
+
   updateSelectedCurrency(v) {
     emit(state.copyWith(
       selectedCurrency: v
@@ -163,9 +169,10 @@ class PricingCubit extends Cubit<PricingState> {
 
     var generateParams = GenPricingReq(pricingDetails: PricingDetails(
       projectDescription: state.description,
+      title: state.projectTitle,
       requiredTimeline: state.timeline?.text,
       currency: state.selectedCurrency,
-      estimatedCost: int.parse(state.projectCost.replaceAll(",", "").split(".").first),
+      // estimatedCost: int.parse(state.projectCost.replaceAll(",", "").split(".").first),
       advancedFeatures: state.advancedFeaturesList,
     ));
 

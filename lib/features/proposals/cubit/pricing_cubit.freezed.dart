@@ -21,6 +21,7 @@ mixin _$PricingState {
   TextEditingController? get timeline => throw _privateConstructorUsedError;
   String get selectedCurrency => throw _privateConstructorUsedError;
   String get projectCost => throw _privateConstructorUsedError;
+  String get projectTitle => throw _privateConstructorUsedError;
   bool get hasAdvancedFeatures => throw _privateConstructorUsedError;
   List<String> get advancedFeaturesList => throw _privateConstructorUsedError;
   List<ProposalData> get proposalList => throw _privateConstructorUsedError;
@@ -52,6 +53,7 @@ abstract class $PricingStateCopyWith<$Res> {
       TextEditingController? timeline,
       String selectedCurrency,
       String projectCost,
+      String projectTitle,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
       List<ProposalData> proposalList,
@@ -84,6 +86,7 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
     Object? timeline = freezed,
     Object? selectedCurrency = null,
     Object? projectCost = null,
+    Object? projectTitle = null,
     Object? hasAdvancedFeatures = null,
     Object? advancedFeaturesList = null,
     Object? proposalList = null,
@@ -114,6 +117,10 @@ class _$PricingStateCopyWithImpl<$Res, $Val extends PricingState>
       projectCost: null == projectCost
           ? _value.projectCost
           : projectCost // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectTitle: null == projectTitle
+          ? _value.projectTitle
+          : projectTitle // ignore: cast_nullable_to_non_nullable
               as String,
       hasAdvancedFeatures: null == hasAdvancedFeatures
           ? _value.hasAdvancedFeatures
@@ -195,6 +202,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       TextEditingController? timeline,
       String selectedCurrency,
       String projectCost,
+      String projectTitle,
       bool hasAdvancedFeatures,
       List<String> advancedFeaturesList,
       List<ProposalData> proposalList,
@@ -227,6 +235,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? timeline = freezed,
     Object? selectedCurrency = null,
     Object? projectCost = null,
+    Object? projectTitle = null,
     Object? hasAdvancedFeatures = null,
     Object? advancedFeaturesList = null,
     Object? proposalList = null,
@@ -257,6 +266,10 @@ class __$$InitialImplCopyWithImpl<$Res>
       projectCost: null == projectCost
           ? _value.projectCost
           : projectCost // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectTitle: null == projectTitle
+          ? _value.projectTitle
+          : projectTitle // ignore: cast_nullable_to_non_nullable
               as String,
       hasAdvancedFeatures: null == hasAdvancedFeatures
           ? _value.hasAdvancedFeatures
@@ -307,6 +320,7 @@ class _$InitialImpl extends _Initial {
       this.timeline,
       this.selectedCurrency = "",
       this.projectCost = "",
+      this.projectTitle = "",
       this.hasAdvancedFeatures = false,
       final List<String> advancedFeaturesList = const [],
       final List<ProposalData> proposalList = const [],
@@ -333,6 +347,9 @@ class _$InitialImpl extends _Initial {
   @override
   @JsonKey()
   final String projectCost;
+  @override
+  @JsonKey()
+  final String projectTitle;
   @override
   @JsonKey()
   final bool hasAdvancedFeatures;
@@ -373,7 +390,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   String toString() {
-    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, proposalList: $proposalList, exceptionError: $exceptionError, featureText: $featureText, genPricingResponse: $genPricingResponse, genPricingResponseData: $genPricingResponseData, generationStatus: $generationStatus, getPricingStatus: $getPricingStatus)';
+    return 'PricingState(selectedDate: $selectedDate, description: $description, timeline: $timeline, selectedCurrency: $selectedCurrency, projectCost: $projectCost, projectTitle: $projectTitle, hasAdvancedFeatures: $hasAdvancedFeatures, advancedFeaturesList: $advancedFeaturesList, proposalList: $proposalList, exceptionError: $exceptionError, featureText: $featureText, genPricingResponse: $genPricingResponse, genPricingResponseData: $genPricingResponseData, generationStatus: $generationStatus, getPricingStatus: $getPricingStatus)';
   }
 
   @override
@@ -391,6 +408,8 @@ class _$InitialImpl extends _Initial {
                 other.selectedCurrency == selectedCurrency) &&
             (identical(other.projectCost, projectCost) ||
                 other.projectCost == projectCost) &&
+            (identical(other.projectTitle, projectTitle) ||
+                other.projectTitle == projectTitle) &&
             (identical(other.hasAdvancedFeatures, hasAdvancedFeatures) ||
                 other.hasAdvancedFeatures == hasAdvancedFeatures) &&
             const DeepCollectionEquality()
@@ -419,6 +438,7 @@ class _$InitialImpl extends _Initial {
       timeline,
       selectedCurrency,
       projectCost,
+      projectTitle,
       hasAdvancedFeatures,
       const DeepCollectionEquality().hash(_advancedFeaturesList),
       const DeepCollectionEquality().hash(_proposalList),
@@ -443,6 +463,7 @@ abstract class _Initial extends PricingState {
       final TextEditingController? timeline,
       final String selectedCurrency,
       final String projectCost,
+      final String projectTitle,
       final bool hasAdvancedFeatures,
       final List<String> advancedFeaturesList,
       final List<ProposalData> proposalList,
@@ -464,6 +485,8 @@ abstract class _Initial extends PricingState {
   String get selectedCurrency;
   @override
   String get projectCost;
+  @override
+  String get projectTitle;
   @override
   bool get hasAdvancedFeatures;
   @override

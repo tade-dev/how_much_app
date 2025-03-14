@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:intl/intl.dart';
 
@@ -114,10 +116,14 @@ class _ProposalTileState extends State<ProposalTile> {
                     child: Visibility(
                       visible: isSelected,
                       child: Column(
-                        children: groupedProposals[month]!
+                        children: groupedProposals[month]! 
                             .map<Widget>((proposal) => buildProposalTile(
-                                  onTap: () {},
-                                  title: proposal["priceRange"],
+                                  onTap: () {
+                                    si<AppRouter>().push(ViewProposalScreen(
+                                      proposal: proposal["generatedInvoice"]
+                                    ));
+                                  },
+                                  title: proposal["title"],
                                   desc: "Timeline: ${proposal["requiredTimeline"]}",
                                 ))
                             .toList(),

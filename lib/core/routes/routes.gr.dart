@@ -153,9 +153,14 @@ class AppRouter extends _i14.RootStackRouter {
       );
     },
     ViewProposalScreen.name: (routeData) {
+      final args = routeData.argsAs<ViewProposalScreenArgs>(
+          orElse: () => const ViewProposalScreenArgs());
       return _i14.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i13.ViewProposalScreen(),
+        child: _i13.ViewProposalScreen(
+          key: args.key,
+          proposal: args.proposal,
+        ),
         opaque: true,
         barrierDismissible: false,
       );
@@ -480,12 +485,34 @@ class ProposalDetailsScreenArgs {
 
 /// generated route for
 /// [_i13.ViewProposalScreen]
-class ViewProposalScreen extends _i14.PageRouteInfo<void> {
-  const ViewProposalScreen()
-      : super(
+class ViewProposalScreen extends _i14.PageRouteInfo<ViewProposalScreenArgs> {
+  ViewProposalScreen({
+    _i15.Key? key,
+    String? proposal,
+  }) : super(
           ViewProposalScreen.name,
           path: '/view-proposal-screen',
+          args: ViewProposalScreenArgs(
+            key: key,
+            proposal: proposal,
+          ),
         );
 
   static const String name = 'ViewProposalScreen';
+}
+
+class ViewProposalScreenArgs {
+  const ViewProposalScreenArgs({
+    this.key,
+    this.proposal,
+  });
+
+  final _i15.Key? key;
+
+  final String? proposal;
+
+  @override
+  String toString() {
+    return 'ViewProposalScreenArgs{key: $key, proposal: $proposal}';
+  }
 }

@@ -10,6 +10,7 @@ class PricingState with _$PricingState {
     TextEditingController? timeline,
     @Default("") String selectedCurrency,
     @Default("") String projectCost,
+    @Default("") String projectTitle,
     @Default(false) bool hasAdvancedFeatures,
     @Default([]) List<String> advancedFeaturesList,
     @Default([]) List<ProposalData> proposalList,

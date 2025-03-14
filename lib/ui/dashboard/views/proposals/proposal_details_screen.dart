@@ -1,7 +1,5 @@
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_validator/form_validator.dart';
@@ -32,7 +30,7 @@ class ProposalDetailsScreen extends StatelessWidget {
               if(state.generationStatus.isFailure) {
                 handleException(state.genPricingResponse?.error ?? state.exceptionError , context);
               }else if (state.generationStatus.isSuccess){
-                si<AppRouter>().push(const ViewProposalScreen());
+                si<AppRouter>().replace( ViewProposalScreen());
               }
             },
             child: BlocBuilder<PricingCubit, PricingState>(
@@ -70,6 +68,17 @@ class ProposalDetailsScreen extends StatelessWidget {
                     children: [
                       ProposalInputField(
                         onChanged: (v) {
+                          context.read<PricingCubit>().updateProjectTitle(v);
+                        },
+                        label: "Project Title",
+                        validator: ValidationBuilder().build(),
+                        hintText: "Enter project title",
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ProposalInputField(
+                        onChanged: (v) {
                           context.read<PricingCubit>().updateDescriptionText(v);
                         },
                         maxLines: 10,
@@ -81,25 +90,29 @@ class ProposalDetailsScreen extends StatelessWidget {
                         maxLength: 500,
                       ),
                       const SizedBox(
-                        height: 10,
-                      ),
-                      ProposalInputField(
-                        onChanged: (v) {},
-                        controller: state.timeline,
-                        onTap: () {
-                          context.read<PricingCubit>().triggerDatePicker();
-                        },
-                        validator: ValidationBuilder().build(),
-                        readOnly: true,
-                        label: "Project Timeline",
-                        hintText: "Select desired project timeline",
-                      ),
-                      const SizedBox(
-                        height: 20,
+                        height: 15,
                       ),
                       Row(
                         children: [
                           Expanded(
+                            flex: 6,
+                            child: ProposalInputField(
+                              onChanged: (v) {},
+                              controller: state.timeline,
+                              onTap: () {
+                                context.read<PricingCubit>().triggerDatePicker();
+                              },
+                              validator: ValidationBuilder().build(),
+                              readOnly: true,
+                              label: "Project Timeline",
+                              hintText: "Select project timeline",
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 3,
                             child: DropDownField2(
                               onChanged: (v) {
                                 context.read<PricingCubit>().updateSelectedCurrency(v);
@@ -112,30 +125,6 @@ class ProposalDetailsScreen extends StatelessWidget {
                               label: "Currency",
                             ),
                           ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: ProposalInputField(
-                              onChanged: (v) {
-                                context.read<PricingCubit>().updateProjectCost(v);
-                              },
-                              onTap: () {},
-                              validator: ValidationBuilder().build(),
-                              label: "Project Cost",
-                              inputType: TextInputType.number,
-                              inputformatters: [
-                                LengthLimitingTextInputFormatter(18),
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r"[0-9.]")),
-                                CurrencyTextInputFormatter.currency(
-                                    locale: 'en_US',
-                                    decimalDigits: 2,
-                                    enableNegative: false,
-                                    symbol: '')
-                              ],
-                            ),
-                          )
                         ],
                       ),
                       const SizedBox(

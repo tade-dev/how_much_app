@@ -8,10 +8,15 @@ import 'package:how_much_app/ui/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/ui/widgets/buttons/buttons.dart';
 import 'package:how_much_app/ui/widgets/sheet/h_sheets.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class ViewProposalScreen extends StatelessWidget {
-  const ViewProposalScreen({super.key});
+  ViewProposalScreen({
+    super.key,
+    this.proposal
+  });
+
+  String? proposal;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,7 @@ class ViewProposalScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "${state.genPricingResponseData?.invoice}"
+                        "${proposal ?? state.genPricingResponseData?.invoice}"
                         .replaceAll("**", "")
                         .replaceAll("---", ""),
                         style: getMediumStyle(
@@ -61,10 +66,10 @@ class ViewProposalScreen extends StatelessWidget {
                                   style: getRegularStyle(fontSize: 14, color: ColorsX.textGrey),
                                 ),
                                 const SizedBox(height: 3,),
-                                Text(
-                                  "${state.genPricingResponseData?.pricing?.currency}${NumberFormat("#,###").format(state.genPricingResponseData?.pricing?.estimatedCost)}",
-                                  style: getBoldStyle(fontSize: 20, color: ColorsX.textColor),
-                                ),
+                                // Text(
+                                //   "${state.genPricingResponseData?.pricing?.currency}${NumberFormat("#,###").format(state.genPricingResponseData?.pricing?.estimatedCost)}",
+                                //   style: getBoldStyle(fontSize: 20, color: ColorsX.textColor),
+                                // ),
                               ],
                             ),
                             IconButton(
@@ -85,7 +90,7 @@ class ViewProposalScreen extends StatelessWidget {
                           isIconLeft: true,
                           onTap: (){
                             context.read<PricingCubit>().convertToPdf(
-                                "${state.genPricingResponseData?.invoice}"
+                                "${proposal ?? state.genPricingResponseData?.invoice}"
                                 .replaceAll("**", "")
                                 .replaceAll("---", "")
                             );

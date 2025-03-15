@@ -8,7 +8,6 @@ import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/gen/assets.gen.dart';
 import 'package:how_much_app/ui/widgets/sheet/h_sheets.dart';
-import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
 
@@ -40,14 +39,6 @@ class SettingsView extends StatelessWidget {
                 child: Column(
                   children: [
                     buildForSettingsTile(
-                        onTap: () {},
-                        title: "My proposals",
-                        hasDivider: true,
-                        icon: Iconsax.box),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    buildForSettingsTile(
                         onTap: () {
                           si<AppRouter>().push(ChangePasswordScreen());
                         },
@@ -57,20 +48,28 @@ class SettingsView extends StatelessWidget {
                       height: 30,
                     ),
                     buildForSettingsTile(
-                        onTap: () {},
-                        title: "Push notifications",
-                        hasDivider: true,
-                        icon: Iconsax.notification,
-                        hasToggle: true),
-                    const SizedBox(
-                      height: 30,
+                      onTap: () {
+                        HSheets.showLogoutModal();
+                      },
+                      title: "Logout",
+                      islogoout: true,
+                      icon: Iconsax.logout
                     ),
-                    buildForSettingsTile(
-                        onTap: () {},
-                        hasToggle: true,
-                        title: "Face ID",
-                        hasDivider: true,
-                        icon: HugeIcons.strokeRoundedBiometricAccess),
+                    // buildForSettingsTile(
+                    //     onTap: () {},
+                    //     title: "Push notifications",
+                    //     hasDivider: true,
+                    //     icon: Iconsax.notification,
+                    //     hasToggle: true),
+                    // const SizedBox(
+                    //   height: 30,
+                    // ),
+                    // buildForSettingsTile(
+                    //     onTap: () {},
+                    //     hasToggle: true,
+                    //     title: "Face ID",
+                    //     hasDivider: true,
+                    //     icon: HugeIcons.strokeRoundedBiometricAccess),
                   ],
                 ),
               ).animate()
@@ -86,35 +85,6 @@ class SettingsView extends StatelessWidget {
                 delay: const Duration(milliseconds: 500),
                 duration: const Duration(milliseconds: 200)
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: buildForSettingsTile(
-                    onTap: () {
-                      HSheets.showLogoutModal();
-                    },
-                    title: "Logout",
-                    islogoout: true,
-                    icon: Iconsax.logout),
-              ).animate()
-              .fade(
-                begin: 0,
-                end: 1,
-                delay: const Duration(milliseconds: 600),
-                duration: const Duration(milliseconds: 1100)
-              )
-              .slide(
-                begin: const Offset(0, 1.0),
-                end: const Offset(0, 0),
-                delay: const Duration(milliseconds: 700),
-                duration: const Duration(milliseconds: 200)
-              )
             ],
           ),
         ),

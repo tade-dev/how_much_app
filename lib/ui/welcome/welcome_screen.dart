@@ -17,6 +17,21 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
+
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(duration: const Duration(milliseconds: 800), vsync: this);
+
+    _scaleAnimation = Tween(begin: 1.0, end: 1.2).animate(_animationController);
+
+    _animationController.forward();
+
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -24,15 +39,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    Assets.images.maleImage.path
-                  ),
-                  fit: BoxFit.cover,
-                )
-              ),
+            child: ScaleTransition(
+              scale: _scaleAnimation,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      Assets.images.welcomImage.path
+                    ),
+                    fit: BoxFit.cover,
+                  )
+                ),
+              ).animate(),
             ),
           ),
           Container(

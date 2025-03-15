@@ -75,7 +75,7 @@ class LoginCubit extends Cubit<LoginState> {
           handleException((r.error ?? r.message).toString(), context!);
         }else {
           UserTokenCache().cacheUserToken(r.token ?? "");
-          var userData = r.data?.toJson();
+          var userData = r.data?.toJson()["user"];
           String encodedData = jsonEncode(userData);
           UserDataCache().cacheProfileData(encodedData);
           emit(state.copyWith(

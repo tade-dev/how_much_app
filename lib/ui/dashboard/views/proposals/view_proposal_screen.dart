@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:how_much_app/core/api/success.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/proposals/cubit/pricing_cubit.dart';
 import 'package:how_much_app/ui/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/ui/widgets/buttons/buttons.dart';
 import 'package:how_much_app/ui/widgets/sheet/h_sheets.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
 
 // ignore: must_be_immutable
@@ -26,6 +31,19 @@ class ViewProposalScreen extends StatelessWidget {
           appBar: HAppBars().mainAppBar(
             bgnColor: Colors.white,
             title: state.genPricingResponseData?.pricing?.id ?? "",
+            w: IconButton(
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: "${proposal ?? state.genPricingResponseData?.invoice}"
+                  .replaceAll("**", "")
+                  .replaceAll("---", ""))).then((v){
+                    handleSuccess(context: si<AppRouter>().navigatorKey.currentContext!, message: "Copied to clipboard!!!");
+                  }
+                );
+              }, 
+              icon: const Icon(
+                HugeIcons.strokeRoundedCopy01
+              )
+            )
           ),
           body: SizedBox(
             width: double.infinity,

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
+import 'package:how_much_app/core/routes/routes.gr.dart';
+import 'package:how_much_app/ui/components/proposal_list_view.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class ProposalsView extends StatelessWidget {
   const ProposalsView({super.key});
@@ -16,92 +21,36 @@ class ProposalsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 15,),
-              Text(
-                "My Proposals",
-                style: getSemiBoldStyle(
-                  color: ColorsX.textColor,
-                  fontSize: 16
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "My Proposals",
+                    style: getBoldStyle(
+                      color: ColorsX.textColor,
+                      fontSize: 20
+                    ),
+                  ).animate().slideX(duration: 300.ms, begin: -1.0, end: 0),
+                  GestureDetector(
+                    onTap: () {
+                    },
+                    child: Icon(
+                      HugeIcons.strokeRoundedFilter,
+                      color: ColorsX.primaryColor,
+                    )
+                  ).animate().fade(
+                    delay: 300.ms,
+                    duration: 300.ms,
+                    curve: const ElasticInOutCurve()
+                  )
+                ],
               ),
               const SizedBox(height: 15,),
-              // SearchInputField(
-              //   onChanged: (v) {
-
-              //   },
-              //   prefixIcon: Icon(
-              //     HugeIcons.strokeRoundedSearch01,
-              //     color: ColorsX.grey,
-              //   ),
-              //   suffixIcon: PopupMenuButton(
-              //     color: Colors.white,
-              //     popUpAnimationStyle: AnimationStyle(
-              //       curve: Curves.easeInOut,
-              //       duration: const Duration(milliseconds: 500)
-              //     ),
-              //     icon: Icon(
-              //       HugeIcons.strokeRoundedFilter,
-              //       color: ColorsX.grey,
-              //     ),
-              //     itemBuilder: (context) => [
-              //       PopupMenuItem(
-              //         value: 0,
-              //         child: Row(
-              //           children: [
-              //             const Icon(
-              //               HugeIcons.strokeRoundedAccess
-              //             ),
-              //             const SizedBox(width: 10,),
-              //             Text(
-              //               "Filter by Status",
-              //               style: getMediumStyle(
-              //                 color: ColorsX.textColor,
-              //                 fontSize: 14
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       PopupMenuItem(
-              //         value: 0,
-              //         child: Row(
-              //           children: [
-              //             const Icon(
-              //               HugeIcons.strokeRoundedCalendar01
-              //             ),
-              //             const SizedBox(width: 10,),
-              //             Text(
-              //               "Filter by Date",
-              //               style: getMediumStyle(
-              //                 color: ColorsX.textColor,
-              //                 fontSize: 14
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       PopupMenuItem(
-              //         value: 0,
-              //         child: Row(
-              //           children: [
-              //             const Icon(
-              //               HugeIcons.strokeRoundedUser
-              //             ),
-              //             const SizedBox(width: 10,),
-              //             Text(
-              //               "Filter by Client",
-              //               style: getMediumStyle(
-              //                 color: ColorsX.textColor,
-              //                 fontSize: 14
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ]
-              //   ),
-              //   hintText: "Search for Proposals...",
-              // )
-            
+              Expanded(
+                child: ProposalListView(onTap: (){
+                  si<AppRouter>().push(ProposalDetailsScreen());
+                }),
+              )
             ],
           ),
         ),

@@ -30,13 +30,16 @@ class ProposalDetailsScreen extends StatelessWidget {
               if(state.generationStatus.isFailure) {
                 handleException(state.genPricingResponse?.error ?? state.exceptionError , context);
               }else if (state.generationStatus.isSuccess){
-                si<AppRouter>().replace( ViewProposalScreen());
+                si<AppRouter>().replace(ViewProposalScreen());
               }
             },
             child: BlocBuilder<PricingCubit, PricingState>(
               builder: (context, state) {
                 return state.generationStatus.isInProgress ?
-                const CupertinoActivityIndicator() :
+                const Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: CupertinoActivityIndicator(),
+                ) :
                 IconButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {

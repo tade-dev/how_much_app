@@ -20,44 +20,8 @@ mixin _$LoginState {
   String get password => throw _privateConstructorUsedError;
   FormzSubmissionStatus get loginStatus => throw _privateConstructorUsedError;
   bool get showPassword => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password,
-            FormzSubmissionStatus loginStatus, bool showPassword)
-        initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password,
-            FormzSubmissionStatus loginStatus, bool showPassword)?
-        initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password,
-            FormzSubmissionStatus loginStatus, bool showPassword)?
-        initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  AuthModel? get authModel => throw _privateConstructorUsedError;
+  AuthUser? get authUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -74,7 +38,12 @@ abstract class $LoginStateCopyWith<$Res> {
       {String email,
       String password,
       FormzSubmissionStatus loginStatus,
-      bool showPassword});
+      bool showPassword,
+      AuthModel? authModel,
+      AuthUser? authUser});
+
+  $AuthModelCopyWith<$Res>? get authModel;
+  $AuthUserCopyWith<$Res>? get authUser;
 }
 
 /// @nodoc
@@ -94,6 +63,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? password = null,
     Object? loginStatus = null,
     Object? showPassword = null,
+    Object? authModel = freezed,
+    Object? authUser = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -112,7 +83,39 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
               as bool,
+      authModel: freezed == authModel
+          ? _value.authModel
+          : authModel // ignore: cast_nullable_to_non_nullable
+              as AuthModel?,
+      authUser: freezed == authUser
+          ? _value.authUser
+          : authUser // ignore: cast_nullable_to_non_nullable
+              as AuthUser?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthModelCopyWith<$Res>? get authModel {
+    if (_value.authModel == null) {
+      return null;
+    }
+
+    return $AuthModelCopyWith<$Res>(_value.authModel!, (value) {
+      return _then(_value.copyWith(authModel: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthUserCopyWith<$Res>? get authUser {
+    if (_value.authUser == null) {
+      return null;
+    }
+
+    return $AuthUserCopyWith<$Res>(_value.authUser!, (value) {
+      return _then(_value.copyWith(authUser: value) as $Val);
+    });
   }
 }
 
@@ -128,7 +131,14 @@ abstract class _$$InitialImplCopyWith<$Res>
       {String email,
       String password,
       FormzSubmissionStatus loginStatus,
-      bool showPassword});
+      bool showPassword,
+      AuthModel? authModel,
+      AuthUser? authUser});
+
+  @override
+  $AuthModelCopyWith<$Res>? get authModel;
+  @override
+  $AuthUserCopyWith<$Res>? get authUser;
 }
 
 /// @nodoc
@@ -146,6 +156,8 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? password = null,
     Object? loginStatus = null,
     Object? showPassword = null,
+    Object? authModel = freezed,
+    Object? authUser = freezed,
   }) {
     return _then(_$InitialImpl(
       email: null == email
@@ -164,6 +176,14 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.showPassword
           : showPassword // ignore: cast_nullable_to_non_nullable
               as bool,
+      authModel: freezed == authModel
+          ? _value.authModel
+          : authModel // ignore: cast_nullable_to_non_nullable
+              as AuthModel?,
+      authUser: freezed == authUser
+          ? _value.authUser
+          : authUser // ignore: cast_nullable_to_non_nullable
+              as AuthUser?,
     ));
   }
 }
@@ -175,7 +195,9 @@ class _$InitialImpl extends _Initial {
       {this.email = "",
       this.password = "",
       this.loginStatus = FormzSubmissionStatus.initial,
-      this.showPassword = false})
+      this.showPassword = false,
+      this.authModel,
+      this.authUser})
       : super._();
 
   @override
@@ -190,10 +212,14 @@ class _$InitialImpl extends _Initial {
   @override
   @JsonKey()
   final bool showPassword;
+  @override
+  final AuthModel? authModel;
+  @override
+  final AuthUser? authUser;
 
   @override
   String toString() {
-    return 'LoginState.initial(email: $email, password: $password, loginStatus: $loginStatus, showPassword: $showPassword)';
+    return 'LoginState(email: $email, password: $password, loginStatus: $loginStatus, showPassword: $showPassword, authModel: $authModel, authUser: $authUser)';
   }
 
   @override
@@ -207,80 +233,22 @@ class _$InitialImpl extends _Initial {
             (identical(other.loginStatus, loginStatus) ||
                 other.loginStatus == loginStatus) &&
             (identical(other.showPassword, showPassword) ||
-                other.showPassword == showPassword));
+                other.showPassword == showPassword) &&
+            (identical(other.authModel, authModel) ||
+                other.authModel == authModel) &&
+            (identical(other.authUser, authUser) ||
+                other.authUser == authUser));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, loginStatus, showPassword);
+  int get hashCode => Object.hash(runtimeType, email, password, loginStatus,
+      showPassword, authModel, authUser);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password,
-            FormzSubmissionStatus loginStatus, bool showPassword)
-        initial,
-  }) {
-    return initial(email, password, loginStatus, showPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password,
-            FormzSubmissionStatus loginStatus, bool showPassword)?
-        initial,
-  }) {
-    return initial?.call(email, password, loginStatus, showPassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password,
-            FormzSubmissionStatus loginStatus, bool showPassword)?
-        initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(email, password, loginStatus, showPassword);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _Initial extends LoginState {
@@ -288,7 +256,9 @@ abstract class _Initial extends LoginState {
       {final String email,
       final String password,
       final FormzSubmissionStatus loginStatus,
-      final bool showPassword}) = _$InitialImpl;
+      final bool showPassword,
+      final AuthModel? authModel,
+      final AuthUser? authUser}) = _$InitialImpl;
   const _Initial._() : super._();
 
   @override
@@ -299,6 +269,10 @@ abstract class _Initial extends LoginState {
   FormzSubmissionStatus get loginStatus;
   @override
   bool get showPassword;
+  @override
+  AuthModel? get authModel;
+  @override
+  AuthUser? get authUser;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

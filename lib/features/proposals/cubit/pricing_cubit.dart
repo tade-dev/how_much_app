@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:how_much_app/core/api/success.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -281,24 +282,29 @@ class PricingCubit extends Cubit<PricingState> {
       final page = await pdfDocument.getPage(1);
 
       final pw.PdfPageImage? pageImage = await page.render(
-        height: 500,
-        width: 300
+        height: 1000,
+        width: 1000
       );
+
       if (pageImage != null) {
+
         Uint8List imageBytes = pageImage.bytes;
 
         final result = await ImageGallerySaver.saveImage(
           imageBytes,
-          quality: 100,
+          quality: 500,
           name: "Proposal_${DateTime.now().millisecondsSinceEpoch}",
         );
 
         log("Image saved successfully: $result");
+
+        handleSuccess(context: si<AppRouter>().navigatorKey.currentContext!, message: "Image saved successfully");
         
       }
 
       await page.close();
       await pdfDocument.close();
+
     } catch (e) {
       log("Error: $e");
     }

@@ -9,6 +9,7 @@ import 'package:how_much_app/core/db/local_cache.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/model/ranv_model.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
+import 'package:how_much_app/features/auth/data/model/auth_model.dart';
 import 'package:how_much_app/features/auth/domain/usecases/auth_u.dart';
 import 'package:injectable/injectable.dart';
 
@@ -20,10 +21,10 @@ class LoginCubit extends Cubit<LoginState> {
   LoginUserUseCase loginUserUseCase;
   LoginCubit(
     this.loginUserUseCase
-  ) : super(const LoginState.initial());
+  ) : super(LoginState());
 
   resetState(){
-    emit(const LoginState.initial());
+    emit(LoginState());
   }
 
   toggleShowPassword() {
@@ -69,19 +70,28 @@ class LoginCubit extends Cubit<LoginState> {
       }, (r){
 
         if (r.success == false) {
+
           emit(state.copyWith(
             loginStatus: FormzSubmissionStatus.failure,
           ));
+
           handleException((r.error ?? r.message).toString(), context!);
-        }else {
+
+        } else {
+
           UserTokenCache().cacheUserToken(r.token ?? "");
           var userData = r.data?.toJson()["user"];
           String encodedData = jsonEncode(userData);
           UserDataCache().cacheProfileData(encodedData);
+
           emit(state.copyWith(
+            authModel: r,
+            authUser: r.data?.user,
             loginStatus: FormzSubmissionStatus.success,
           ));
+
           handleSuccess(context: context!, message: r.message ?? "Login successful!");
+
         }
 
       }

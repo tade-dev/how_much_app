@@ -11,7 +11,6 @@ import 'package:how_much_app/core/routes/route_string.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart';
 import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
-// import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:how_much_app/ui/widgets/appbar/h_app_bars.dart';
 import 'package:how_much_app/ui/widgets/buttons/buttons.dart';
 import 'package:how_much_app/ui/widgets/inputs/auth_text_field.dart';
@@ -27,9 +26,8 @@ class LoginScreen extends StatelessWidget {
       appBar: HAppBars().authBar(context),
       body: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
-          var profileState = si<ProfileCubit>().state;
           if(state.loginStatus.isSuccess) {
-            if((profileState.userData?.developerTitle ?? "").isEmpty) {
+            if((state.authUser?.developerTitle ?? "").isEmpty) {
               si<AppRouter>().replaceNamed(RouteString.dashboard);
               si<AppRouter>().replaceNamed(RouteString.editProfile);
               context.read<ProfileCubit>().updateEditProfileCurrentState(EditProfileCurrentState.login);

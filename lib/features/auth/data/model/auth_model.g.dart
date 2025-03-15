@@ -30,7 +30,7 @@ _$AuthDataImpl _$$AuthDataImplFromJson(Map<String, dynamic> json) =>
     _$AuthDataImpl(
       user: json['user'] == null
           ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+          : AuthUser.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AuthDataImplToJson(_$AuthDataImpl instance) =>
@@ -38,7 +38,8 @@ Map<String, dynamic> _$$AuthDataImplToJson(_$AuthDataImpl instance) =>
       'user': instance.user,
     };
 
-_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
+_$AuthUserImpl _$$AuthUserImplFromJson(Map<String, dynamic> json) =>
+    _$AuthUserImpl(
       otp: json['otp'] == null
           ? null
           : Otp.fromJson(json['otp'] as Map<String, dynamic>),
@@ -50,13 +51,14 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       password: json['password'] as String?,
       image: json['image'] as String?,
       isActive: json['isActive'] as bool?,
+      developerTitle: json['developerTitle'] as String?,
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
       v: (json['v'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+Map<String, dynamic> _$$AuthUserImplToJson(_$AuthUserImpl instance) =>
     <String, dynamic>{
       'otp': instance.otp,
       'id': instance.id,
@@ -67,6 +69,7 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'password': instance.password,
       'image': instance.image,
       'isActive': instance.isActive,
+      'developerTitle': instance.developerTitle,
       'createdAt': instance.createdAt?.toIso8601String(),
       'v': instance.v,
     };

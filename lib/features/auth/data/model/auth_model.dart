@@ -28,15 +28,15 @@ class AuthModel with _$AuthModel {
 @freezed
 class AuthData with _$AuthData {
     const factory AuthData({
-        User? user,
+        AuthUser? user,
     }) = _AuthData;
 
     factory AuthData.fromJson(Map<String, dynamic> json) => _$AuthDataFromJson(json);
 }
 
 @freezed
-class User with _$User {
-    const factory User({
+class AuthUser with _$AuthUser {
+    const factory AuthUser({
         Otp? otp,
         String? id,
         String? firstname,
@@ -46,11 +46,12 @@ class User with _$User {
         String? password,
         String? image,
         bool? isActive,
+        String? developerTitle,
         DateTime? createdAt,
         int? v,
-    }) = _User;
+    }) = _AuthUser;
 
-    factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+    factory AuthUser.fromJson(Map<String, dynamic> json) => _$AuthUserFromJson(json);
 }
 
 @freezed

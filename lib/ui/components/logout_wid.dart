@@ -6,6 +6,7 @@ import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/core/routes/route_string.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
+import 'package:how_much_app/features/auth/cubit/login/login_cubit.dart';
 import 'package:how_much_app/features/profile/cubit/profile_cubit.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
@@ -34,6 +35,9 @@ class LogoutWid extends StatelessWidget {
                 onTap: () async {
                   await UserTokenCache().clearUserTokenCache();
                   si<AppRouter>().replaceNamed(RouteString.signin);
+                  if(context.mounted) {
+                    context.read<LoginCubit>().resetState();
+                  }
                 },
                 title: "Proceed",
                 icon: Iconsax.logout,

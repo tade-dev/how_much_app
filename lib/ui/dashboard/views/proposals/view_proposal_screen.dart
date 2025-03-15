@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:how_much_app/core/api/success.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
@@ -13,6 +14,7 @@ import 'package:how_much_app/ui/widgets/buttons/buttons.dart';
 import 'package:how_much_app/ui/widgets/sheet/h_sheets.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class ViewProposalScreen extends StatelessWidget {
@@ -54,14 +56,26 @@ class ViewProposalScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        "${proposal ?? state.genPricingResponseData?.invoice}"
+                      child: Linkify(
+                        onOpen: (link) async {
+                          if (await canLaunchUrl(Uri.parse(link.url))) {
+                            await launchUrl(Uri.parse(link.url));
+                          } else {
+                            throw "Could not launch ${link.url}";
+                          }
+                        },
+                        text: "${proposal ?? state.genPricingResponseData?.invoice}"
                         .replaceAll("**", "")
-                        .replaceAll("---", ""),
+                        .replaceAll("---", "")
+                        .replaceAll("[", "")
+                        .replaceAll("(", "")
+                        .replaceAll("]", " ")
+                        .replaceAll(")", " "),
                         style: getMediumStyle(
                           color: ColorsX.textColor,
                           fontSize: 16
                         ),
+                        linkStyle: const TextStyle(color: Colors.blue),
                       ),
                     ),
                   ),

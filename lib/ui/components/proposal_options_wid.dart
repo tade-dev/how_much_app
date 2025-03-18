@@ -40,11 +40,11 @@ class ProposalOptionsWid extends StatelessWidget {
                   icon: HugeIcons.strokeRoundedDownload01,
                   title: 'Download as image',
                   ontap: () {
-                    context.read<PricingCubit>().convertToImageAndSave(
-                                        "${state.genPricingResponseData?.invoice}"
-                        .replaceAll("**", "")
-                        .replaceAll("---", "")
-                    );
+                    // context.read<PricingCubit>().convertToImageAndSave(
+                    //                     "${state.genPricingResponseData?.invoice}"
+                    //     .replaceAll("**", "")
+                    //     .replaceAll("---", "")
+                    // );
                   },
                 ),
                 const Divider(),

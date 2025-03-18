@@ -1,12 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:how_much_app/core/api/success.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:how_much_app/core/api/success.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/entites/no_params.dart';
 import 'package:how_much_app/core/routes/routes.gr.dart';
@@ -14,12 +13,13 @@ import 'package:how_much_app/features/proposals/data/model/gen_pricing_req.dart'
 import 'package:how_much_app/features/proposals/data/model/gen_pricing_response.dart';
 import 'package:how_much_app/features/proposals/data/model/proposal_detail_model.dart';
 import 'package:how_much_app/features/proposals/domain/usecases/pricing_u.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pdfx/pdfx.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 part 'pricing_state.dart';
 part 'pricing_cubit.freezed.dart';
@@ -214,100 +214,129 @@ class PricingCubit extends Cubit<PricingState> {
 
   Future<void> convertToPdf(String proposal) async {
     try {
-      final PdfDocument document = PdfDocument();
+      final pdf = pw.Document();
 
-      document.pages.add().graphics.drawString(
-        proposal,
-        PdfStandardFont(PdfFontFamily.helvetica, 12),
-        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-        bounds: const Rect.fromLTWH(0, 0, 500, 50),
+      final List<String> paragraphs = proposal.split('\n');
+
+      pdf.addPage(
+        pw.MultiPage(
+          pageFormat: PdfPageFormat.a4,
+          margin: const pw.EdgeInsets.all(32),
+          build: (pw.Context context) {
+            return paragraphs.map((paragraph) {
+              return pw.Padding(
+                padding: const pw.EdgeInsets.only(bottom: 8),
+                child: pw.Text(
+                  paragraph,
+                  style: const pw.TextStyle(fontSize: 12),
+                ),
+              );
+            }).toList();
+          },
+        ),
       );
 
       final Directory tempDir = await getTemporaryDirectory();
       final String filePath = '${tempDir.path}/Proposal.pdf';
-
       final File file = File(filePath);
-      await file.writeAsBytes(await document.save());
-
-      document.dispose();
+      await file.writeAsBytes(await pdf.save());
 
       await Share.shareXFiles([XFile(filePath)], text: 'Here is your proposal PDF. 🚀');
-
+      
+      log('PDF generated successfully');
     } catch (e) {
-      log('Error: $e');
+      log('Error generating PDF: $e');
     }
   }
 
   Future<void> printPdf(String proposal) async {
     try {
-      final PdfDocument document = PdfDocument();
+      final pdf = pw.Document();
+      final List<String> paragraphs = proposal.split('\n');
 
-      document.pages.add().graphics.drawString(
-        proposal,
-        PdfStandardFont(PdfFontFamily.helvetica, 12),
-        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-        bounds: const Rect.fromLTWH(0, 0, 500, 50),
+      pdf.addPage(
+        pw.MultiPage(
+          pageFormat: PdfPageFormat.a4,
+          margin: const pw.EdgeInsets.all(32),
+          build: (pw.Context context) {
+            return [
+              pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: paragraphs
+                    .map((paragraph) => pw.Padding(
+                          padding: const pw.EdgeInsets.only(bottom: 8),
+                          child: pw.Text(
+                            paragraph,
+                            style: const pw.TextStyle(fontSize: 12),
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ];
+          },
+        ),
       );
-
-      final List<int> bytes = await document.save();
-
-      document.dispose();
 
       await Printing.layoutPdf(
-        onLayout: (format) async => Uint8List.fromList(bytes),
+        onLayout: (PdfPageFormat format) async => pdf.save(),
       );
 
+      log('PDF printed successfully');
+
     } catch (e) {
+
       log('Printing Error: $e');
+      
     }
+
   }
 
-  Future<void> convertToImageAndSave(String proposal) async {
-    try {
-      final PdfDocument document = PdfDocument();
-      document.pages.add().graphics.drawString(
-        proposal,
-        PdfStandardFont(PdfFontFamily.helvetica, 12),
-        brush: PdfSolidBrush(PdfColor(0, 0, 0)),
-        bounds: const Rect.fromLTWH(0, 0, 400, 800),
-      );
+  // Future<void> convertToImageAndSave(String proposal) async {
+  //   try {
+  //     final PdfDocument document = PdfDocument();
+  //     document.pages.add().graphics.drawString(
+  //       proposal,
+  //       PdfStandardFont(PdfFontFamily.helvetica, 12),
+  //       brush: PdfSolidBrush(PdfColor(0, 0, 0)),
+  //       bounds: const Rect.fromLTWH(0, 0, 400, 800),
+  //     );
 
-      final dir = await getTemporaryDirectory();
-      final pdfFile = File('${dir.path}/Proposal.pdf');
+  //     final dir = await getTemporaryDirectory();
+  //     final pdfFile = File('${dir.path}/Proposal.pdf');
 
-      await pdfFile.writeAsBytes(await document.save());
-      document.dispose();
+  //     await pdfFile.writeAsBytes(await document.save());
+  //     document.dispose();
 
-      final pdfDocument = await pw.PdfDocument.openFile(pdfFile.path);
-      final page = await pdfDocument.getPage(1);
+  //     final pdfDocument = await pw.PdfDocument.openFile(pdfFile.path);
+  //     final page = await pdfDocument.getPage(1);
 
-      final pw.PdfPageImage? pageImage = await page.render(
-        height: 1000,
-        width: 1000
-      );
+  //     final pw.PdfPageImage? pageImage = await page.render(
+  //       height: 1000,
+  //       width: 1000
+  //     );
 
-      if (pageImage != null) {
+  //     if (pageImage != null) {
 
-        Uint8List imageBytes = pageImage.bytes;
+  //       Uint8List imageBytes = pageImage.bytes;
 
-        final result = await ImageGallerySaver.saveImage(
-          imageBytes,
-          quality: 500,
-          name: "Proposal_${DateTime.now().millisecondsSinceEpoch}",
-        );
+  //       final result = await ImageGallerySaver.saveImage(
+  //         imageBytes,
+  //         quality: 500,
+  //         name: "Proposal_${DateTime.now().millisecondsSinceEpoch}",
+  //       );
 
-        log("Image saved successfully: $result");
+  //       log("Image saved successfully: $result");
 
-        handleSuccess(context: si<AppRouter>().navigatorKey.currentContext!, message: "Image saved successfully");
+  //       handleSuccess(context: si<AppRouter>().navigatorKey.currentContext!, message: "Image saved successfully");
         
-      }
+  //     }
 
-      await page.close();
-      await pdfDocument.close();
+  //     await page.close();
+  //     await pdfDocument.close();
 
-    } catch (e) {
-      log("Error: $e");
-    }
-  }
+  //   } catch (e) {
+  //     log("Error: $e");
+  //   }
+  // }
 
 }

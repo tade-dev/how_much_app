@@ -50,9 +50,9 @@ dependencies:
   syncfusion_flutter_pdf: ^28.2.11
   printing: ^5.14.2
   image_gallery_saver: ^2.0.3
-  pdfx: ^2.8.0
   flutter_linkify: ^6.0.0
   url_launcher: ^6.3.1
+  pdf: ^3.11.3
 
 dev_dependencies:
   flutter_test:

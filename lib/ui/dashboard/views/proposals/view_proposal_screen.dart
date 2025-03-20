@@ -35,9 +35,15 @@ class ViewProposalScreen extends StatelessWidget {
             title: state.genPricingResponseData?.pricing?.id ?? "",
             w: IconButton(
               onPressed: () {
-                Clipboard.setData(ClipboardData(text: "${proposal ?? state.genPricingResponseData?.invoice}"
-                  .replaceAll("**", "")
-                  .replaceAll("---", ""))).then((v){
+                Clipboard.setData(ClipboardData(text: cleanText(
+                          "${proposal ?? state.genPricingResponseData?.invoice}"
+                          .replaceAll("**", "")
+                          .replaceAll("---", "")
+                          .replaceAll("[", "")
+                          .replaceAll("(", "")
+                          .replaceAll("]", " ")
+                          .replaceAll(")", " "),
+                        ),)).then((v){
                     handleSuccess(context: si<AppRouter>().navigatorKey.currentContext!, message: "Copied to clipboard!!!");
                   }
                 );
@@ -64,13 +70,15 @@ class ViewProposalScreen extends StatelessWidget {
                             throw "Could not launch ${link.url}";
                           }
                         },
-                        text: "${proposal ?? state.genPricingResponseData?.invoice}"
-                        .replaceAll("**", "")
-                        .replaceAll("---", "")
-                        .replaceAll("[", "")
-                        .replaceAll("(", "")
-                        .replaceAll("]", " ")
-                        .replaceAll(")", " "),
+                        text: cleanText(
+                          "${proposal ?? state.genPricingResponseData?.invoice}"
+                          .replaceAll("**", "")
+                          .replaceAll("---", "")
+                          .replaceAll("[", "")
+                          .replaceAll("(", "")
+                          .replaceAll("]", " ")
+                          .replaceAll(")", " "),
+                        ),
                         style: getMediumStyle(
                           color: ColorsX.textColor,
                           fontSize: 16
@@ -122,9 +130,15 @@ class ViewProposalScreen extends StatelessWidget {
                           isIconLeft: true,
                           onTap: (){
                             context.read<PricingCubit>().convertToPdf(
+                              cleanText(
                                 "${proposal ?? state.genPricingResponseData?.invoice}"
                                 .replaceAll("**", "")
                                 .replaceAll("---", "")
+                                .replaceAll("[", "")
+                                .replaceAll("(", "")
+                                .replaceAll("]", " ")
+                                .replaceAll(")", " "),
+                              ),
                             );
                           }
                         )
@@ -139,4 +153,21 @@ class ViewProposalScreen extends StatelessWidget {
       },
     );
   }
+}
+
+String cleanText(String input) {
+  List<String> words = input.split(" ");
+  Set<String> seen = {};
+  List<String> result = [];
+
+  for (var word in words) {
+    if (!seen.contains(word)) {
+      seen.add(word);
+      result.add(word);
+    }
+  }
+
+  String cleanedText = result.join(" ");
+  
+  return cleanedText.replaceAll(RegExp(r'\n{3,}'), '\n\n');
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
 import 'package:how_much_app/features/proposals/cubit/pricing_cubit.dart';
@@ -28,11 +29,7 @@ class ProposalOptionsWid extends StatelessWidget {
                   icon: HugeIcons.strokeRoundedPdf01,
                   title: 'Convert to PDF',
                   ontap: () {
-                    context.read<PricingCubit>().convertToPdf(
-                        "${state.genPricingResponseData?.invoice}"
-                        .replaceAll("**", "")
-                        .replaceAll("---", "")
-                    );
+                    si<PricingCubit>().convertToPdf();
                   },
                 ),
                 const Divider(),
@@ -40,11 +37,10 @@ class ProposalOptionsWid extends StatelessWidget {
                   icon: HugeIcons.strokeRoundedDownload01,
                   title: 'Download as image',
                   ontap: () {
-                    // context.read<PricingCubit>().convertToImageAndSave(
-                    //                     "${state.genPricingResponseData?.invoice}"
-                    //     .replaceAll("**", "")
-                    //     .replaceAll("---", "")
-                    // );
+                    si<PricingCubit>().convertToPdf(
+                      isImage: true,
+                      globalKey: si<PricingCubit>().globalKey
+                    );
                   },
                 ),
                 const Divider(),
@@ -52,10 +48,8 @@ class ProposalOptionsWid extends StatelessWidget {
                   icon: HugeIcons.strokeRoundedPrinter,
                   title: 'Print',
                   ontap: () {
-                    context.read<PricingCubit>().printPdf(
-                        "${state.genPricingResponseData?.invoice}"
-                        .replaceAll("**", "")
-                        .replaceAll("---", "")
+                    si<PricingCubit>().convertToPdf(
+                      isPrint: true,
                     );
                   },
                 ),

@@ -17,7 +17,7 @@ class PricingSource extends PricingService {
 
   final Api api;
 
-  var baseUrl = dotenv.env['BASE_URL'] ?? '';
+  var baseUrl = dotenv.env['BASE_URL'].toString();
 
   PricingSource({required this.api});
 

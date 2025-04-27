@@ -8,7 +8,6 @@ import 'package:how_much_app/core/api/exceptions.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
-import 'package:how_much_app/core/routes/routes.gr.dart';
 import 'package:how_much_app/features/proposals/cubit/pricing_cubit.dart';
 import 'package:how_much_app/ui/components/advanced_features.dart';
 import 'package:how_much_app/ui/widgets/appbar/h_app_bars.dart';
@@ -30,7 +29,7 @@ class ProposalDetailsScreen extends StatelessWidget {
               if(state.generationStatus.isFailure) {
                 handleException(state.genPricingResponse?.error ?? state.exceptionError , context);
               }else if (state.generationStatus.isSuccess){
-                si<AppRouter>().replace(ViewProposalScreen());
+                si<PricingCubit>().convertToPdf();
               }
             },
             child: BlocBuilder<PricingCubit, PricingState>(

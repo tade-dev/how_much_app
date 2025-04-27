@@ -16,7 +16,7 @@ class AuthSource extends AuthServices {
 
   final Api api;
 
-  var baseUrl = dotenv.env['BASE_URL'] ?? '';
+  var baseUrl = dotenv.env['BASE_URL'].toString();
 
   AuthSource({required this.api});
 

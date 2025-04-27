@@ -11,6 +11,8 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:io' as _i16;
+
 import 'package:auto_route/auto_route.dart' as _i14;
 import 'package:flutter/material.dart' as _i15;
 
@@ -159,7 +161,7 @@ class AppRouter extends _i14.RootStackRouter {
         routeData: routeData,
         child: _i13.ViewProposalScreen(
           key: args.key,
-          proposal: args.proposal,
+          file: args.file,
         ),
         opaque: true,
         barrierDismissible: false,
@@ -488,13 +490,13 @@ class ProposalDetailsScreenArgs {
 class ViewProposalScreen extends _i14.PageRouteInfo<ViewProposalScreenArgs> {
   ViewProposalScreen({
     _i15.Key? key,
-    String? proposal,
+    _i16.File? file,
   }) : super(
           ViewProposalScreen.name,
           path: '/view-proposal-screen',
           args: ViewProposalScreenArgs(
             key: key,
-            proposal: proposal,
+            file: file,
           ),
         );
 
@@ -504,15 +506,15 @@ class ViewProposalScreen extends _i14.PageRouteInfo<ViewProposalScreenArgs> {
 class ViewProposalScreenArgs {
   const ViewProposalScreenArgs({
     this.key,
-    this.proposal,
+    this.file,
   });
 
   final _i15.Key? key;
 
-  final String? proposal;
+  final _i16.File? file;
 
   @override
   String toString() {
-    return 'ViewProposalScreenArgs{key: $key, proposal: $proposal}';
+    return 'ViewProposalScreenArgs{key: $key, file: $file}';
   }
 }

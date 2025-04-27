@@ -16,6 +16,10 @@ class $AssetsImagesGen {
   AssetGenImage get rectangle =>
       const AssetGenImage('assets/images/Rectangle.png');
 
+  /// File path: assets/images/laucher_icon.jpg
+  AssetGenImage get laucherIcon =>
+      const AssetGenImage('assets/images/laucher_icon.jpg');
+
   /// File path: assets/images/male_image.jpg
   AssetGenImage get maleImage =>
       const AssetGenImage('assets/images/male_image.jpg');
@@ -30,7 +34,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [rectangle, maleImage, profileAvatar, welcomImage];
+      [rectangle, laucherIcon, maleImage, profileAvatar, welcomImage];
 }
 
 class $AssetsPngGen {

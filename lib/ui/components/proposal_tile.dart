@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:how_much_app/core/di/injectable.dart';
 import 'package:how_much_app/core/resources/colors_x.dart';
 import 'package:how_much_app/core/resources/styles_x.dart';
-import 'package:how_much_app/core/routes/routes.gr.dart';
+import 'package:how_much_app/features/proposals/cubit/pricing_cubit.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:intl/intl.dart';
 
@@ -119,9 +119,8 @@ class _ProposalTileState extends State<ProposalTile> {
                         children: groupedProposals[month]! 
                             .map<Widget>((proposal) => buildProposalTile(
                                   onTap: () {
-                                    si<AppRouter>().push(ViewProposalScreen(
-                                      proposal: proposal["generatedInvoice"]
-                                    ));
+                                    // si<PricingCubit>().updateProposalResponse(proposal);
+                                    si<PricingCubit>().convertToPdf();
                                   },
                                   title: proposal["title"],
                                   desc: "Timeline: ${proposal["requiredTimeline"]}",

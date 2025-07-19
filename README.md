@@ -1,16 +1,24 @@
-# how_much_app
+# How Much App
 
-A new Flutter project.
+<div align="center">
+  <img src="logo.png" alt="How Much App Logo" width="150">
+</div>
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+A platform that generates a pricing proposal for developers based on their experiences and skillset.
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI_API-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![BLoC](https://img.shields.io/badge/BLoC-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+
+<div align="center">
+  <img src="screenshot1.png" alt="Screenshot 1" width="300">
+  <img src="screenshot2.png" alt="Screenshot 2" width="300">
+</div>
